@@ -2,7 +2,10 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepos
 
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public interface ISpringUGerenciamento extends JpaRepository<EUGerenciamento, Long> {
     EUGerenciamento findByNR(Long nr);
+    UserDetails findByNome(String nome);
+
 }
