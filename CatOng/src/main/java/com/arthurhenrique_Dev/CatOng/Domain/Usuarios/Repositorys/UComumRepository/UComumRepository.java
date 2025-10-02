@@ -9,6 +9,7 @@ public interface UComumRepository {
 
     void salvarUComum(UComum uComum);
     void removerUComum(Long id);
+    void atualizarUComum(Long id, UComum uComum);
     Optional<UComum> getUComumById(Long id);
     List<UComum> getUComuns(int page, int size);
     List<UComum> getUComumsByName(int page, int size, String nome);

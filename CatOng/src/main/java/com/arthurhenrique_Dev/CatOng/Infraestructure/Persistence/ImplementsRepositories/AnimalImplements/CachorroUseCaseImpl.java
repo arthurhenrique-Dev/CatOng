@@ -43,6 +43,10 @@ public class CachorroUseCaseImpl implements CachorroRepo {
     }
 
     @Override
+    public void alterarCachorro(Long id, Cachorro cachorroAlterado) {
+    }
+
+    @Override
     public List<Cachorro> getCachorros(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return fRepository.findAll(pageable)

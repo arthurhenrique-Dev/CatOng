@@ -34,6 +34,11 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
     }
 
     @Override
+    public void atualizarUGerenciamento(Long NR, UGerenciamento uGerenciamento) {
+
+    }
+
+    @Override
     public Optional<UGerenciamento> getUGerenciamentoByNR(Long NR) {
         EUGerenciamento usuarioRetorno = fRepository.findByNR(NR);
         return Optional.ofNullable(usuarioRetorno)

@@ -8,11 +8,9 @@ import java.util.Optional;
 public interface GatoRepo {
 
     void salvarGato(Gato gato);
-
     void deletarGato(Long id);
-
     void adotarGato(Long id);
-
+    void alterarGato(Long id, Gato gato);
     List<Gato> getGato(int page, int size);
     List<Gato> getGatoByName(int page, int size, String nome);
     Optional<Gato> getGatoById(Long id);

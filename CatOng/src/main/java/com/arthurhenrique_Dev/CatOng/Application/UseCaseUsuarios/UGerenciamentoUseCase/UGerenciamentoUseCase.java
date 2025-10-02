@@ -21,6 +21,9 @@ public class UGerenciamentoUseCase {
     public void removerUGerenciamento(Long NR){
         uGRepo.removerUGerenciamento(NR);
     }
+    public void atualizarUGerenciamento(Long NR, UGerenciamento uGerenciamento){
+        uGRepo.atualizarUGerenciamento(NR, uGerenciamento);
+    }
     public Optional<UGerenciamento> getUGerenciamentoByNR(Long NR){
         return uGRepo.getUGerenciamentoByNR(NR);
     }

@@ -11,6 +11,7 @@ public interface CachorroRepo {
     void salvarCachorro(Cachorro cachorro);
     void deletarCachorro(Long id);
     void adotarCachorro(Long id);
+    void alterarCachorro(Long id, Cachorro cachorroAlterado);
     List<Cachorro> getCachorros(int page, int size);
     List<Cachorro> getCachorrosByName(int page, int size, String nome);
     Optional<Cachorro> getCachorroById(Long id);

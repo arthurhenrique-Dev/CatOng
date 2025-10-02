@@ -16,6 +16,9 @@ public class UComumUseCase {
     public void salvarComum(UComum uComum) {
         uComumRepository.salvarUComum(uComum);
     }
+    public void atualizarComum(Long id, UComum uComum){
+        uComumRepository.atualizarUComum(id, uComum);
+    }
     public void removerComum(Long id) {
         uComumRepository.removerUComum(id);
     }

@@ -11,6 +11,7 @@ public interface UGerenciamentoRepository {
 
     void salvarUGerenciamento(UGerenciamento ugerenciamento);
     void removerUGerenciamento(Long NR);
+    void atualizarUGerenciamento(Long NR, UGerenciamento uGerenciamento);
     Optional<UGerenciamento> getUGerenciamentoByNR(Long NR);
     List<UGerenciamento> getUGerenciamentos(int page, int size);
 }

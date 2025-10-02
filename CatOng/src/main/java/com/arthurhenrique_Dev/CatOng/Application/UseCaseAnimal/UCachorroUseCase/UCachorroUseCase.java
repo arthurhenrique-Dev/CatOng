@@ -17,8 +17,8 @@ public class UCachorroUseCase {
     public void CadastrarCachorro(Cachorro cachorro) {
         cachorroRepo.salvarCachorro(cachorro);
     }
-    public void AlterarCachorro(Cachorro cachorro) {
-        cachorroRepo.salvarCachorro(cachorro);
+    public void AlterarCachorro(Long id, Cachorro cachorro) {
+        cachorroRepo.alterarCachorro(id, cachorro);
     }
     public void deletarCachorro(Long id) {
         cachorroRepo.deletarCachorro(id);

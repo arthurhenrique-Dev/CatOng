@@ -24,6 +24,9 @@ public class UGatoUseCase {
     public void adotarGato(Long id) {
         gatoRepo.adotarGato(id);
     }
+    public void alterarGato(Long id, Gato gato){
+        gatoRepo.alterarGato(id, gato);
+    }
     public List<Gato> getGato(int page, int size) {
         return gatoRepo.getGato(page, size);
     }

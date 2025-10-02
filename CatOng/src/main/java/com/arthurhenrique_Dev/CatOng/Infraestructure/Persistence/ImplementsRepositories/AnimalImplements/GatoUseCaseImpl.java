@@ -43,6 +43,11 @@ public class GatoUseCaseImpl implements GatoRepo {
     }
 
     @Override
+    public void alterarGato(Long id, Gato gato) {
+
+    }
+
+    @Override
     public List<Gato> getGato(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return fRepository.findAll(pageable)

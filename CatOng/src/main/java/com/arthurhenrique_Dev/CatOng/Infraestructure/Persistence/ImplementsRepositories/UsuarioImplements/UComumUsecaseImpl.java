@@ -38,6 +38,11 @@ public class UComumUsecaseImpl implements UComumRepository {
     }
 
     @Override
+    public void atualizarUComum(Long id, UComum uComum) {
+
+    }
+
+    @Override
     public Optional<UComum> getUComumById(Long id) {
         return fRepository.findById(id)
                 .map(mapper::toDomain);
