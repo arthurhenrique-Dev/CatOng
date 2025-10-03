@@ -1,8 +1,7 @@
-package com.arthurhenrique_Dev.CatOng.Controllers;
+package com.arthurhenrique_Dev.CatOng.Controllers.Animal;
 
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UCachorroUseCase.UCachorroUseCase;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
-import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.CachorroRepo.CachorroRepo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -3,7 +3,7 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepo
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UComumRepository.UComumRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Mappers.UserMappers.UComumMapper;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UComumMapper;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.ISpringUComum;
 import org.springframework.data.domain.PageRequest;

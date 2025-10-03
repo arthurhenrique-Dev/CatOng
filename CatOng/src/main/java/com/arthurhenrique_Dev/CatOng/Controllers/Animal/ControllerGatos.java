@@ -1,8 +1,7 @@
-package com.arthurhenrique_Dev.CatOng.Controllers;
+package com.arthurhenrique_Dev.CatOng.Controllers.Animal;
 
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UGatoUseCase.UGatoUseCase;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
-import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.GatoRepo.GatoRepo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
