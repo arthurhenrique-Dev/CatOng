@@ -24,8 +24,8 @@ public class UGerenciamentoUseCase {
     public void atualizarUGerenciamento(Long NR, UGerenciamento uGerenciamento){
         uGRepo.atualizarUGerenciamento(NR, uGerenciamento);
     }
-    public Optional<UGerenciamento> getUGerenciamentoByNR(Long NR){
-        return uGRepo.getUGerenciamentoByNR(NR);
+    public Optional<UGerenciamento> getUGerenciamentoByNR(Long nr){
+        return uGRepo.getUGerenciamentoByNR(nr);
     }
     public List<UGerenciamento> getUGerenciamentos(int page, int size){
         return uGRepo.getUGerenciamentos(page, size);

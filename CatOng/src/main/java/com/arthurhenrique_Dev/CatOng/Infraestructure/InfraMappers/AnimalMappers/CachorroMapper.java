@@ -27,8 +27,8 @@ public class CachorroMapper {
                 entityCachorro.getAtividade(),
                 entityCachorro.getDescrição(),
                 entityCachorro.getSexo(),
-
-                entityCachorro.getPeso());
+                entityCachorro.getPeso(),
+                entityCachorro.getFotos().toArray(new String[0]));
         return cachorroTraduzido;
     }
 }
