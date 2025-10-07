@@ -6,12 +6,12 @@ import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.GatoRepo.GatoRepo
 import java.util.List;
 import java.util.Optional;
 
-public class UGatoUseCase {
+public class GatoUseCase {
 
     private final GatoRepo gatoRepo;
 
 
-    public UGatoUseCase(GatoRepo gatoRepo) {
+    public GatoUseCase(GatoRepo gatoRepo) {
         this.gatoRepo = gatoRepo;
     }
 

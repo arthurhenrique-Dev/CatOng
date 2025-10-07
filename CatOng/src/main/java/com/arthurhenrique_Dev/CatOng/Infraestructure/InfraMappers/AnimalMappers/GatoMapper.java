@@ -27,7 +27,7 @@ public class GatoMapper {
                 entityGato.getDescrição(),
                 entityGato.getSexo(),
                 entityGato.getPeso(),
-                entityGato.);
+                entityGato.getFotos());
         return gatoTraduzido;
     }
 }

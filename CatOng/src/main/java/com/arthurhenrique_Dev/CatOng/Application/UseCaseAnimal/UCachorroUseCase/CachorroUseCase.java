@@ -6,18 +6,18 @@ import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.CachorroRepo.Cach
 import java.util.List;
 import java.util.Optional;
 
-public class UCachorroUseCase {
+public class CachorroUseCase {
 
     private final CachorroRepo cachorroRepo;
 
-    public UCachorroUseCase(CachorroRepo cachorroRepo) {
+    public CachorroUseCase(CachorroRepo cachorroRepo) {
         this.cachorroRepo = cachorroRepo;
     }
 
-    public void CadastrarCachorro(Cachorro cachorro) {
+    public void salvarCachorro(Cachorro cachorro) {
         cachorroRepo.salvarCachorro(cachorro);
     }
-    public void AlterarCachorro(Long id, Cachorro cachorro) {
+    public void alterarCachorro(Long id, Cachorro cachorro) {
         cachorroRepo.alterarCachorro(id, cachorro);
     }
     public void deletarCachorro(Long id) {

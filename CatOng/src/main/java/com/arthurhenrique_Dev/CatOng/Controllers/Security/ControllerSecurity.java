@@ -15,6 +15,6 @@ public class ControllerSecurity {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid DTOAutenticacao dados){
-        var usernamePassword = new UsernamePasswordAuthenticationToken(dados)
+        var usernamePassword = new UsernamePasswordAuthenticationToken(dados);
     }
 }

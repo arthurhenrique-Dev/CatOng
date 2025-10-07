@@ -18,8 +18,8 @@ public class SConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST,"/cachorros").hasRole("GERENCIAMENTO")
-                        .requestMatchers(HttpMethod.POST,"/gatos").hasRole("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.POST,"/pets").hasRole("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.POST,"/pets").hasRole("GERENCIAMENTO")
                         .anyRequest().authenticated())
                 .build();
     }
