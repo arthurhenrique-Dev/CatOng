@@ -27,8 +27,7 @@ public class UGerenciamentoMapper {
                 eUGerenciamento.getRG(),
                 eUGerenciamento.getEmail(),
                 eUGerenciamento.getSenha(),
-                eUGerenciamento.getTelefone(),
-                eUGerenciamento.getNR());
+                eUGerenciamento.getTelefone());
         return uGerenciamentoTraduzido;
     }
 
@@ -40,6 +39,10 @@ public class UGerenciamentoMapper {
                 DTOUGerenciamento.email(),
                 DTOUGerenciamento.senha(),
                 DTOUGerenciamento.telefone());
-        )
+        return uGerenciamentoTraduzido
+    }
+    public EUGerenciamento ValidacaoEInscricao(DTORegistroUGerenciamento dtoRegistroUGerenciamento){
+        UGerenciamento validacaoPeloDomain = DTORegisterToDomain(dtoRegistroUGerenciamento);
+        EUGerenciamento usuarioValidado =
     }
 }

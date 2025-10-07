@@ -45,4 +45,9 @@ public class UComumMapper {
                 DTOuComum.dataDeNascimento());
         return uComumTraduzido;
     }
+    public EUComum ValidacaoEInscricao(DTORegistroUComum dtoRecebido){
+        UComum validacaoPorDomain = DTORegisterToDomain(dtoRecebido);
+        EUComum UsuarioValido = toEntity(validacaoPorDomain);
+        return UsuarioValido;
+    }
 }

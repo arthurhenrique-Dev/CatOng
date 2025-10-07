@@ -29,7 +29,7 @@ public class UComumUsecaseImpl implements UComumRepository {
 
     @Override
     public void salvarUComum(DTORegistroUComum registroUComum) {
-        fRepository.save(mapper.DTORegisterToDomain(registroUComum));
+        fRepository.save(mapper.ValidacaoEInscricao(registroUComum));
     }
 
     @Override
