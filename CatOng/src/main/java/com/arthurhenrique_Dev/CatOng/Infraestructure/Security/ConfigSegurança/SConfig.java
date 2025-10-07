@@ -19,7 +19,8 @@ public class SConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/pets").hasRole("GERENCIAMENTO")
-                        .requestMatchers(HttpMethod.POST,"/pets").hasRole("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.PUT,"/pets").hasRole("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.DELETE, "/pets").hasRole("GERENCIAMENTO")
                         .anyRequest().authenticated())
                 .build();
     }
