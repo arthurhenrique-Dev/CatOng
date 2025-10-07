@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UComumRepository.UComumRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
 
@@ -13,8 +14,8 @@ public class UComumUseCase {
     public UComumUseCase(UComumRepository uComumRepository) {
         this.uComumRepository = uComumRepository;
     }
-    public void salvarComum(UComum uComum) {
-        uComumRepository.salvarUComum(uComum);
+    public void salvarComum(DTORegistroUComum registroUComum) {
+        uComumRepository.salvarUComum(registroUComum);
     }
     public void atualizarComum(Long id, UComum uComum){
         uComumRepository.atualizarUComum(id, uComum);

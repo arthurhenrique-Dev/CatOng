@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Controllers.Usuarios;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase.UComumUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamentoUseCase.UGerenciamentoUseCase;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
@@ -22,8 +23,8 @@ public class ControllerUsuarios {
     }
 
     @PostMapping("/cadastrar")
-    public void cadastrar(@RequestBody UComum uComum){
-        comumUseCase.salvarComum(uComum);
+    public void cadastrar(@RequestBody DTORegistroUComum registroUComum){
+        comumUseCase.salvarComum(registroUComum);
     }
     @PutMapping("/atualizar")
     public void atualizar(Long id, UComum uComum){

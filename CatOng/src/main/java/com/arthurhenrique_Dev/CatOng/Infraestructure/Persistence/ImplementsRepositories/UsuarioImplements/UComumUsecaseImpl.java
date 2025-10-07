@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UComumRepository.UComumRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
@@ -27,8 +28,8 @@ public class UComumUsecaseImpl implements UComumRepository {
 
 
     @Override
-    public void salvarUComum(UComum uComum) {
-        fRepository.save(mapper.toEntity(uComum));
+    public void salvarUComum(DTORegistroUComum registroUComum) {
+        fRepository.save(mapper.DTORegisterToDomain(registroUComum));
     }
 
     @Override

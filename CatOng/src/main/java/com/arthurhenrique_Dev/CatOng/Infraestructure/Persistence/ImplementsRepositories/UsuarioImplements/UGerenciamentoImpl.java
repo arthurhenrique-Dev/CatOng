@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository.UGerenciamentoRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
@@ -23,8 +24,8 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
     }
 
     @Override
-    public void salvarUGerenciamento(UGerenciamento ugerenciamento) {
-        fRepository.save(mapper.toEntity(ugerenciamento));
+    public void salvarUGerenciamento(DTORegistroUGerenciamento registroUGerenciamento) {
+        fRepository.save(mapper.DTORegisterToDomain(registroUGerenciamento));
     }
 
     @Override

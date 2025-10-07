@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamentoUseCase;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository.UGerenciamentoRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
 
@@ -15,8 +16,8 @@ public class UGerenciamentoUseCase {
         this.uGRepo = uGRepo;
     }
 
-    public void salvarUGerenciamento(UGerenciamento uGerenciamento){
-        uGRepo.salvarUGerenciamento(uGerenciamento);
+    public void salvarUGerenciamento(DTORegistroUGerenciamento registroUGerenciamento){
+        uGRepo.salvarUGerenciamento(registroUGerenciamento);
     }
     public void removerUGerenciamento(Long NR){
         uGRepo.removerUGerenciamento(NR);

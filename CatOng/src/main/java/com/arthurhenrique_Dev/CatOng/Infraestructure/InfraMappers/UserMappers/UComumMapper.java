@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum;
 import org.springframework.stereotype.Component;
@@ -30,6 +31,18 @@ public class UComumMapper {
                 euComum.getTelefone(),
                 enderecoMapper.toDomainEndereco(euComum.getEndereco()),
                 euComum.getDataNascimento());
+        return uComumTraduzido;
+    }
+    public UComum DTORegisterToDomain(DTORegistroUComum DTOuComum){
+        UComum uComumTraduzido = new UComum(
+                DTOuComum.nome(),
+                DTOuComum.cpf(),
+                DTOuComum.rg(),
+                DTOuComum.email(),
+                DTOuComum.senha(),
+                DTOuComum.telefone(),
+                DTOuComum.endereco(),
+                DTOuComum.dataDeNascimento());
         return uComumTraduzido;
     }
 }

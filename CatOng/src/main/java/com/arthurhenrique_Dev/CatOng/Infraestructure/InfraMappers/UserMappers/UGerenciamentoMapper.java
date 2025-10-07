@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento;
 import org.springframework.stereotype.Component;
@@ -29,5 +30,16 @@ public class UGerenciamentoMapper {
                 eUGerenciamento.getTelefone(),
                 eUGerenciamento.getNR());
         return uGerenciamentoTraduzido;
+    }
+
+    public UGerenciamento DTORegisterToDomain(DTORegistroUGerenciamento DTOUGerenciamento){
+        UGerenciamento uGerenciamentoTraduzido = new UGerenciamento(
+                DTOUGerenciamento.nome(),
+                DTOUGerenciamento.cpf(),
+                DTOUGerenciamento.rg(),
+                DTOUGerenciamento.email(),
+                DTOUGerenciamento.senha(),
+                DTOUGerenciamento.telefone());
+        )
     }
 }

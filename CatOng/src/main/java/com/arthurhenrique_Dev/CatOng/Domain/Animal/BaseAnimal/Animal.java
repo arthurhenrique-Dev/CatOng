@@ -7,6 +7,7 @@ public abstract class Animal {
     protected String nome;
     protected int idade;
     protected String raça;
+
     protected Atividade atividade;
     protected String descrição;
     protected Sexo sexo;
