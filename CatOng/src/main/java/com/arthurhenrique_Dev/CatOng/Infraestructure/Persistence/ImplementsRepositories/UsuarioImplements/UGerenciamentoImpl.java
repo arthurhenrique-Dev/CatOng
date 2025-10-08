@@ -24,11 +24,6 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
     }
 
     @Override
-    public void salvarUGerenciamento(DTORegistroUGerenciamento registroUGerenciamento) {
-        fRepository.save(mapper.DTORegisterToDomain(registroUGerenciamento));
-    }
-
-    @Override
     public void removerUGerenciamento(Long NR) {
         EUGerenciamento usuarioDeletado = fRepository.findByNR(NR);
         usuarioDeletado.setAtividade(Atividade.INATIVO);

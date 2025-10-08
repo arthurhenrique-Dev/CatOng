@@ -1,4 +1,4 @@
-package com.arthurhenrique_Dev.CatOng.Infraestructure.Security.ConfigSegurança;
+package com.arthurhenrique_Dev.CatOng.Security.ConfigSegurança;
 
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
 import com.auth0.jwt.JWT;
@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Date;
 
 @Service
 public class TokenService {

@@ -22,10 +22,6 @@ public class ControllerUsuarios {
         this.comumUseCase = comumUseCase;
     }
 
-    @PostMapping("/cadastrar")
-    public void cadastrar(@RequestBody DTORegistroUComum registroUComum){
-        comumUseCase.salvarComum(registroUComum);
-    }
     @PutMapping("/atualizar")
     public void atualizar(Long id, UComum uComum){
         comumUseCase.atualizarComum(id, uComum);
@@ -45,11 +41,6 @@ public class ControllerUsuarios {
     @DeleteMapping("/gerenciamento/remover?={id}")
     public void remover(@RequestParam Long id){
         comumUseCase.removerComum(id);
-    }
-
-    @PostMapping("/gerenciamento/cadastrar")
-    public void cadastrarFuncionario(@RequestBody UGerenciamento ugerenciamento){
-        gerenciamentoUseCase.salvarUGerenciamento(ugerenciamento);
     }
     @PutMapping("/gerenciamento/atualizar=?{nr}")
     public void atualizar(Long nr, @RequestParam UGerenciamento uGerenciamento){

@@ -1,6 +1,6 @@
-package com.arthurhenrique_Dev.CatOng.Infraestructure.Security.Autorizacao;
+package com.arthurhenrique_Dev.CatOng.Security.Autorizacao;
 
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.ISpringUComum;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.ISpringUGerenciamento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,10 +8,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AutorizacaoServiceUComum implements UserDetailsService {
+public class AutorizacaoServiceUGerenciamento implements UserDetailsService {
 
     @Autowired
-    ISpringUComum fRepository;
+    ISpringUGerenciamento fRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
