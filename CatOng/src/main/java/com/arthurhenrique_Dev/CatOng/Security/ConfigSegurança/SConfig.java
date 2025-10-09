@@ -34,6 +34,11 @@ public class SConfig {
                         .requestMatchers(HttpMethod.POST, "/user/gerenciamento").hasRole("GERENCIAMENTO")
                         .requestMatchers(HttpMethod.PUT, "/user/gerenciamento").hasRole("GERENCIAMENTO")
                         .requestMatchers(HttpMethod.DELETE, "/user/gerenciamento").hasRole("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.POST, "/auth/gerenciamento").hasRole("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.PUT, "/auth/gerenciamento").hasRole("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.DELETE, "/auth/gerenciamento").hasRole("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.GET, "/auth/gerenciamento").hasRole("GERENCIAMENTO")
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

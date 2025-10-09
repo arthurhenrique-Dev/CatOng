@@ -1,4 +1,4 @@
-package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities;
+package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento;
 
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Permissao;
@@ -18,6 +18,7 @@ public class EUGerenciamento implements UserDetails {
 
     @Id
     @Getter
+    @GeneratedValue(strategy = GenerationType.UUID)
     private Long NR;
     @Getter
     private String nome;
@@ -35,8 +36,6 @@ public class EUGerenciamento implements UserDetails {
     private String senha;
     @Getter @Setter
     private String telefone;
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private Long addNumber;
 
     public EUGerenciamento(String nome, String cpf, String RG, Atividade atividade, Permissao permissao, String senha, String email, String telefone) {
         this.nome = nome;
@@ -47,7 +46,6 @@ public class EUGerenciamento implements UserDetails {
         this.senha = senha;
         this.email = email;
         this.telefone = telefone;
-        this.NR = Long.parseLong("300" + (((Integer.parseInt(this.RG.substring(this.RG.length() - 3)) * 9) /4) + 37)) + this.addNumber;
     }
 
     @Override

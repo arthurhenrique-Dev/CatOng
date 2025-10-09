@@ -1,8 +1,8 @@
-package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers;
+package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UGerenciamentoMapper;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -39,10 +39,11 @@ public class UGerenciamentoMapper {
                 DTOUGerenciamento.email(),
                 DTOUGerenciamento.senha(),
                 DTOUGerenciamento.telefone());
-        return uGerenciamentoTraduzido
+        return uGerenciamentoTraduzido;
     }
     public EUGerenciamento ValidacaoEInscricao(DTORegistroUGerenciamento dtoRegistroUGerenciamento){
         UGerenciamento validacaoPeloDomain = DTORegisterToDomain(dtoRegistroUGerenciamento);
-        EUGerenciamento usuarioValidado =
+        EUGerenciamento usuarioValidado = toEntity(validacaoPeloDomain);
+        return usuarioValidado;
     }
 }

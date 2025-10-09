@@ -1,4 +1,4 @@
-package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities;
+package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum;
 
 import jakarta.persistence.Embeddable;
 import lombok.Getter;

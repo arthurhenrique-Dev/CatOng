@@ -1,4 +1,4 @@
-package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.AnimalMappers;
+package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.AnimalMappers.GatoMapper;
 
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.EGato;

@@ -1,8 +1,8 @@
-package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers;
+package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UComumMappers;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
 import org.springframework.stereotype.Component;
 
 @Component

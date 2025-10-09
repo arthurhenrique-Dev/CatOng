@@ -3,6 +3,7 @@ package com.arthurhenrique_Dev.CatOng.Application.DTOs;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.Endereco;
 
 public record DTORegistroUGerenciamento(
+
         String nome,
         String cpf,
         String rg,

@@ -1,12 +1,12 @@
-package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements;
+package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements.ImplUGerenciamento;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository.UGerenciamentoRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UGerenciamentoMapper;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.ISpringUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UGerenciamentoMapper.UGerenciamentoMapper;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.RepositorioEstrangeiroUGerenciamento.ISpringUGerenciamento;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,6 +21,11 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
     public UGerenciamentoImpl(ISpringUGerenciamento fRepository, UGerenciamentoMapper mapper) {
         this.fRepository = fRepository;
         this.mapper = mapper;
+    }
+
+    @Override
+    public void salvarUGerenciamento(DTORegistroUGerenciamento ugerenciamento) {
+        fRepository.save(mapper.ValidacaoEInscricao(ugerenciamento));
     }
 
     @Override
