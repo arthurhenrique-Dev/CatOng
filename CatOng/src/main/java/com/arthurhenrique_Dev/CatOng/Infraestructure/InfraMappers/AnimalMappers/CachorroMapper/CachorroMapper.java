@@ -23,7 +23,7 @@ public class CachorroMapper {
         Cachorro cachorroTraduzido= new Cachorro(
                 entityCachorro.getNome(),
                 entityCachorro.getIdade(),
-                entityCachorro.getRaça(),
+                entityCachorro.getRaca(),
                 entityCachorro.getAtividade(),
                 entityCachorro.getDescrição(),
                 entityCachorro.getSexo(),

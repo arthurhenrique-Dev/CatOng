@@ -1,6 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements.ImplUGerenciamento;
 
-import com.arthurhenrique_Dev.CatOng.Application.DTOs.Cadastro.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository.UGerenciamentoRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
@@ -36,8 +37,20 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
     }
 
     @Override
-    public void atualizarUGerenciamento(Long NR, UGerenciamento uGerenciamento) {
-
+    public void atualizarUGerenciamento(Long NR, DTOAtualizacaoUGerenciamento dto) {
+        EUGerenciamento usuarioAlterado = fRepository.findByNR(NR);
+        if (usuarioAlterado != null) {
+            UGerenciamento moldeDeManipulacao = mapper.toDomain(usuarioAlterado);
+            if (dto.telefone() != null) {
+                moldeDeManipulacao.setTelefone(dto.telefone());
+                fRepository.save(mapper.toEntity(moldeDeManipulacao));
+            }
+            else  {
+                throw new IllegalArgumentException("Insira um telefone");
+            }
+        } else   {
+            throw new IllegalArgumentException("Insira sua alteração");
+        }
     }
 
     @Override

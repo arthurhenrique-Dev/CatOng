@@ -6,8 +6,7 @@ public abstract class Animal {
 
     protected String nome;
     protected int idade;
-    protected String raça;
-
+    protected String raca;
     protected Atividade atividade;
     protected String descrição;
     protected Sexo sexo;
@@ -15,7 +14,7 @@ public abstract class Animal {
     protected List<String> fotos;
     protected TipoDeAnimal tipoDeAnimal;
 
-    public Animal(String nome, int idade, String raça, Atividade atividade, String descrição, Sexo sexo, double peso, List<String> fotos) {
+    public Animal(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso, List<String> fotos) {
         if (!nome.matches("^[\\p{L} ]{2,100}+$")){
             throw new IllegalArgumentException("Apenas caracteres, acentos e espaços");
         }
@@ -24,10 +23,10 @@ public abstract class Animal {
             throw new IllegalArgumentException("idade inválida");
         }
         this.idade = idade;
-        if (!raça.matches("^[\\p{L}\\p{P}\\s]{1,50}$")){
+        if (!raca.matches("^[\\p{L}\\p{P}\\s]{1,50}$")){
             throw new IllegalArgumentException("Digito inválido");
         }
-        this.raça = raça;
+        this.raca = raca;
         this.descrição = descrição;
         if (sexo == null){
             throw new IllegalArgumentException("Informe o sexo");
@@ -52,7 +51,7 @@ public abstract class Animal {
     }
 
     public String getRaça() {
-        return raça;
+        return raca;
     }
 
     public Atividade getAtividade() {

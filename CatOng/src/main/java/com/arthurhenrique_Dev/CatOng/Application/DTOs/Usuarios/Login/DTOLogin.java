@@ -1,4 +1,4 @@
-package com.arthurhenrique_Dev.CatOng.Application.DTOs.Login;
+package com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Login;
 
 public record DTOLogin(
 

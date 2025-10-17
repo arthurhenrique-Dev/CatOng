@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "gatos")
+@Table(name = "gato")
 @NoArgsConstructor
 public class EGato {
 
@@ -22,27 +22,27 @@ public class EGato {
     private Long id;
     @Getter
     private String nome;
-    @Getter @Setter
+    @Getter
     private int idade;
     @Getter
-    private String raça;
+    private String raca;
     @Getter @Setter
     private Atividade atividade;
-    @Getter @Setter
+    @Getter
     private String descrição;
     @Getter
     private Sexo sexo;
-    @Getter @Setter
+    @Getter
     private double peso;
-    @Getter @Setter @ElementCollection
+    @Getter @ElementCollection
     private List<String> fotos = new ArrayList<>();
     @Getter
     private TipoDeAnimal tipoDeAnimal;
 
-    public EGato(String nome, int idade, String raça, Atividade atividade, String descrição, Sexo sexo, double peso) {
+    public EGato(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso) {
         this.nome = nome;
         this.idade = idade;
-        this.raça = raça;
+        this.raca = raca;
         this.atividade = atividade;
         this.descrição = descrição;
         this.sexo = sexo;

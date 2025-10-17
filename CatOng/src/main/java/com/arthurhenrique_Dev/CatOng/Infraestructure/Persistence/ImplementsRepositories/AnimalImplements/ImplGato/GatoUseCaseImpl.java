@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.AnimalImplements.ImplGato;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.GatoRepo.GatoRepo;
@@ -43,8 +44,28 @@ public class GatoUseCaseImpl implements GatoRepo {
     }
 
     @Override
-    public void alterarGato(Long id, Gato gato) {
-
+    public void alterarGato(Long id, DTOAtualizacaoAnimais dto) {
+        EGato gatoAlterado = fRepository.findById(id).orElse(null);
+        if (gatoAlterado != null) {
+            Gato moldeDeManipulacao = mapper.toDomain(gatoAlterado);
+            if (dto != null) {
+                if (dto.fotos() != null) {
+                    moldeDeManipulacao.setFotos(dto.fotos());
+                }
+                if (dto.descricao() != null) {
+                    moldeDeManipulacao.setDescrição(dto.descricao());
+                }
+                if (dto.peso() != 0 && dto.peso() > 0){
+                    moldeDeManipulacao.setPeso(dto.peso());
+                }
+                if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > moldeDeManipulacao.getIdade()) {
+                    moldeDeManipulacao.setIdade(dto.idade());
+                }
+                fRepository.save(mapper.toEntity(moldeDeManipulacao));
+            } else  {
+                throw new IllegalArgumentException("Insira os dados de atualização");
+            }
+        }
     }
 
     @Override

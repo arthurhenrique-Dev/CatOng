@@ -1,5 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.Controllers.Usuarios;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase.UComumUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamentoUseCase.UGerenciamentoUseCase;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
@@ -22,8 +24,8 @@ public class ControllerUsuarios {
     }
 
     @PutMapping("/atualizar")
-    public void atualizar(Long id, UComum uComum){
-        comumUseCase.atualizarComum(id, uComum);
+    public void atualizar(Long id, DTOAtualizacaoUComum dto) {
+        comumUseCase.atualizarComum(id, dto);
     }
     @GetMapping("/gerenciamento")
     public List<UComum> getUsers(int pages, int size){
@@ -42,8 +44,8 @@ public class ControllerUsuarios {
         comumUseCase.removerComum(id);
     }
     @PutMapping("/gerenciamento/atualizar=?{nr}")
-    public void atualizar(Long nr, @RequestParam UGerenciamento uGerenciamento){
-        gerenciamentoUseCase.atualizarUGerenciamento(nr, uGerenciamento);
+    public void atualizar(Long nr, @RequestParam DTOAtualizacaoUGerenciamento dto){
+        gerenciamentoUseCase.atualizarUGerenciamento(nr, dto);
     }
     @GetMapping("/gerenciamento")
     public List<UGerenciamento> getUGerenciamentos(int pages, int size){

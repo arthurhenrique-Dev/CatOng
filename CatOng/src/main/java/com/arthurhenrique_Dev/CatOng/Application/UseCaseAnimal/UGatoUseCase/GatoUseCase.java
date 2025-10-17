@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UGatoUseCase;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.GatoRepo.GatoRepo;
 
@@ -24,8 +25,8 @@ public class GatoUseCase {
     public void adotarGato(Long id) {
         gatoRepo.adotarGato(id);
     }
-    public void alterarGato(Long id, Gato gato){
-        gatoRepo.alterarGato(id, gato);
+    public void alterarGato(Long id, DTOAtualizacaoAnimais dto){
+        gatoRepo.alterarGato(id, dto);
     }
     public List<Gato> getGato(int page, int size) {
         return gatoRepo.getGato(page, size);

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "cachorros")
+@Table(name = "cachorro")
 @NoArgsConstructor
 public class ECachorro {
     @Id
@@ -24,7 +24,7 @@ public class ECachorro {
     @Getter @Setter
     private int idade;
     @Getter
-    private String raça;
+    private String raca;
     @Getter @Setter
     private Atividade atividade;
     @Getter @Setter
@@ -38,10 +38,10 @@ public class ECachorro {
     @Getter
     private TipoDeAnimal tipoDeAnimal;
 
-    public ECachorro(String nome, int idade, String raça, Atividade atividade, String descrição, Sexo sexo, double peso, List<String>fotos) {
+    public ECachorro(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso, List<String>fotos) {
         this.nome = nome;
         this.idade = idade;
-        this.raça = raça;
+        this.raca = raca;
         this.atividade = atividade;
         this.descrição = descrição;
         this.sexo = sexo;

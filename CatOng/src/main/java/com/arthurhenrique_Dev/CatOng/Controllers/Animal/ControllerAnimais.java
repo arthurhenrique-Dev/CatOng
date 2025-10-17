@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Controllers.Animal;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UCachorroUseCase.CachorroUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UGatoUseCase.GatoUseCase;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
@@ -54,12 +55,12 @@ public class ControllerAnimais {
         cachorroUseCase.salvarCachorro(cachorro);
     }
     @PutMapping("gerenciamento/atualizar=?{id}/gatos")
-    public void atualizarGatos(@RequestParam Long id, @RequestBody Gato gato){
-        gatoUseCase.alterarGato(id, gato);
+    public void atualizarGatos(@RequestParam Long id, @RequestBody DTOAtualizacaoAnimais dto){
+        gatoUseCase.alterarGato(id, dto);
     }
     @PutMapping("gerenciamento/atualizar=?{id}/cachorros")
-    public void atualizarCachorros(@RequestParam Long id, @RequestBody Cachorro cachorro){
-        cachorroUseCase.alterarCachorro(id, cachorro);
+    public void atualizarCachorros(@RequestParam Long id, @RequestBody DTOAtualizacaoAnimais dto){
+        cachorroUseCase.alterarCachorro(id, dto);
     }
     @DeleteMapping("gerenciamento/deletar=?{id}/gatos")
     public void deletarGatos(@RequestParam Long id){

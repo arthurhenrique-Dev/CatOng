@@ -27,13 +27,13 @@ public class EUComum implements UserDetails {
     private String RG;
     @Getter @Setter
     private Atividade atividade;
-    @Getter @Setter
+    @Getter
     private Permissao permissao;
     @Getter
     private String email;
     @Getter
     private String senha;
-    @Getter @Setter
+    @Getter
     private String telefone;
     @Embedded @Getter
     private PersistenceEndereco endereco;

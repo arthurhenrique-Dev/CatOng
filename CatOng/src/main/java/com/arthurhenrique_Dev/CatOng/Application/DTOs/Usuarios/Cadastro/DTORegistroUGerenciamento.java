@@ -1,10 +1,8 @@
-package com.arthurhenrique_Dev.CatOng.Application.DTOs.Cadastro;
+package com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro;
 
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.Endereco;
 
-import java.time.LocalDate;
-
-public record DTORegistroUComum(
+public record DTORegistroUGerenciamento(
 
         String nome,
         String cpf,
@@ -12,8 +10,6 @@ public record DTORegistroUComum(
         String senha,
         String email,
         String telefone,
-        LocalDate dataDeNascimento,
         Endereco endereco
-
 ) {
 }

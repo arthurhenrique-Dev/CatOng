@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UCachorroUseCase;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.CachorroRepo.CachorroRepo;
 
@@ -17,8 +18,8 @@ public class CachorroUseCase {
     public void salvarCachorro(Cachorro cachorro) {
         cachorroRepo.salvarCachorro(cachorro);
     }
-    public void alterarCachorro(Long id, Cachorro cachorro) {
-        cachorroRepo.alterarCachorro(id, cachorro);
+    public void alterarCachorro(Long id, DTOAtualizacaoAnimais dto) {
+        cachorroRepo.alterarCachorro(id, dto);
     }
     public void deletarCachorro(Long id) {
         cachorroRepo.deletarCachorro(id);

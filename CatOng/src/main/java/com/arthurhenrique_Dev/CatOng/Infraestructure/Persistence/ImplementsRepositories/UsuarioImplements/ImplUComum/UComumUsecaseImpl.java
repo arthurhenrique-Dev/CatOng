@@ -1,6 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements.ImplUComum;
 
-import com.arthurhenrique_Dev.CatOng.Application.DTOs.Cadastro.DTORegistroUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UComumRepository.UComumRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
@@ -39,9 +40,22 @@ public class UComumUsecaseImpl implements UComumRepository {
     }
 
     @Override
-    public void atualizarUComum(Long id, UComum uComum) {
+    public void atualizarUComum(Long id, DTOAtualizacaoUComum dto) {
         EUComum usuarioRecebido = fRepository.findById(id).orElse(null);
-
+        UComum moldeDeManipulacao = mapper.toDomain(usuarioRecebido);
+        if (usuarioRecebido != null) {
+            if (dto != null) {
+                if (dto.endereco() != null) {
+                    moldeDeManipulacao.setEndereco(dto.endereco());
+                }
+                if (dto.telefone() != null) {
+                    moldeDeManipulacao.setTelefone(dto.telefone());
+                }
+                fRepository.save(mapper.toEntity(moldeDeManipulacao));
+            }else {
+                throw new IllegalArgumentException("Insira o dado que você quer modificar (endereço ou telefone)");
+            }
+        }
     }
 
     @Override
