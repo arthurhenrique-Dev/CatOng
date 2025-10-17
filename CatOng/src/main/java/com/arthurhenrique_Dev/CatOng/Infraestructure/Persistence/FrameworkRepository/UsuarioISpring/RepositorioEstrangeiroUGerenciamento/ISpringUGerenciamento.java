@@ -8,4 +8,7 @@ public interface ISpringUGerenciamento extends JpaRepository<EUGerenciamento, Lo
     EUGerenciamento findByNR(Long nr);
     UserDetails findByNome(String nome);
 
+    Object getEUGerenciamentoByCpf(String cpf);
+
+    EUGerenciamento findByCpf(String cpf);
 }

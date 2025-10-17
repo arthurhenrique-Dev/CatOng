@@ -26,6 +26,7 @@ public class UGerenciamentoUseCase {
     public void atualizarUGerenciamento(Long NR, DTOAtualizacaoUGerenciamento dto){
         uGRepo.atualizarUGerenciamento(NR, dto);
     }
+    public Optional<UGerenciamento> getUGerenciamento(String cpf){return uGRepo.getUGerenciamentoByCpf(cpf);}
     public Optional<UGerenciamento> getUGerenciamentoByNR(Long nr){
         return uGRepo.getUGerenciamentoByNR(nr);
     }

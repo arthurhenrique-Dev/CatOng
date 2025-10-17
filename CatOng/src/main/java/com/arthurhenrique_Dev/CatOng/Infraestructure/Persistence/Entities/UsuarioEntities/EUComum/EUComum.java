@@ -57,7 +57,7 @@ public class EUComum implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "";
+        return senha;
     }
 
     @Override

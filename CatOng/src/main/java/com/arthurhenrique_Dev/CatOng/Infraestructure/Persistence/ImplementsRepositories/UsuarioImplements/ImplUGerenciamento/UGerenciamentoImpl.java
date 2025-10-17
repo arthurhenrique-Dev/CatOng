@@ -67,4 +67,11 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
                 .map(mapper::toDomain)
                 .toList();
     }
+
+    @Override
+    public Optional<UGerenciamento> getUGerenciamentoByCpf(String cpf) {
+        EUGerenciamento recebido = fRepository.findByCpf(cpf);
+        return Optional.ofNullable(recebido)
+                .map(mapper::toDomain);
+    }
 }

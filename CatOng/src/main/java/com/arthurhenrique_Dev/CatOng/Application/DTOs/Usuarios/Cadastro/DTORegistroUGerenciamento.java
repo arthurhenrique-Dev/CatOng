@@ -12,4 +12,6 @@ public record DTORegistroUGerenciamento(
         String telefone,
         Endereco endereco
 ) {
+
 }
+

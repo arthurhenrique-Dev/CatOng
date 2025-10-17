@@ -14,4 +14,5 @@ public interface UGerenciamentoRepository {
     void atualizarUGerenciamento(Long NR, DTOAtualizacaoUGerenciamento dto);
     Optional<UGerenciamento> getUGerenciamentoByNR(Long NR);
     List<UGerenciamento> getUGerenciamentos(int page, int size);
+    Optional<UGerenciamento> getUGerenciamentoByCpf(String cpf);
 }

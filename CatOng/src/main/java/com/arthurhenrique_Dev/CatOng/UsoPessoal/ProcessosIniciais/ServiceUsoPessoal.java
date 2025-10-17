@@ -13,7 +13,7 @@ public class ServiceUsoPessoal {
     @PostConstruct
     public void carregarAdmin(){
         ADMIN verificaExistencia = fRepository.findByNome("inicial");
-        if(verificaExistencia != null){
+        if(verificaExistencia == null){
             ADMIN inicial = new ADMIN(
                     1L,
                     "inicial",
