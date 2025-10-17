@@ -1,8 +1,8 @@
 package com.arthurhenrique_Dev.CatOng.Controllers.ControllerDeAcesso;
 
-import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTOLogin;
-import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUComum;
-import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Login.DTOLogin;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Cadastro.DTORegistroUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Cadastro.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase.UComumUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamentoUseCase.UGerenciamentoUseCase;
 import org.springframework.beans.factory.annotation.Autowired;

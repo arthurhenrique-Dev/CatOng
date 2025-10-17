@@ -1,6 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository;
 
-import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Cadastro.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
 
 import java.util.List;

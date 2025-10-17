@@ -1,6 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UComumRepository;
 
-import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Cadastro.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
 
 import java.util.List;

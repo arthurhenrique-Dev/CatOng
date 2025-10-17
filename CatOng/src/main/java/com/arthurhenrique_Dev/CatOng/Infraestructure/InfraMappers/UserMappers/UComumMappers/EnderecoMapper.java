@@ -1,5 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UComumMappers;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Atualizacao.AtualizacaoEndereco;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.Endereco;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.PersistenceEndereco;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,17 @@ public class EnderecoMapper {
                 enderecoPersistence.getBairro(),
                 enderecoPersistence.getCidade(),
                 enderecoPersistence.getNumero()
+        );
+        return enderecoTraduzido;
+    }
+    Endereco updateToDomain(AtualizacaoEndereco propostaEndereco){
+        Endereco enderecoTraduzido = new Endereco(
+                propostaEndereco.cep(),
+                propostaEndereco.logradouro(),
+                propostaEndereco.complemento(),
+                propostaEndereco.bairro(),
+                propostaEndereco.cidade(),
+                propostaEndereco.numero()
         );
         return enderecoTraduzido;
     }

@@ -1,6 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements.ImplUComum;
 
-import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Cadastro.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UComumRepository.UComumRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
@@ -40,6 +40,7 @@ public class UComumUsecaseImpl implements UComumRepository {
 
     @Override
     public void atualizarUComum(Long id, UComum uComum) {
+        EUComum usuarioRecebido = fRepository.findById(id).orElse(null);
 
     }
 

@@ -7,17 +7,11 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @NoArgsConstructor
 public class PersistenceEndereco {
-    @Getter
     private String cep;
-    @Getter
     private String logradouro;
-    @Getter
     private String complemento;
-    @Getter
     private String bairro;
-    @Getter
     private String cidade;
-    @Getter
     private String numero;
 
     public PersistenceEndereco(String cep, String logradouro, String complemento, String bairro, String cidade, String numero) {
@@ -27,5 +21,29 @@ public class PersistenceEndereco {
         this.bairro = bairro;
         this.cidade = cidade;
         this.numero = numero;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getNumero() {
+        return numero;
     }
 }

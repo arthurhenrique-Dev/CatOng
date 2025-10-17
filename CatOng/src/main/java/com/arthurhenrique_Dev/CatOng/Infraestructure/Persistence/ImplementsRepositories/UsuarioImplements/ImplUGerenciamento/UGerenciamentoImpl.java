@@ -1,6 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements.ImplUGerenciamento;
 
-import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Cadastro.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository.UGerenciamentoRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
@@ -30,8 +30,9 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
 
     @Override
     public void removerUGerenciamento(Long NR) {
-        EUGerenciamento usuarioDeletado = fRepository.findByNR(NR);
+        UGerenciamento usuarioDeletado = (mapper.toDomain(fRepository.findByNR(NR)));
         usuarioDeletado.setAtividade(Atividade.INATIVO);
+        EUGerenciamento usuarioRetorno = (mapper.toEntity(usuarioDeletado));
     }
 
     @Override

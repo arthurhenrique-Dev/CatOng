@@ -1,6 +1,8 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UComumMappers;
 
-import com.arthurhenrique_Dev.CatOng.Application.DTOs.DTORegistroUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Atualizacao.AtualizacaoEndereco;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Cadastro.DTORegistroUComum;
+import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.Endereco;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
 import org.springframework.stereotype.Component;
@@ -49,5 +51,9 @@ public class UComumMapper {
         UComum validacaoPorDomain = DTORegisterToDomain(dtoRecebido);
         EUComum UsuarioValido = toEntity(validacaoPorDomain);
         return UsuarioValido;
+    }
+    public void AtualizarEndereco(UComum uComum, AtualizacaoEndereco endereco){
+        uComum.setEndereco(enderecoMapper.updateToDomain(endereco));
+        EUComum usuarioAtualizado = toEntity(uComum);
     }
 }
