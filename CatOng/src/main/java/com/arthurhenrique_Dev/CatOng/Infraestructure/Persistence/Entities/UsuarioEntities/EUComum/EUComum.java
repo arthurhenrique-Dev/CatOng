@@ -62,7 +62,7 @@ public class EUComum implements UserDetails {
 
     @Override
     public String getUsername() {
-        return nome;
+        return cpf;
     }
 
     @Override

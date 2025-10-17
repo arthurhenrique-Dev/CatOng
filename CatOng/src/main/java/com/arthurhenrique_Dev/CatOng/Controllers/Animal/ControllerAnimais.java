@@ -50,31 +50,31 @@ public class ControllerAnimais {
     public void registrarGato(@RequestBody Gato gato){
         gatoUseCase.salvarGato(gato);
     }
-    @PostMapping("gerenciamento/salvar/cachorros")
+    @PostMapping("/gerenciamento/salvar/cachorros")
     public void registrarCachorros(@RequestBody Cachorro cachorro){
         cachorroUseCase.salvarCachorro(cachorro);
     }
-    @PutMapping("gerenciamento/atualizar=?{id}/gatos")
+    @PutMapping("/gerenciamento/atualizar=?{id}/gatos")
     public void atualizarGatos(@RequestParam Long id, @RequestBody DTOAtualizacaoAnimais dto){
         gatoUseCase.alterarGato(id, dto);
     }
-    @PutMapping("gerenciamento/atualizar=?{id}/cachorros")
+    @PutMapping("/gerenciamento/atualizar=?{id}/cachorros")
     public void atualizarCachorros(@RequestParam Long id, @RequestBody DTOAtualizacaoAnimais dto){
         cachorroUseCase.alterarCachorro(id, dto);
     }
-    @DeleteMapping("gerenciamento/deletar=?{id}/gatos")
+    @DeleteMapping("/gerenciamento/deletar=?{id}/gatos")
     public void deletarGatos(@RequestParam Long id){
         gatoUseCase.deletarGato(id);
     }
-    @DeleteMapping("gerenciamento/deletar=?{id}/cachorros")
+    @DeleteMapping("/gerenciamento/deletar=?{id}/cachorros")
     public void deletarCachorros(@RequestParam Long id){
         cachorroUseCase.deletarCachorro(id);
     }
-    @DeleteMapping("gerenciamento/adoção=?{id}/gatos")
+    @DeleteMapping("/gerenciamento/adoção=?{id}/gatos")
     public void adotarGato(@RequestParam Long id){
         gatoUseCase.adotarGato(id);
     }
-    @DeleteMapping("gerenciamento/adoção=?{id}/cachorros")
+    @DeleteMapping("/gerenciamento/adoção=?{id}/cachorros")
     public void adotarCachorro(@RequestParam Long id){
         cachorroUseCase.adotarCachorro(id);
     }
