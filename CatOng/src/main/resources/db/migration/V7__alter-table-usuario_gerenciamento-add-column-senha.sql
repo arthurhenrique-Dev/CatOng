@@ -1,0 +1,1 @@
+ALTER TABLE usuario_gerenciamento ADD COLUMN senha TEXT NOT NULL CHECK (LENGTH(senha) >= 8)
