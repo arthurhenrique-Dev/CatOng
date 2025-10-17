@@ -2,6 +2,7 @@ package com.arthurhenrique_Dev.CatOng.Controllers.Usuarios;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUComum;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase.UComumUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamentoUseCase.UGerenciamentoUseCase;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
@@ -43,6 +44,10 @@ public class ControllerUsuarios {
     public void remover(@RequestParam String cpf){
         comumUseCase.removerComum(cpf);
     }
+    @PostMapping
+    public void adicionarFuncionario(DTORegistroUGerenciamento dto){
+        gerenciamentoUseCase.salvarUGerenciamento(dto);
+    }
     @PutMapping("/gerenciamento/funcionario/atualizar=?{nr}")
     public void atualizar(Long nr, @RequestParam DTOAtualizacaoUGerenciamento dto){
         gerenciamentoUseCase.atualizarUGerenciamento(nr, dto);
@@ -55,7 +60,7 @@ public class ControllerUsuarios {
     public Optional<UGerenciamento> getUGerenciamentosByNr(@RequestParam Long nr){
         return gerenciamentoUseCase.getUGerenciamentoByNR(nr);
     }
-    @DeleteMapping("/gerenciamento/func/remover?={nr}")
+    @DeleteMapping("/gerenciamento/funcionario/remover?={nr}")
     public void removerFuncionario(@RequestParam Long nr){
         gerenciamentoUseCase.removerUGerenciamento(nr);
     }

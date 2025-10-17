@@ -1,0 +1,1 @@
+ALTER TABLE admins ADD COLUMN permissao VARCHAR(13) NOT NULL

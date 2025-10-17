@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS admins(
+
+    id NUMERIC PRIMARY KEY NOT NULL,
+    nome VARCHAR(300) NOT NULL,
+    senha TEXT NOT NULL CHECK (LENGTH(senha) >= 8)
+);

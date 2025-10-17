@@ -25,8 +25,8 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
     }
 
     @Override
-    public void salvarUGerenciamento(DTORegistroUGerenciamento ugerenciamento) {
-        fRepository.save(mapper.ValidacaoEInscricao(ugerenciamento));
+    public void salvarUGerenciamento(DTORegistroUGerenciamento dto) {
+        fRepository.save(mapper.ValidacaoEInscricao(dto));
     }
 
     @Override

@@ -26,6 +26,10 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.PUT, "pets/gerenciamento/**").hasRole("GERENCIAMENTO")
                         .requestMatchers(HttpMethod.DELETE, "pets/gerenciamento/**").hasRole("GERENCIAMENTO")
                         .requestMatchers(HttpMethod.GET, "pets/gerenciamento/**").hasRole("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.POST, "user/gerenciamento/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "user/gerenciamento/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "user/gerenciamento/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "user/gerenciamento/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 )
                 .build();
