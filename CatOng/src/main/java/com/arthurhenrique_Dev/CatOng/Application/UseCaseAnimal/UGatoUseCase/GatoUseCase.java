@@ -11,7 +11,6 @@ public class GatoUseCase {
 
     private final GatoRepo gatoRepo;
 
-
     public GatoUseCase(GatoRepo gatoRepo) {
         this.gatoRepo = gatoRepo;
     }

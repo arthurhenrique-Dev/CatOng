@@ -18,19 +18,19 @@ public class UComumUseCase {
     public void salvarComum(DTORegistroUComum registroUComum) {
         uComumRepository.salvarUComum(registroUComum);
     }
-    public void atualizarComum(Long id, DTOAtualizacaoUComum dto){
-        uComumRepository.atualizarUComum(id, dto);
+    public void atualizarComum(String cpf, DTOAtualizacaoUComum dto){
+        uComumRepository.atualizarUComum(cpf, dto);
     }
-    public void removerComum(Long id) {
-        uComumRepository.removerUComum(id);
+    public void removerComum(String cpf) {
+        uComumRepository.removerUComum(cpf);
+    }
+    public Optional<UComum> getUComum(String cpf){
+        return uComumRepository.getUComum(cpf);
     }
     public List<UComum> getUComuns(int page, int size) {
         return uComumRepository.getUComuns(page, size);
     }
     public List<UComum> getUComunsByName(int page, int size, String nome) {
         return uComumRepository.getUComumsByName(page, size, nome);
-    }
-    public Optional<UComum> getUComumById(Long id) {
-        return uComumRepository.getUComumById(id);
     }
 }

@@ -24,39 +24,39 @@ public class ControllerUsuarios {
     }
 
     @PutMapping("/atualizar")
-    public void atualizar(Long id, DTOAtualizacaoUComum dto) {
-        comumUseCase.atualizarComum(id, dto);
+    public void atualizar(String cpf, DTOAtualizacaoUComum dto) {
+        comumUseCase.atualizarComum(cpf, dto);
     }
-    @GetMapping("/gerenciamento")
+    @GetMapping("/gerenciamento/comum")
     public List<UComum> getUsers(int pages, int size){
         return comumUseCase.getUComuns(pages, size);
     }
-    @GetMapping("/gerenciamento/nome?={nome}")
+    @GetMapping("/gerenciamento/comum/nome?={nome}")
     public List<UComum> getUsersByName(int pages, int size, @RequestParam String nome){
         return comumUseCase.getUComunsByName(pages, size, nome);
     }
-    @GetMapping("/gerenciamento/nome?={id}")
-    public Optional<UComum> getUserByEmail(@RequestParam Long id){
-        return comumUseCase.getUComumById(id);
+    @GetMapping("/gerenciamento/comum/cpf?={cpf}")
+    public Optional<UComum> getUserById(@RequestParam String cpf){
+        return comumUseCase.getUComum(cpf);
     }
-    @DeleteMapping("/gerenciamento/remover?={id}")
-    public void remover(@RequestParam Long id){
-        comumUseCase.removerComum(id);
+    @DeleteMapping("/gerenciamento/comum/remover?={cpf}")
+    public void remover(@RequestParam String cpf){
+        comumUseCase.removerComum(cpf);
     }
-    @PutMapping("/gerenciamento/atualizar=?{nr}")
+    @PutMapping("/gerenciamento/funcionario/atualizar=?{nr}")
     public void atualizar(Long nr, @RequestParam DTOAtualizacaoUGerenciamento dto){
         gerenciamentoUseCase.atualizarUGerenciamento(nr, dto);
     }
-    @GetMapping("/gerenciamento")
+    @GetMapping("/gerenciamento/funcionario")
     public List<UGerenciamento> getUGerenciamentos(int pages, int size){
         return gerenciamentoUseCase.getUGerenciamentos(pages, size);
     }
-    @GetMapping("/gerenciamento/nome?={nr}")
+    @GetMapping("/gerenciamento/funcionario/nr?={nr}")
     public Optional<UGerenciamento> getUGerenciamentosByNr(@RequestParam Long nr){
         return gerenciamentoUseCase.getUGerenciamentoByNR(nr);
     }
-    @DeleteMapping("/gerenciamento/func/remover?={id}")
-    public void removerFuncionario(@RequestParam Long id){
-        gerenciamentoUseCase.removerUGerenciamento(id);
+    @DeleteMapping("/gerenciamento/func/remover?={nr}")
+    public void removerFuncionario(@RequestParam Long nr){
+        gerenciamentoUseCase.removerUGerenciamento(nr);
     }
 }

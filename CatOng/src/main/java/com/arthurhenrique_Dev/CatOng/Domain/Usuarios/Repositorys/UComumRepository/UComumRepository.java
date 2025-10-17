@@ -10,9 +10,9 @@ import java.util.Optional;
 public interface UComumRepository {
 
     void salvarUComum(DTORegistroUComum dto);
-    void removerUComum(Long id);
-    void atualizarUComum(Long id, DTOAtualizacaoUComum dto);
-    Optional<UComum> getUComumById(Long id);
+    void removerUComum(String cpf);
+    void atualizarUComum(String cpf, DTOAtualizacaoUComum dto);
+    Optional<UComum> getUComum(String cpf);
     List<UComum> getUComuns(int page, int size);
     List<UComum> getUComumsByName(int page, int size, String nome);
 }

@@ -34,14 +34,14 @@ public class UComumUsecaseImpl implements UComumRepository {
     }
 
     @Override
-    public void removerUComum(Long id) {
-        EUComum usuarioDeletado = fRepository.findById(id).orElse(null);
+    public void removerUComum(String cpf) {
+        EUComum usuarioDeletado = fRepository.findById(cpf).orElse(null);
         usuarioDeletado.setAtividade(Atividade.INATIVO);
     }
 
     @Override
-    public void atualizarUComum(Long id, DTOAtualizacaoUComum dto) {
-        EUComum usuarioRecebido = fRepository.findById(id).orElse(null);
+    public void atualizarUComum(String cpf, DTOAtualizacaoUComum dto) {
+        EUComum usuarioRecebido = fRepository.findById(cpf).orElse(null);
         UComum moldeDeManipulacao = mapper.toDomain(usuarioRecebido);
         if (usuarioRecebido != null) {
             if (dto != null) {
@@ -59,9 +59,13 @@ public class UComumUsecaseImpl implements UComumRepository {
     }
 
     @Override
-    public Optional<UComum> getUComumById(Long id) {
-        return fRepository.findById(id)
-                .map(mapper::toDomain);
+    public Optional<UComum> getUComum(String cpf) {
+        EUComum usuarioRecebido = fRepository.findById(cpf).orElse(null);
+        if (usuarioRecebido != null) {
+            return Optional.of(mapper.toDomain(usuarioRecebido));
+        } else {
+            throw new IllegalArgumentException("nenhum usuário encontrado");
+        }
     }
 
     @Override
