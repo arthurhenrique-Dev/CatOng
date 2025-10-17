@@ -19,12 +19,9 @@ import java.util.List;
 @NoArgsConstructor
 public class EUComum implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @Getter
     private String nome;
-    @Getter
+    @Getter @Id
     private String cpf;
     @Getter
     private String RG;

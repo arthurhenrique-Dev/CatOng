@@ -7,6 +7,6 @@ public record AtualizacaoEndereco(
         String complemento,
         String bairro,
         String cidade,
-        String numero
+        int numero
 ) {
 }

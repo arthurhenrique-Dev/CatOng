@@ -12,9 +12,9 @@ public class PersistenceEndereco {
     private String complemento;
     private String bairro;
     private String cidade;
-    private String numero;
+    private int numero;
 
-    public PersistenceEndereco(String cep, String logradouro, String complemento, String bairro, String cidade, String numero) {
+    public PersistenceEndereco(String cep, String logradouro, String complemento, String bairro, String cidade, int numero) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.complemento = complemento;
@@ -43,7 +43,7 @@ public class PersistenceEndereco {
         return cidade;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 }
