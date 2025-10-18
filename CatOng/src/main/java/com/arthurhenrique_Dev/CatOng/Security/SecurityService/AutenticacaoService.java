@@ -1,4 +1,4 @@
-package com.arthurhenrique_Dev.CatOng.Security.Service;
+package com.arthurhenrique_Dev.CatOng.Security.SecurityService;
 
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.RepositorioEstrangeiroUComum.ISpringUComum;
