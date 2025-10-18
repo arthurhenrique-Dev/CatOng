@@ -12,7 +12,7 @@ public interface GatoRepo {
     void deletarGato(Long id);
     void adotarGato(Long id);
     void alterarGato(Long id, DTOAtualizacaoAnimais dto);
-    List<Gato> getGato(int page, int size);
-    List<Gato> getGatoByName(int page, int size, String nome);
+    List<Gato> getGato(Integer page, Integer size);
+    List<Gato> getGatoByName(Integer page, Integer size, String nome);
     Optional<Gato> getGatoById(Long id);
 }

@@ -1,10 +1,6 @@
 package com.arthurhenrique_Dev.CatOng.Security.SecurityService;
 
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Permissao;
-import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
-import com.arthurhenrique_Dev.CatOng.UsoPessoal.ProcessosIniciais.ADMIN;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -15,13 +11,11 @@ import java.time.Instant;
 import java.util.Date;
 
 @Service
-public class TokenService {
-
-    private String base;
+public class TokenService { ;
 
     public String GerarTokenGenerico(String login, Permissao permissao){
         try {
-            Algorithm algorithm = Algorithm.HMAC256(base);
+            Algorithm algorithm = Algorithm.HMAC256("chave");
             return JWT.create()
                     .withIssuer("CatOng")
                     .withSubject(login)
@@ -34,7 +28,7 @@ public class TokenService {
     }
     public String ValidarToken(String token){
         try {
-            Algorithm algorithm = Algorithm.HMAC256(base);
+            Algorithm algorithm = Algorithm.HMAC256("chave");
             return JWT.require(algorithm)
                     .withIssuer("CatOng")
                     .build()

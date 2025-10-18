@@ -61,7 +61,7 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
     }
 
     @Override
-    public List<UGerenciamento> getUGerenciamentos(int page, int size) {
+    public List<UGerenciamento> getUGerenciamentos(Integer page, Integer size) {
         return fRepository.findAll()
                 .stream()
                 .map(mapper::toDomain)

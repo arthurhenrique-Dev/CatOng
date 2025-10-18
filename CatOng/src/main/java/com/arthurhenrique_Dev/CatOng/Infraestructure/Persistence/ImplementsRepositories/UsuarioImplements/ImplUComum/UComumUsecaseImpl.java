@@ -69,7 +69,7 @@ public class UComumUsecaseImpl implements UComumRepository {
     }
 
     @Override
-    public List<UComum> getUComuns(int page, int size) {
+    public List<UComum> getUComuns(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         return fRepository.findAll(pageable)
                 .stream()
@@ -78,7 +78,7 @@ public class UComumUsecaseImpl implements UComumRepository {
     }
 
     @Override
-    public List<UComum> getUComumsByName(int page, int size, String nome) {
+    public List<UComum> getUComumsByName(Integer page, Integer size, String nome) {
         return fRepository.getEuComumsByNome(nome, PageRequest.of(page, size))
                 .stream()
                 .map(mapper::toDomain)

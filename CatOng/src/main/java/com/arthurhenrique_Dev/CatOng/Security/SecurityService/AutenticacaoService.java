@@ -22,24 +22,15 @@ public class AutenticacaoService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails user;
-        if (fRepositoryUComum
-                .findById(username)
-                .isPresent()){
-            user = fRepositoryUComum
-                    .findById(username)
-                    .get();
-            return user;
-        }
-        EUGerenciamento recebido = fRepositoryUGerenciamento.findByCpf(username);
-        if (recebido != null){
-            user = recebido;
-            return user;
-        }
-        if (repositoryUsoPessoal.findByNome(username)!=null){
-            user = repositoryUsoPessoal.findByNome(username);
-            return user;
-        }
+        var comum = fRepositoryUComum.findById(username);
+        if (comum.isPresent()) return comum.get();
+
+        var ger = fRepositoryUGerenciamento.findByCpf(username);
+        if (ger != null) return ger;
+
+        var admin = repositoryUsoPessoal.findByNome(username);
+        if (admin != null) return admin;
+
         throw new UsernameNotFoundException("usuário não encontrado");
     }
 }

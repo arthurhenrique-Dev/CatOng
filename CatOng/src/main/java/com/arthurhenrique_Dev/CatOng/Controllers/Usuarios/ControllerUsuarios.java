@@ -29,11 +29,11 @@ public class ControllerUsuarios {
         comumUseCase.atualizarComum(cpf, dto);
     }
     @GetMapping("/gerenciamento/comum")
-    public List<UComum> getUsers(int pages, int size){
+    public List<UComum> getUsers(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
         return comumUseCase.getUComuns(pages, size);
     }
     @GetMapping("/gerenciamento/comum/nome?={nome}")
-    public List<UComum> getUsersByName(int pages, int size, @RequestParam String nome){
+    public List<UComum> getUsersByName(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size, @RequestParam String nome){
         return comumUseCase.getUComunsByName(pages, size, nome);
     }
     @GetMapping("/gerenciamento/comum/cpf?={cpf}")
@@ -53,7 +53,7 @@ public class ControllerUsuarios {
         gerenciamentoUseCase.atualizarUGerenciamento(nr, dto);
     }
     @GetMapping("/gerenciamento/funcionario")
-    public List<UGerenciamento> getUGerenciamentos(int pages, int size){
+    public List<UGerenciamento> getUGerenciamentos(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
         return gerenciamentoUseCase.getUGerenciamentos(pages, size);
     }
     @GetMapping("/gerenciamento/funcionario/nr?={nr}")

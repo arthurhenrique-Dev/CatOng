@@ -69,7 +69,7 @@ public class GatoUseCaseImpl implements GatoRepo {
     }
 
     @Override
-    public List<Gato> getGato(int page, int size) {
+    public List<Gato> getGato(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         return fRepository.findAll(pageable)
                 .stream()
@@ -78,7 +78,7 @@ public class GatoUseCaseImpl implements GatoRepo {
     }
 
     @Override
-    public List<Gato> getGatoByName(int page, int size, String nome) {
+    public List<Gato> getGatoByName(Integer page, Integer size, String nome) {
         return fRepository.getGatoByNome(nome, PageRequest.of(page, size))
                 .stream()
                 .map(mapper::toDomain)

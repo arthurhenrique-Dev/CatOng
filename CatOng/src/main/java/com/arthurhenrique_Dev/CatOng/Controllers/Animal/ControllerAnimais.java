@@ -23,11 +23,11 @@ public class ControllerAnimais {
     }
 
     @GetMapping("/gatos")
-    public List<Gato> getGatos(int pages, int size){
+    public List<Gato> getGatos(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
         return gatoUseCase.getGato(pages, size);
     }
     @GetMapping("/gatos/nome?={nome}")
-    public List<Gato> getGatosByNome(int pages, int size, @RequestParam String nome){
+    public List<Gato> getGatosByNome(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size, @RequestParam String nome){
         return gatoUseCase.getGatoByName(pages, size, nome);
     }
     @GetMapping("/gatos/id?={id}")
@@ -35,11 +35,11 @@ public class ControllerAnimais {
         return gatoUseCase.getGatoById(id);
     }
     @GetMapping("/cachorros")
-    public List<Cachorro> getCachorros(int pages, int size){
+    public List<Cachorro> getCachorros(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
         return cachorroUseCase.getCachorros(pages, size);
     }
     @GetMapping("/cachorros/nome?={nome}")
-    public List<Cachorro> getCachorrosByNome(int pages, int size, @RequestParam String nome){
+    public List<Cachorro> getCachorrosByNome(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size, @RequestParam String nome){
         return cachorroUseCase.getCachorrosByName(pages, size, nome);
     }
     @GetMapping("/cachorros/id?={id}")

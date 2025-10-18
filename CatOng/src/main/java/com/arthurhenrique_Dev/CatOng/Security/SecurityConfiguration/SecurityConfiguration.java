@@ -1,6 +1,8 @@
 package com.arthurhenrique_Dev.CatOng.Security.SecurityConfiguration;
 
 import com.arthurhenrique_Dev.CatOng.Security.Filter.SecurityFilter;
+import com.arthurhenrique_Dev.CatOng.Security.SecurityService.AutenticacaoService;
+import com.arthurhenrique_Dev.CatOng.Security.SecurityService.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,27 +21,35 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Autowired
-    SecurityFilter securityFilter;
+    private final TokenService tokenService;
+    private final AutenticacaoService autenticacaoService;
+
+    public SecurityConfiguration(TokenService tokenService, AutenticacaoService autenticacaoService) {
+        this.tokenService = tokenService;
+        this.autenticacaoService = autenticacaoService;
+    }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, SecurityFilterChain securityFilterChain) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        SecurityFilter securityFilter = new SecurityFilter(tokenService, autenticacaoService);
+
         return http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "user/gerenciamento/**").hasRole("GERENCIAMENTO")
-                        .requestMatchers(HttpMethod.PUT, "user/gerenciamento/**").hasRole("GERENCIAMENTO")
-                        .requestMatchers(HttpMethod.DELETE, "user/gerenciamento/**").hasRole("GERENCIAMENTO")
-                        .requestMatchers(HttpMethod.GET, "user/gerenciamento/**").hasRole("GERENCIAMENTO")
-                        .requestMatchers(HttpMethod.POST, "pets/gerenciamento/**").hasRole("GERENCIAMENTO")
-                        .requestMatchers(HttpMethod.PUT, "pets/gerenciamento/**").hasRole("GERENCIAMENTO")
-                        .requestMatchers(HttpMethod.DELETE, "pets/gerenciamento/**").hasRole("GERENCIAMENTO")
-                        .requestMatchers(HttpMethod.GET, "pets/gerenciamento/**").hasRole("GERENCIAMENTO")
-                        .requestMatchers(HttpMethod.POST, "user/gerenciamento/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "user/gerenciamento/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "user/gerenciamento/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "user/gerenciamento/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/user/gerenciamento/**").hasAuthority("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.PUT, "/user/gerenciamento/**").hasAuthority("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.DELETE, "/user/gerenciamento/**").hasAuthority("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.GET, "/user/gerenciamento/**").hasAuthority("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.POST, "/pets/gerenciamento/**").hasAuthority("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.PUT, "/pets/gerenciamento/**").hasAuthority("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.DELETE, "/pets/gerenciamento/**").hasAuthority("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.GET, "/pets/gerenciamento/**").hasAuthority("GERENCIAMENTO")
+                        .requestMatchers(HttpMethod.POST, "/user/gerenciamento/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/user/gerenciamento/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/user/gerenciamento/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/user/gerenciamento/**").hasAuthority("ADMIN")
                         .anyRequest().permitAll()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

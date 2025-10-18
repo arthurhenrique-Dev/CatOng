@@ -70,7 +70,7 @@ public class CachorroUseCaseImpl implements CachorroRepo {
     }
 
     @Override
-    public List<Cachorro> getCachorros(int page, int size) {
+    public List<Cachorro> getCachorros(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         return fRepository.findAll(pageable)
                 .stream()
@@ -79,7 +79,7 @@ public class CachorroUseCaseImpl implements CachorroRepo {
     }
 
     @Override
-    public List<Cachorro> getCachorrosByName(int page, int size, String nome) {
+    public List<Cachorro> getCachorrosByName(Integer page, Integer size, String nome) {
         return fRepository.findByNome(nome, PageRequest.of(page, size))
                 .stream()
                 .map(mapper::toDomain)

@@ -13,8 +13,8 @@ public interface CachorroRepo {
     void deletarCachorro(Long id);
     void adotarCachorro(Long id);
     void alterarCachorro(Long id, DTOAtualizacaoAnimais dto);
-    List<Cachorro> getCachorros(int page, int size);
-    List<Cachorro> getCachorrosByName(int page, int size, String nome);
+    List<Cachorro> getCachorros(Integer page, Integer size);
+    List<Cachorro> getCachorrosByName(Integer page, Integer size, String nome);
     Optional<Cachorro> getCachorroById(Long id);
 
 }

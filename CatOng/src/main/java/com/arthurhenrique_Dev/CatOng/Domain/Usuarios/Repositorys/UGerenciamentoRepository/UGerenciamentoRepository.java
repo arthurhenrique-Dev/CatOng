@@ -13,6 +13,6 @@ public interface UGerenciamentoRepository {
     void removerUGerenciamento(Long NR);
     void atualizarUGerenciamento(Long NR, DTOAtualizacaoUGerenciamento dto);
     Optional<UGerenciamento> getUGerenciamentoByNR(Long NR);
-    List<UGerenciamento> getUGerenciamentos(int page, int size);
+    List<UGerenciamento> getUGerenciamentos(Integer page, Integer size);
     Optional<UGerenciamento> getUGerenciamento(String cpf);
 }

@@ -5,6 +5,10 @@ import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegis
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Login.DTOLogin;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase.UComumUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamentoUseCase.UGerenciamentoUseCase;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Security.SecurityService.TokenService;
+import com.arthurhenrique_Dev.CatOng.UsoPessoal.ProcessosIniciais.ADMIN;
 import com.arthurhenrique_Dev.CatOng.UsoPessoal.ProcessosIniciais.DTOAdminLogin;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +30,8 @@ public class AutenticacaoController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private TokenService tokenService;
 
     public AutenticacaoController(UComumUseCase uComumUseCase, UGerenciamentoUseCase uGerenciamentoUseCase) {
         this.uComumUseCase = uComumUseCase;
@@ -34,10 +40,24 @@ public class AutenticacaoController {
 
     @PostMapping("/login")
     public ResponseEntity login (@RequestBody @Valid DTOLogin dto){
-        var cpfESenha = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.senha());
-        var authentication = this.authenticationManager.authenticate(cpfESenha);
+        UsernamePasswordAuthenticationToken authToken;
 
-        return ResponseEntity.ok().build();
+        if (dto.nome() != null && !dto.nome().isBlank() && dto.cpf() == null || dto.cpf().isBlank()) {
+            authToken = new UsernamePasswordAuthenticationToken(dto.nome(), dto.senha());
+        } else if (dto.cpf() != null && !dto.cpf().isBlank() && dto.nome() == null && dto.nome().isBlank()) {
+            authToken = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.senha());
+        } else {
+            return ResponseEntity.badRequest().body("Informe CPF ou nome.");
+        }
+        var authentication = this.authenticationManager.authenticate(authToken);
+        Object principal = authentication.getPrincipal();
+        var token = switch (principal){
+            case EUComum euComum -> tokenService.GerarTokenGenerico(euComum.getCpf(), euComum.getPermissao());
+            case EUGerenciamento euGerenciamento -> tokenService.GerarTokenGenerico(euGerenciamento.getCpf(), euGerenciamento.getPermissao());
+            case ADMIN admin -> tokenService.GerarTokenGenerico(admin.getNome(), admin.getPermissao());
+            default -> null;
+        };
+        return ResponseEntity.ok(token);
     }
     @PostMapping("/sign_up")
     public ResponseEntity signUp (@RequestBody @Valid DTORegistroUComum dto){

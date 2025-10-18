@@ -13,6 +13,6 @@ public interface UComumRepository {
     void removerUComum(String cpf);
     void atualizarUComum(String cpf, DTOAtualizacaoUComum dto);
     Optional<UComum> getUComum(String cpf);
-    List<UComum> getUComuns(int page, int size);
-    List<UComum> getUComumsByName(int page, int size, String nome);
+    List<UComum> getUComuns(Integer page, Integer size);
+    List<UComum> getUComumsByName(Integer page, Integer size, String nome);
 }
