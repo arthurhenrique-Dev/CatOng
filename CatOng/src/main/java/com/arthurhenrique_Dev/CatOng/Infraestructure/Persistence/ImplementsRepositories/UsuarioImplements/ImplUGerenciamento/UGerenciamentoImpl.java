@@ -69,7 +69,7 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
     }
 
     @Override
-    public Optional<UGerenciamento> getUGerenciamentoByCpf(String cpf) {
+    public Optional<UGerenciamento> getUGerenciamento(String cpf) {
         EUGerenciamento recebido = fRepository.findByCpf(cpf);
         return Optional.ofNullable(recebido)
                 .map(mapper::toDomain);

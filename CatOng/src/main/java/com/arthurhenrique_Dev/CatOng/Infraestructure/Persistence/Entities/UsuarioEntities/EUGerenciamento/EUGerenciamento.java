@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "usuario__gerenciamento")
+@Table(name = "usuario_gerenciamento")
 @NoArgsConstructor
 public class EUGerenciamento implements UserDetails {
 
@@ -30,7 +30,7 @@ public class EUGerenciamento implements UserDetails {
     private String RG;
     @Getter @Setter
     private Atividade atividade;
-    @Getter @Setter
+    @Getter @Enumerated(EnumType.STRING)
     private Permissao permissao;
     @Getter
     private String email;

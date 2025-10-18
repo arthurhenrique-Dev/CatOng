@@ -25,9 +25,9 @@ public class EUComum implements UserDetails {
     private String cpf;
     @Getter
     private String RG;
-    @Getter @Setter
+    @Getter @Setter @Enumerated(EnumType.STRING)
     private Atividade atividade;
-    @Getter
+    @Getter @Setter @Enumerated(EnumType.STRING)
     private Permissao permissao;
     @Getter
     private String email;

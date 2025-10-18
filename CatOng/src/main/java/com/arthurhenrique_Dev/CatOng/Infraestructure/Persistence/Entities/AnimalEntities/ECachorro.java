@@ -25,17 +25,17 @@ public class ECachorro {
     private int idade;
     @Getter
     private String raca;
-    @Getter @Setter
+    @Getter @Setter @Enumerated(EnumType.STRING)
     private Atividade atividade;
     @Getter @Setter
     private String descrição;
-    @Getter
+    @Getter @Enumerated(EnumType.STRING)
     private Sexo sexo;
     @Getter @Setter
     private double peso;
     @Getter @Setter @ElementCollection
     private List<String> fotos = new ArrayList<>();
-    @Getter
+    @Getter @Enumerated(EnumType.STRING)
     private TipoDeAnimal tipoDeAnimal;
 
     public ECachorro(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso, List<String>fotos) {

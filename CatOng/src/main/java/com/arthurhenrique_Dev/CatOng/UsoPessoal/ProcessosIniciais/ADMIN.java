@@ -22,6 +22,7 @@ public class ADMIN implements UserDetails {
     private Long id;
     private String nome;
     private String senha;
+    @Enumerated(EnumType.STRING)
     private Permissao permissao;
 
     public ADMIN(Long id, String nome, String senha) {
