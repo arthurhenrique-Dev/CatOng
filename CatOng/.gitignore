@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Teste ###
+/src/main/java/com/arthurhenrique_Dev/CatOng/TesteDeGitignore

@@ -29,7 +29,9 @@ public abstract class BaseDeUsuários {
         }
         this.RG = RG;
         this.atividade = Atividade.ATIVO;
-        if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$"))
+        if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")){
+            throw new IllegalArgumentException("email inválido");
+        }
         this.email = email;
         if (!senha.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}$")){
             throw new IllegalArgumentException("Senha inválida, formato de senha: 8 digitos, pelo menos 1 minúsculo, 1 maiúsculo, um número e 1 caracter especial");

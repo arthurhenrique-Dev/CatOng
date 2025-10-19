@@ -11,6 +11,4 @@ import java.util.Optional;
 
 public interface ISpringUComum extends JpaRepository<EUComum, String> {
     List<EUComum> getEuComumsByNome(String nome, Pageable pageable);
-    UserDetails findByNome(String nome);
-
 }
