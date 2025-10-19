@@ -16,6 +16,7 @@ public class UComumMapper {
                 uComumDomain.getCpf(),
                 uComumDomain.getRG(),
                 uComumDomain.getEmail(),
+                uComumDomain.getSenha(),
                 uComumDomain.getTelefone(),
                 enderecoMapper.toPersistenceEndereco(uComumDomain.getEndereco()),
                 uComumDomain.getDataNascimento());

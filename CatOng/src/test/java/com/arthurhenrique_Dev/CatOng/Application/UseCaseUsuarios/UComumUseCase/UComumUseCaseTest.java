@@ -6,6 +6,7 @@ import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UComumMappers.UComumMapper;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements.ImplUComum.UComumUsecaseImpl;
+import com.arthurhenrique_Dev.CatOng.Secreto.DadosParaTesteValido;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
@@ -32,19 +33,17 @@ class UComumUseCaseTest {
     @Autowired
     UComumUseCase uComumUseCase;
 
+    //Arquivos em gitignore por conter dados pessoais, mas se trata de um DTORegistroUComum com meus dados, você pode fazer um com os seus
+    DadosParaTesteValido dadosParaTesteValido =  new DadosParaTesteValido();
+
     @Test
     @DisplayName("Esperado sucesso")
     void getUComum() {
 
 
-        Endereco endereco = new Endereco();
-        DTORegistroUComum dto = new DTORegistroUComum();
+        this.createUser(dadosParaTesteValido.registroValido());
 
-        System.out.println(dto.senha());
-
-        this.createUser(dto);
-
-        Optional<UComum> usuarioEncontrado = this.uComumUseCase.getUComum(cpf);
+        Optional<UComum> usuarioEncontrado = this.uComumUseCase.getUComum(dadosParaTesteValido.registroValido().cpf());
 
         assertThat(usuarioEncontrado.isPresent()).isTrue();
     }
@@ -54,5 +53,25 @@ class UComumUseCaseTest {
         EUComum euComum = mapper.ValidacaoEInscricao(dto);
         this.em.persist(euComum);
         return euComum;
+    }
+
+    @Test
+    void salvarComum() {
+    }
+
+    @Test
+    void atualizarComum() {
+    }
+
+    @Test
+    void removerComum() {
+    }
+
+    @Test
+    void getUComuns() {
+    }
+
+    @Test
+    void getUComunsByName() {
     }
 }

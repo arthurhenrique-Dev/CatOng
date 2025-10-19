@@ -40,11 +40,12 @@ public class EUComum implements UserDetails {
     @Getter
     private LocalDate dataNascimento;
 
-    public EUComum(String nome, String cpf, String RG, String email, String telefone, PersistenceEndereco endereco, LocalDate dataNascimento) {
+    public EUComum(String nome, String cpf, String RG, String email,String senha, String telefone, PersistenceEndereco endereco, LocalDate dataNascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.RG = RG;
         this.email = email;
+        this.senha = senha;
         this.telefone = telefone;
         this.endereco = endereco;
         this.dataNascimento = dataNascimento;
