@@ -7,26 +7,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnderecoMapper {
 
-    PersistenceEndereco toPersistenceEndereco(Endereco enderecoDomain) {
-        PersistenceEndereco enderecoTraduzido = new PersistenceEndereco(
-                enderecoDomain.getCep(),
-                enderecoDomain.getLogradouro(),
-                enderecoDomain.getComplemento(),
-                enderecoDomain.getBairro(),
-                enderecoDomain.getCidade(),
-                enderecoDomain.getNumero()
-        );
-        return enderecoTraduzido;
-    }
-    Endereco toDomainEndereco(PersistenceEndereco enderecoPersistence) {
-        Endereco enderecoTraduzido = new Endereco(
-                enderecoPersistence.getCep(),
-                enderecoPersistence.getLogradouro(),
-                enderecoPersistence.getComplemento(),
-                enderecoPersistence.getBairro(),
-                enderecoPersistence.getCidade(),
-                enderecoPersistence.getNumero()
-        );
-        return enderecoTraduzido;
-    }
+
 }

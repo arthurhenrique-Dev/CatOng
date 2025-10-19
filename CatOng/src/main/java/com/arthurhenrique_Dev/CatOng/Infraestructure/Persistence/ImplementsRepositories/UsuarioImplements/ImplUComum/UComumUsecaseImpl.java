@@ -8,6 +8,7 @@ import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UComumRepositor
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UComumMappers.UComumMapper;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.PersistenceEndereco;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.RepositorioEstrangeiroUComum.ISpringUComum;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -47,16 +48,16 @@ public class UComumUsecaseImpl implements UComumRepository {
     @Override
     public void atualizarUComum(String cpf, DTOAtualizacaoUComum dto) {
         EUComum usuarioRecebido = fRepository.findById(cpf).orElse(null);
-        UComum moldeDeManipulacao = mapper.toDomain(usuarioRecebido);
         if (usuarioRecebido != null) {
             if (dto != null) {
                 if (dto.endereco() != null) {
-                    moldeDeManipulacao.setEndereco(dto.endereco());
+                    PersistenceEndereco enderecoAtualizado = mapper.toPersistenceEndereco(dto.endereco());
+                    usuarioRecebido.setEndereco(enderecoAtualizado);
                 }
                 if (dto.telefone() != null) {
-                    moldeDeManipulacao.setTelefone(dto.telefone());
+                    usuarioRecebido.setTelefone(dto.telefone());
                 }
-                fRepository.save(mapper.toEntity(moldeDeManipulacao));
+                fRepository.save(usuarioRecebido);
             }else {
                 throw new IllegalArgumentException("Insira o dado que você quer modificar (endereço ou telefone)");
             }

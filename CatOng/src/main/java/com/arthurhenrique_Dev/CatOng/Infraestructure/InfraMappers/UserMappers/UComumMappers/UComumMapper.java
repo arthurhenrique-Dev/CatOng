@@ -3,8 +3,10 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.U
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
+import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.Endereco;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.PersistenceEndereco;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -24,23 +26,11 @@ public class UComumMapper {
                 uComumDomain.getEmail(),
                 uComumDomain.getSenha(),
                 uComumDomain.getTelefone(),
-                enderecoMapper.toPersistenceEndereco(uComumDomain.getEndereco()),
+                this.toPersistenceEndereco(uComumDomain.getEndereco()),
                 uComumDomain.getDataNascimento());
         return euComumTraduzido;
     }
-    public UComum toDomain(EUComum euComum){
-        UComum uComumTraduzido= new UComum(
-                euComum.getNome(),
-                euComum.getCpf(),
-                euComum.getRG(),
-                euComum.getAtividade(),
-                euComum.getEmail(),
-                euComum.getSenha(),
-                euComum.getTelefone(),
-                enderecoMapper.toDomainEndereco(euComum.getEndereco()),
-                euComum.getDataNascimento());
-        return uComumTraduzido;
-    }
+
     public DTORetornoUComum toDtoReturn(EUComum euComum){
         DTORetornoUComum dto= new DTORetornoUComum(
                 euComum.getNome(),
@@ -50,7 +40,7 @@ public class UComumMapper {
                 euComum.getEmail(),
                 euComum.getTelefone(),
                 LocalDate.now().getYear() - euComum.getDataNascimento().getYear(),
-                enderecoMapper.toDomainEndereco(euComum.getEndereco()));
+                this.toDomainEndereco(euComum.getEndereco()));
         return dto;
     }
     public UComum DTORegisterToDomain(DTORegistroUComum DTOuComum){
@@ -65,6 +55,28 @@ public class UComumMapper {
                 DTOuComum.endereco(),
                 DTOuComum.dataDeNascimento());
         return uComumTraduzido;
+    }
+    public PersistenceEndereco toPersistenceEndereco(Endereco enderecoDomain) {
+        PersistenceEndereco enderecoTraduzido = new PersistenceEndereco(
+                enderecoDomain.getCep(),
+                enderecoDomain.getLogradouro(),
+                enderecoDomain.getComplemento(),
+                enderecoDomain.getBairro(),
+                enderecoDomain.getCidade(),
+                enderecoDomain.getNumero()
+        );
+        return enderecoTraduzido;
+    }
+    public Endereco toDomainEndereco(PersistenceEndereco enderecoPersistence) {
+        Endereco enderecoTraduzido = new Endereco(
+                enderecoPersistence.getCep(),
+                enderecoPersistence.getLogradouro(),
+                enderecoPersistence.getComplemento(),
+                enderecoPersistence.getBairro(),
+                enderecoPersistence.getCidade(),
+                enderecoPersistence.getNumero()
+        );
+        return enderecoTraduzido;
     }
     public Atividade validarAtividade(Atividade atividade) {
         if (atividade != Atividade.ATIVO && atividade != Atividade.INATIVO) throw new IllegalArgumentException("Erro na atividade");

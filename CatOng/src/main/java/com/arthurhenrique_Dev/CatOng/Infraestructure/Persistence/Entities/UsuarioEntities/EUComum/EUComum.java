@@ -31,11 +31,10 @@ public class EUComum implements UserDetails {
     private Permissao permissao;
     @Getter
     private String email;
-    @Getter
     private String senha;
-    @Getter
+    @Getter @Setter
     private String telefone;
-    @Embedded @Getter
+    @Embedded @Getter @Setter
     private PersistenceEndereco endereco;
     @Getter
     private LocalDate dataNascimento;
