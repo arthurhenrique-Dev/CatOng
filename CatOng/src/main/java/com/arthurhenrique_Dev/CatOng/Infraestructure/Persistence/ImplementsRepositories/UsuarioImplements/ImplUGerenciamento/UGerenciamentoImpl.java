@@ -2,9 +2,9 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepo
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository.UGerenciamentoRepository;
-import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UGerenciamentoMapper.UGerenciamentoMapper;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.RepositorioEstrangeiroUGerenciamento.ISpringUGerenciamento;
@@ -31,47 +31,44 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
 
     @Override
     public void removerUGerenciamento(Long NR) {
-        UGerenciamento usuarioDeletado = (mapper.toDomain(fRepository.findByNR(NR)));
+        EUGerenciamento usuarioDeletado = (fRepository.findByNR(NR));
         usuarioDeletado.setAtividade(Atividade.INATIVO);
-        EUGerenciamento usuarioRetorno = (mapper.toEntity(usuarioDeletado));
+        fRepository.save(usuarioDeletado);
     }
 
     @Override
     public void atualizarUGerenciamento(Long NR, DTOAtualizacaoUGerenciamento dto) {
         EUGerenciamento usuarioAlterado = fRepository.findByNR(NR);
         if (usuarioAlterado != null) {
-            UGerenciamento moldeDeManipulacao = mapper.toDomain(usuarioAlterado);
             if (dto.telefone() != null) {
-                moldeDeManipulacao.setTelefone(dto.telefone());
-                fRepository.save(mapper.toEntity(moldeDeManipulacao));
+                usuarioAlterado.setTelefone(dto.telefone());
+                fRepository.save(usuarioAlterado);
             }
             else  {
                 throw new IllegalArgumentException("Insira um telefone");
             }
-        } else   {
-            throw new IllegalArgumentException("Insira sua alteração");
         }
     }
 
     @Override
-    public Optional<UGerenciamento> getUGerenciamentoByNR(Long NR) {
+    public Optional<DTORetornoUGerenciamento> getUGerenciamentoByNR(Long NR) {
         EUGerenciamento usuarioRetorno = fRepository.findByNR(NR);
         return Optional.ofNullable(usuarioRetorno)
-                .map(mapper::toDomain);
+                .map(mapper::toDtoReturn);
     }
 
     @Override
-    public List<UGerenciamento> getUGerenciamentos(Integer page, Integer size) {
+    public List<DTORetornoUGerenciamento> getUGerenciamentos(Integer page, Integer size) {
         return fRepository.findAll()
                 .stream()
-                .map(mapper::toDomain)
+                .map(mapper::toDtoReturn)
                 .toList();
     }
 
     @Override
-    public Optional<UGerenciamento> getUGerenciamento(String cpf) {
+    public Optional<DTORetornoUGerenciamento> getUGerenciamento(String cpf) {
         EUGerenciamento recebido = fRepository.findByCpf(cpf);
         return Optional.ofNullable(recebido)
-                .map(mapper::toDomain);
+                .map(mapper::toDtoReturn);
     }
 }

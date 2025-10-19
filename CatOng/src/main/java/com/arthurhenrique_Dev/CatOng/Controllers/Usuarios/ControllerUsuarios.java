@@ -4,6 +4,7 @@ import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAt
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase.UComumUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamentoUseCase.UGerenciamentoUseCase;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
@@ -54,11 +55,11 @@ public class ControllerUsuarios {
         gerenciamentoUseCase.atualizarUGerenciamento(nr, dto);
     }
     @GetMapping("/gerenciamento/funcionario")
-    public List<UGerenciamento> getUGerenciamentos(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+    public List<DTORetornoUGerenciamento> getUGerenciamentos(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
         return gerenciamentoUseCase.getUGerenciamentos(pages, size);
     }
     @GetMapping("/gerenciamento/funcionario/nr?={nr}")
-    public Optional<UGerenciamento> getUGerenciamentosByNr(@RequestParam Long nr){
+    public Optional<DTORetornoUGerenciamento> getUGerenciamentosByNr(@RequestParam Long nr){
         return gerenciamentoUseCase.getUGerenciamentoByNR(nr);
     }
     @DeleteMapping("/gerenciamento/funcionario/remover?={nr}")

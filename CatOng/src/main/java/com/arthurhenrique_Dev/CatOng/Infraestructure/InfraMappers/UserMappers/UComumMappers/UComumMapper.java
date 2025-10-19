@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @Component
 public class UComumMapper {
 
-    EnderecoMapper enderecoMapper = new EnderecoMapper();
 
     public EUComum toEntity(UComum uComumDomain){
         EUComum euComumTraduzido= new EUComum(

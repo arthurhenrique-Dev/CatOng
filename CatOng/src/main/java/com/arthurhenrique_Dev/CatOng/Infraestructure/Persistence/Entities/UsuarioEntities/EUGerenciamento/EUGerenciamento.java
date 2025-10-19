@@ -34,7 +34,6 @@ public class EUGerenciamento implements UserDetails {
     private Permissao permissao;
     @Getter
     private String email;
-    @Getter
     private String senha;
     @Getter @Setter
     private String telefone;

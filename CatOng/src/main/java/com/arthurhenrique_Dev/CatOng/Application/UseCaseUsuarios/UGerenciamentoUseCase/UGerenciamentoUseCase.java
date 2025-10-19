@@ -2,6 +2,7 @@ package com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamento
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository.UGerenciamentoRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
 
@@ -26,11 +27,11 @@ public class UGerenciamentoUseCase {
     public void atualizarUGerenciamento(Long NR, DTOAtualizacaoUGerenciamento dto){
         uGRepo.atualizarUGerenciamento(NR, dto);
     }
-    public Optional<UGerenciamento> getUGerenciamento(String cpf){return uGRepo.getUGerenciamento(cpf);}
-    public Optional<UGerenciamento> getUGerenciamentoByNR(Long nr){
+    public Optional<DTORetornoUGerenciamento> getUGerenciamento(String cpf){return uGRepo.getUGerenciamento(cpf);}
+    public Optional<DTORetornoUGerenciamento> getUGerenciamentoByNR(Long nr){
         return uGRepo.getUGerenciamentoByNR(nr);
     }
-    public List<UGerenciamento> getUGerenciamentos(int page, int size){
+    public List<DTORetornoUGerenciamento> getUGerenciamentos(int page, int size){
         return uGRepo.getUGerenciamentos(page, size);
     }
 }

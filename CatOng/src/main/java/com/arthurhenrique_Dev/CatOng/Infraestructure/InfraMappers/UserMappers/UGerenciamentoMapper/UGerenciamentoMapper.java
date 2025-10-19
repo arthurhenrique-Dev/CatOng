@@ -1,10 +1,16 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UGerenciamentoMapper;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
+import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Permissao;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class UGerenciamentoMapper {
@@ -21,18 +27,20 @@ public class UGerenciamentoMapper {
                 uGerenciamentoDomain.getTelefone());
         return uGerenciamentoTraduzido;
     }
-    public UGerenciamento toDomain(EUGerenciamento eUGerenciamento) {
-        UGerenciamento uGerenciamentoTraduzido = new UGerenciamento(
-                eUGerenciamento.getNome(),
-                eUGerenciamento.getCpf(),
-                eUGerenciamento.getRG(),
-                eUGerenciamento.getAtividade(),
-                eUGerenciamento.getEmail(),
-                eUGerenciamento.getSenha(),
-                eUGerenciamento.getTelefone());
-        return uGerenciamentoTraduzido;
-    }
+    public DTORetornoUGerenciamento toDtoReturn(EUGerenciamento euGerenciamento) {
 
+        DTORetornoUGerenciamento dtoRetorno = new DTORetornoUGerenciamento(
+                euGerenciamento.getNR(),
+                euGerenciamento.getNome(),
+                euGerenciamento.getCpf(),
+                euGerenciamento.getRG(),
+                euGerenciamento.getAtividade(),
+                Permissao.GERENCIAMENTO,
+                euGerenciamento.getEmail(),
+                euGerenciamento.getTelefone()
+        );
+        return dtoRetorno;
+    }
     public UGerenciamento DTORegisterToDomain(DTORegistroUGerenciamento DTOUGerenciamento){
         UGerenciamento uGerenciamentoTraduzido = new UGerenciamento(
                 DTOUGerenciamento.nome(),
