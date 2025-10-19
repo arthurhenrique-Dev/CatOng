@@ -2,6 +2,7 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepo
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUComum;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UComumRepository.UComumRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
@@ -30,13 +31,17 @@ public class UComumUsecaseImpl implements UComumRepository {
 
     @Override
     public void salvarUComum(DTORegistroUComum registroUComum) {
-        fRepository.save(mapper.ValidacaoEInscricao(registroUComum));
+        UComum validacaoPorDomain = mapper.DTORegisterToDomain(registroUComum);
+        EUComum usuarioValido = mapper.toEntity(validacaoPorDomain);
+        mapper.validarAtividade(usuarioValido.getAtividade());
+        fRepository.save(usuarioValido);
     }
 
     @Override
     public void removerUComum(String cpf) {
-        EUComum usuarioDeletado = fRepository.findById(cpf).orElse(null);
-        usuarioDeletado.setAtividade(Atividade.INATIVO);
+        EUComum usuarioADeletar = fRepository.findById(cpf).orElse(null);
+        usuarioADeletar.setAtividade(Atividade.INATIVO);
+        fRepository.save(usuarioADeletar);
     }
 
     @Override
@@ -59,29 +64,29 @@ public class UComumUsecaseImpl implements UComumRepository {
     }
 
     @Override
-    public Optional<UComum> getUComum(String cpf) {
+    public Optional<DTORetornoUComum> getUComum(String cpf) {
         EUComum usuarioRecebido = fRepository.findById(cpf).orElse(null);
         if (usuarioRecebido != null) {
-            return Optional.of(mapper.toDomain(usuarioRecebido));
+            return Optional.ofNullable(mapper.toDtoReturn(usuarioRecebido));
         } else {
             throw new IllegalArgumentException("nenhum usuário encontrado");
         }
     }
 
     @Override
-    public List<UComum> getUComuns(Integer page, Integer size) {
+    public List<DTORetornoUComum> getUComuns(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         return fRepository.findAll(pageable)
                 .stream()
-                .map(mapper::toDomain)
+                .map(mapper::toDtoReturn)
                 .toList();
     }
 
     @Override
-    public List<UComum> getUComumsByName(Integer page, Integer size, String nome) {
+    public List<DTORetornoUComum> getUComumsByName(Integer page, Integer size, String nome) {
         return fRepository.getEuComumsByNome(nome, PageRequest.of(page, size))
                 .stream()
-                .map(mapper::toDomain)
+                .map(mapper::toDtoReturn)
                 .toList();
     }
 }

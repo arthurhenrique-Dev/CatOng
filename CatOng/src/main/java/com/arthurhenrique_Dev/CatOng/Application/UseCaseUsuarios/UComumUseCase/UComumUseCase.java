@@ -2,6 +2,7 @@ package com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUComum;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UComumRepository.UComumRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
 
@@ -24,13 +25,13 @@ public class UComumUseCase {
     public void removerComum(String cpf) {
         uComumRepository.removerUComum(cpf);
     }
-    public Optional<UComum> getUComum(String cpf){
+    public Optional<DTORetornoUComum> getUComum(String cpf){
         return uComumRepository.getUComum(cpf);
     }
-    public List<UComum> getUComuns(int page, int size) {
+    public List<DTORetornoUComum> getUComuns(int page, int size) {
         return uComumRepository.getUComuns(page, size);
     }
-    public List<UComum> getUComunsByName(int page, int size, String nome) {
+    public List<DTORetornoUComum> getUComunsByName(int page, int size, String nome) {
         return uComumRepository.getUComumsByName(page, size, nome);
     }
 }

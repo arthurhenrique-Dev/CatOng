@@ -30,7 +30,7 @@ public class Configuration {
         return new UComumUseCase(uComumRepository);
     }
     @Bean
-    UComumRepository uComumRepository(ISpringUComum ispringUComum, UComumMapper uComumMapper){
+    UComumRepository uComumRepository(ISpringUComum ispringUComum, UComumMapper uComumMapper) {
         return new UComumUsecaseImpl(ispringUComum, uComumMapper);
     }
     @Bean

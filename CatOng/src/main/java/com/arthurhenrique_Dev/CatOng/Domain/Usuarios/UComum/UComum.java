@@ -11,8 +11,8 @@ public class UComum extends BaseDeUsuários {
     private Endereco endereco;
     private LocalDate dataNascimento;
 
-    public UComum(String nome, String cpf, String RG, String email, String senha, String telefone, Endereco endereco, LocalDate dataNascimento) {
-        super(nome, cpf, RG, email, senha, telefone);
+    public UComum(String nome, String cpf, String RG, Atividade atividade, String email, String senha, String telefone, Endereco endereco, LocalDate dataNascimento) {
+        super(nome, cpf, RG, atividade, email, senha, telefone);
         this.endereco = endereco;
         if (dataNascimento.isAfter(LocalDate.now().minusYears(18))){
             throw new IllegalArgumentException("Jovem demais");

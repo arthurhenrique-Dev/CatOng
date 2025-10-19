@@ -1,6 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UGerenciamentoMapper;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,7 @@ public class UGerenciamentoMapper {
                 eUGerenciamento.getNome(),
                 eUGerenciamento.getCpf(),
                 eUGerenciamento.getRG(),
+                eUGerenciamento.getAtividade(),
                 eUGerenciamento.getEmail(),
                 eUGerenciamento.getSenha(),
                 eUGerenciamento.getTelefone());
@@ -36,6 +38,7 @@ public class UGerenciamentoMapper {
                 DTOUGerenciamento.nome(),
                 DTOUGerenciamento.cpf(),
                 DTOUGerenciamento.rg(),
+                Atividade.ATIVO,
                 DTOUGerenciamento.email(),
                 DTOUGerenciamento.senha(),
                 DTOUGerenciamento.telefone());

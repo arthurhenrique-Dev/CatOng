@@ -15,7 +15,7 @@ public abstract class BaseDeUsuários {
 
     ValidacaoCPF validar = new ValidacaoCPF();
 
-    public BaseDeUsuários(String nome, String cpf, String RG, String email, String senha, String telefone) {
+    public BaseDeUsuários(String nome, String cpf, String RG, Atividade atividade, String email, String senha, String telefone) {
         if (!nome.matches("^[\\p{L} ]{2,250}+$")){
             throw new IllegalArgumentException("Apenas caracteres, acentos e espaços");
         }
@@ -28,7 +28,7 @@ public abstract class BaseDeUsuários {
             throw new IllegalArgumentException("Insira um RG válido");
         }
         this.RG = RG;
-        this.atividade = Atividade.ATIVO;
+        this.atividade = atividade;
         if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")){
             throw new IllegalArgumentException("email inválido");
         }

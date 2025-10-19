@@ -3,6 +3,7 @@ package com.arthurhenrique_Dev.CatOng.Controllers.Usuarios;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUComum;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUComum;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase.UComumUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamentoUseCase.UGerenciamentoUseCase;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
@@ -29,15 +30,15 @@ public class ControllerUsuarios {
         comumUseCase.atualizarComum(cpf, dto);
     }
     @GetMapping("/gerenciamento/comum")
-    public List<UComum> getUsers(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+    public List<DTORetornoUComum> getUsers(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
         return comumUseCase.getUComuns(pages, size);
     }
     @GetMapping("/gerenciamento/comum/nome?={nome}")
-    public List<UComum> getUsersByName(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size, @RequestParam String nome){
+    public List<DTORetornoUComum> getUsersByName(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size, @RequestParam String nome){
         return comumUseCase.getUComunsByName(pages, size, nome);
     }
     @GetMapping("/gerenciamento/comum/cpf?={cpf}")
-    public Optional<UComum> getUserById(@RequestParam String cpf){
+    public Optional<DTORetornoUComum> getUserById(@RequestParam String cpf){
         return comumUseCase.getUComum(cpf);
     }
     @DeleteMapping("/gerenciamento/comum/remover?={cpf}")

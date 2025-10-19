@@ -7,8 +7,8 @@ import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Permissao;
 public class UGerenciamento extends BaseDeUsuários {
 
 
-    public UGerenciamento(String nome, String cpf, String RG, String email, String senha, String telefone) {
-        super(nome, cpf, RG, email, senha, telefone);
+    public UGerenciamento(String nome, String cpf, String RG, Atividade atividade, String email, String senha, String telefone) {
+        super(nome, cpf, RG, atividade, email, senha, telefone);
         this.permissao = Permissao.GERENCIAMENTO;
         this.atividade = Atividade.ATIVO;
     }
