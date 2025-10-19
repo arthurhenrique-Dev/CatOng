@@ -27,7 +27,7 @@ public class EUComum implements UserDetails {
     private String RG;
     @Getter @Setter @Enumerated(EnumType.STRING)
     private Atividade atividade;
-    @Getter @Setter @Enumerated(EnumType.STRING)
+    @Getter @Enumerated(EnumType.STRING)
     private Permissao permissao;
     @Getter
     private String email;
@@ -40,11 +40,12 @@ public class EUComum implements UserDetails {
     @Getter
     private LocalDate dataNascimento;
 
-    public EUComum(String nome, String cpf, String RG, Atividade atividade, String email,String senha, String telefone, PersistenceEndereco endereco, LocalDate dataNascimento) {
+    public EUComum(String nome, String cpf, String RG, Atividade atividade, Permissao permissao, String email,String senha, String telefone, PersistenceEndereco endereco, LocalDate dataNascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.RG = RG;
         this.atividade = atividade;
+        this.permissao = permissao;
         this.email = email;
         this.senha = senha;
         this.telefone = telefone;

@@ -3,11 +3,8 @@ package com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUComum;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
-import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.Endereco;
-import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.UComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UComumMappers.UComumMapper;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements.ImplUComum.UComumUsecaseImpl;
 import com.arthurhenrique_Dev.CatOng.Secreto.DadosParaTesteValido;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -17,13 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.Objects;
+import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -48,6 +42,7 @@ class UComumUseCaseTest {
         Optional<DTORetornoUComum> usuarioEncontrado = this.uComumUseCase.getUComum(dtoParaTesteValido.registroValido().cpf());
 
         assertThat(usuarioEncontrado.isPresent()).isTrue();
+
     }
 
     @Test
@@ -93,10 +88,27 @@ class UComumUseCaseTest {
 
     @Test
     void getUComuns() {
+
+        this.createUser(dtoParaTesteValido.registroValido());
+
+        List<DTORetornoUComum> retornoEsperado = this.uComumUseCase.getUComuns(0, 10);
+
+        assertThat(retornoEsperado)
+                .isNotEmpty()
+                .hasSizeGreaterThanOrEqualTo(1);
     }
+
 
     @Test
     void getUComunsByName() {
+
+        this.createUser(dtoParaTesteValido.registroValido());
+
+        List<DTORetornoUComum> retornoEsperado = this.uComumUseCase.getUComunsByName(0,10, dtoParaTesteValido.registroValido().nome());
+
+        assertThat(retornoEsperado)
+                .isNotEmpty()
+                .hasSizeGreaterThanOrEqualTo(1);
     }
     private EUComum createUser(DTORegistroUComum dto){
         UComumMapper mapper = new UComumMapper();

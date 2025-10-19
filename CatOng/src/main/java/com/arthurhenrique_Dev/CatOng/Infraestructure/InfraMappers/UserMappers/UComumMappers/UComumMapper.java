@@ -20,6 +20,7 @@ public class UComumMapper {
                 uComumDomain.getCpf(),
                 uComumDomain.getRG(),
                 uComumDomain.getAtividade(),
+                uComumDomain.getPermissao(),
                 uComumDomain.getEmail(),
                 uComumDomain.getSenha(),
                 uComumDomain.getTelefone(),

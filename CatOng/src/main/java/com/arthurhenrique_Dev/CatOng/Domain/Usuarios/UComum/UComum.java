@@ -20,7 +20,7 @@ public class UComum extends BaseDeUsuários {
         if (dataNascimento.isBefore(dataNascimento.minusYears(100))){
             throw new IllegalArgumentException("Insira uma idade válida");
         }
-        this.atividade = Atividade.ATIVO;
+        this.atividade = atividade;
         this.dataNascimento = dataNascimento;
         this.permissao = Permissao.COMUM;
     }
