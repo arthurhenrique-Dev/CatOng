@@ -35,7 +35,7 @@ public class UGerenciamentoMapper {
                 euGerenciamento.getCpf(),
                 euGerenciamento.getRG(),
                 euGerenciamento.getAtividade(),
-                Permissao.GERENCIAMENTO,
+                euGerenciamento.getPermissao(),
                 euGerenciamento.getEmail(),
                 euGerenciamento.getTelefone()
         );

@@ -49,6 +49,19 @@ public class EUGerenciamento implements UserDetails {
         this.telefone = telefone;
     }
 
+    //testes
+    public EUGerenciamento(Long NR, String nome, String cpf, String RG, Permissao permissao, Atividade atividade, String senha, String email, String telefone) {
+        this.NR = NR;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.RG = RG;
+        this.permissao = permissao;
+        this.atividade = atividade;
+        this.senha = senha;
+        this.email = email;
+        this.telefone = telefone;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("GERENCIAMENTO"), new SimpleGrantedAuthority("COMUM"));

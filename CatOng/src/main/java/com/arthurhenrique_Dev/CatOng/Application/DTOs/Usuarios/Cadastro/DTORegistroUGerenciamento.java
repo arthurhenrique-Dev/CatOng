@@ -9,8 +9,7 @@ public record DTORegistroUGerenciamento(
         String rg,
         String senha,
         String email,
-        String telefone,
-        Endereco endereco
+        String telefone
 ) {
 
 }

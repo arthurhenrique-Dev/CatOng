@@ -90,8 +90,7 @@ public class AutenticacaoController {
                 dto.rg(),
                 senhaCriptografada,
                 dto.email(),
-                dto.telefone(),
-                dto.endereco()
+                dto.telefone()
         );
         this.uGerenciamentoUseCase.salvarUGerenciamento(dtoEncriptografado);
         return ResponseEntity.ok().build();

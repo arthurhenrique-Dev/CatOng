@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @ActiveProfiles("test")
 @Transactional
-class UComumUseCaseIntegrationTest {
+class UComumUseCaseAndIntegrationTest {
 
     @Autowired
     EntityManager em;
@@ -31,15 +31,15 @@ class UComumUseCaseIntegrationTest {
     UComumUseCase uComumUseCase;
 
     //DadosParaTesteValido em gitignore por conter dados pessoais, mas se trata de um DTORegistroUComum com meus dados, você pode fazer um com os seus
-    DadosParaTesteValido dtoParaTesteValido =  new DadosParaTesteValido();
+    DadosParaTesteValido dtv =  new DadosParaTesteValido();
 
     @Test
     @DisplayName("Esperado sucesso ao encontrar usuário")
     void getUComum() {
 
-        this.createUser(dtoParaTesteValido.registroValido());
+        this.createUser(dtv.registroValido());
 
-        Optional<DTORetornoUComum> usuarioEncontrado = this.uComumUseCase.getUComum(dtoParaTesteValido.registroValido().cpf());
+        Optional<DTORetornoUComum> usuarioEncontrado = this.uComumUseCase.getUComum(dtv.registroValido().cpf());
 
         assertThat(usuarioEncontrado.isPresent()).isTrue();
 
@@ -49,10 +49,10 @@ class UComumUseCaseIntegrationTest {
     @DisplayName("Sucesso ao salvar usuário")
     void salvarComum() {
 
-        this.uComumUseCase.salvarComum(dtoParaTesteValido.registroValido());
+        this.uComumUseCase.salvarComum(dtv.registroValido());
 
         Optional<DTORetornoUComum> usuarioSalvo = this.uComumUseCase.getUComum(
-                dtoParaTesteValido.registroValido().cpf());
+                dtv.registroValido().cpf());
         assertThat(usuarioSalvo.isPresent()).isTrue();
 
     }
@@ -61,13 +61,13 @@ class UComumUseCaseIntegrationTest {
     @DisplayName("Atualizacao com sucesso")
     void atualizarComum() {
 
-        this.createUser(dtoParaTesteValido.registroValido());
+        this.createUser(dtv.registroValido());
 
-        Optional<DTORetornoUComum> usuarioAntigo = this.uComumUseCase.getUComum(dtoParaTesteValido.registroValido().cpf());
+        Optional<DTORetornoUComum> usuarioAntigo = this.uComumUseCase.getUComum(dtv.registroValido().cpf());
 
-        this.uComumUseCase.atualizarComum(dtoParaTesteValido.registroValido().cpf(), dtoParaTesteValido.atualizacaoValido());
+        this.uComumUseCase.atualizarComum(dtv.registroValido().cpf(), dtv.atualizacaoValido());
 
-        Optional<DTORetornoUComum> usuarioAtualizado = this.uComumUseCase.getUComum(dtoParaTesteValido.registroValido().cpf());
+        Optional<DTORetornoUComum> usuarioAtualizado = this.uComumUseCase.getUComum(dtv.registroValido().cpf());
 
         assertThat(usuarioAntigo).isNotEqualTo(usuarioAtualizado);
     }
@@ -75,11 +75,11 @@ class UComumUseCaseIntegrationTest {
     @Test
     void removerComum() {
 
-        this.createUser(dtoParaTesteValido.registroValido());
+        this.createUser(dtv.registroValido());
 
-        this.uComumUseCase.removerComum(dtoParaTesteValido.registroValido().cpf());
+        this.uComumUseCase.removerComum(dtv.registroValido().cpf());
 
-        Optional<DTORetornoUComum> usuarioDeletado = this.uComumUseCase.getUComum(dtoParaTesteValido.registroValido().cpf());
+        Optional<DTORetornoUComum> usuarioDeletado = this.uComumUseCase.getUComum(dtv.registroValido().cpf());
 
         assertThat(usuarioDeletado)
                 .isPresent()
@@ -89,11 +89,11 @@ class UComumUseCaseIntegrationTest {
     @Test
     void getUComuns() {
 
-        this.createUser(dtoParaTesteValido.registroValido());
+        this.createUser(dtv.registroValido());
 
-        List<DTORetornoUComum> retornoEsperado = this.uComumUseCase.getUComuns(0, 10);
+        List<DTORetornoUComum> retorno = this.uComumUseCase.getUComuns(0, 10);
 
-        assertThat(retornoEsperado)
+        assertThat(retorno)
                 .isNotEmpty()
                 .hasSizeGreaterThanOrEqualTo(1);
     }
@@ -102,11 +102,11 @@ class UComumUseCaseIntegrationTest {
     @Test
     void getUComunsByName() {
 
-        this.createUser(dtoParaTesteValido.registroValido());
+        this.createUser(dtv.registroValido());
 
-        List<DTORetornoUComum> retornoEsperado = this.uComumUseCase.getUComunsByName(0,10, dtoParaTesteValido.registroValido().nome());
+        List<DTORetornoUComum> retorno = this.uComumUseCase.getUComunsByName(0,10, dtv.registroValido().nome());
 
-        assertThat(retornoEsperado)
+        assertThat(retorno)
                 .isNotEmpty()
                 .hasSizeGreaterThanOrEqualTo(1);
     }
