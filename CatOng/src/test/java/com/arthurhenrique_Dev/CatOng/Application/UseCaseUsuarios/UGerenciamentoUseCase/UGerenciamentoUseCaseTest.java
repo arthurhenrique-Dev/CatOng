@@ -3,7 +3,6 @@ package com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamento
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository.UGerenciamentoRepository;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UGerenciamentoMapper.UGerenciamentoMapper;
 import com.arthurhenrique_Dev.CatOng.Secreto.DadosParaTesteValido;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,8 +22,6 @@ class UGerenciamentoUseCaseTest {
     @Mock
     UGerenciamentoRepository repository;
 
-    @Mock
-    UGerenciamentoMapper mapper;
 
     @InjectMocks
     UGerenciamentoUseCase ugerenciamentoUseCase;
@@ -50,7 +47,6 @@ class UGerenciamentoUseCaseTest {
     void removerUGerenciamento() {
 
         Long nr = 1L;
-
         ugerenciamentoUseCase.removerUGerenciamento(nr);
 
         verify(repository, times(1)).removerUGerenciamento(nr);
@@ -60,8 +56,9 @@ class UGerenciamentoUseCaseTest {
     void atualizarUGerenciamento() {
 
         var dto = dtv.atualizacaoValidoUgerenciamento();
-
         ugerenciamentoUseCase.atualizarUGerenciamento(1L, dto);
+
+        verify(repository, times(1)).atualizarUGerenciamento(1L, dto);
     }
 
     @Test
@@ -99,6 +96,8 @@ class UGerenciamentoUseCaseTest {
         List<DTORetornoUGerenciamento> resultado = ugerenciamentoUseCase.getUGerenciamentos(0, 1);
 
         assertThat(resultado).isNotEmpty();
+
+        assertThat(resultado.get(0).cpf()).isEqualTo(dto.cpf());
 
         System.out.println(resultado);
     }
