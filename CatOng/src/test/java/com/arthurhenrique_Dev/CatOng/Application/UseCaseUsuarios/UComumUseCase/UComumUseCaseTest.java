@@ -37,7 +37,7 @@ class UComumUseCaseTest {
 
         var dto = dtv.registroValidoUComum();
 
-        repository.salvarUComum(dto);
+        uComumUseCase.salvarComum(dto);
         verify(repository, times(1)).salvarUComum(dto);
     }
 
@@ -47,7 +47,7 @@ class UComumUseCaseTest {
         var dto = dtv.atualizacaoValidoUComum();
         var cpf = dtv.registroValidoUComum().cpf();
 
-        repository.atualizarUComum(cpf, dto);
+        uComumUseCase.atualizarComum(cpf, dto);
         verify(repository, times(1)).atualizarUComum(cpf, dto);
     }
 
@@ -55,7 +55,7 @@ class UComumUseCaseTest {
     void removerComum() {
         var cpf = dtv.registroValidoUComum().cpf();
 
-        repository.removerUComum(cpf);
+        uComumUseCase.removerComum(cpf);
         verify(repository, times(1)).removerUComum(cpf);
     }
 
@@ -66,7 +66,7 @@ class UComumUseCaseTest {
 
         when(repository.getUComum(cpf)).thenReturn(Optional.of(retorno));
 
-        var verificacao = repository.getUComum(cpf);
+        var verificacao = uComumUseCase.getUComum(cpf);
 
         assertThat(verificacao.get()).isEqualTo(retorno);
         verify(repository, times(1)).getUComum(cpf);
@@ -90,7 +90,7 @@ class UComumUseCaseTest {
 
         when(repository.getUComumsByName(0,1,retorno.nome())).thenReturn(List.of(retorno));
 
-        List<DTORetornoUComum> lista = repository.getUComumsByName(0,1,retorno.nome());
+        List<DTORetornoUComum> lista = uComumUseCase.getUComunsByName(0,1,retorno.nome());
 
         verify(repository, times(1)).getUComumsByName(0,1,retorno.nome());
         assertThat(lista.get(0)).isEqualTo(retorno);

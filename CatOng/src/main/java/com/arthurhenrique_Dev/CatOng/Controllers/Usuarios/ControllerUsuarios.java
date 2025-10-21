@@ -39,16 +39,12 @@ public class ControllerUsuarios {
         return comumUseCase.getUComunsByName(pages, size, nome);
     }
     @GetMapping("/gerenciamento/comum/cpf?={cpf}")
-    public Optional<DTORetornoUComum> getUserById(@RequestParam String cpf){
+    public Optional<DTORetornoUComum> getUserByCpf(@RequestParam String cpf){
         return comumUseCase.getUComum(cpf);
     }
     @DeleteMapping("/gerenciamento/comum/remover?={cpf}")
     public void remover(@RequestParam String cpf){
         comumUseCase.removerComum(cpf);
-    }
-    @PostMapping
-    public void adicionarFuncionario(DTORegistroUGerenciamento dto){
-        gerenciamentoUseCase.salvarUGerenciamento(dto);
     }
     @PutMapping("/gerenciamento/funcionario/atualizar=?{nr}")
     public void atualizar(Long nr, @RequestParam DTOAtualizacaoUGerenciamento dto){
