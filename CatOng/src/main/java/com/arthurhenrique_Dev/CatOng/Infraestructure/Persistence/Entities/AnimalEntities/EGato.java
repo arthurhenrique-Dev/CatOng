@@ -22,24 +22,24 @@ public class EGato {
     private Long id;
     @Getter
     private String nome;
-    @Getter
+    @Getter @Setter
     private int idade;
     @Getter
     private String raca;
     @Getter @Setter
     private Atividade atividade;
-    @Getter
+    @Getter @Setter
     private String descrição;
     @Getter
     private Sexo sexo;
-    @Getter
+    @Getter  @Setter
     private double peso;
-    @Getter @ElementCollection
+    @Getter @Setter @ElementCollection
     private List<String> fotos = new ArrayList<>();
     @Getter
     private TipoDeAnimal tipoDeAnimal;
 
-    public EGato(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso) {
+    public EGato(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso, TipoDeAnimal tipoDeAnimal) {
         this.nome = nome;
         this.idade = idade;
         this.raca = raca;
@@ -47,6 +47,6 @@ public class EGato {
         this.descrição = descrição;
         this.sexo = sexo;
         this.peso = peso;
-        this.tipoDeAnimal = TipoDeAnimal.GATO;
+        this.tipoDeAnimal = tipoDeAnimal;
     }
 }

@@ -3,7 +3,7 @@ package com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamento
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository.UGerenciamentoRepository;
-import com.arthurhenrique_Dev.CatOng.Secreto.DadosParaTesteValido;
+import com.arthurhenrique_Dev.CatOng.DadosParaTeste.DadosPessoa.DadosParaTesteValido;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

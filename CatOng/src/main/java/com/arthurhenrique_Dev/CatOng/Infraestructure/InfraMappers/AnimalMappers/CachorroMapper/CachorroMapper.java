@@ -11,7 +11,7 @@ public class CachorroMapper {
         ECachorro cachorroTraduzido = new ECachorro(
                 cachorroDomain.getNome(),
                 cachorroDomain.getIdade(),
-                cachorroDomain.getRaça(),
+                cachorroDomain.getRaca(),
                 cachorroDomain.getAtividade(),
                 cachorroDomain.getDescrição(),
                 cachorroDomain.getSexo(),

@@ -11,11 +11,12 @@ public class GatoMapper {
         EGato gatoTraduzido = new EGato(
                 gatoDomain.getNome(),
                 gatoDomain.getIdade(),
-                gatoDomain.getRaça(),
+                gatoDomain.getRaca(),
                 gatoDomain.getAtividade(),
                 gatoDomain.getDescrição(),
                 gatoDomain.getSexo(),
-                gatoDomain.getPeso());
+                gatoDomain.getPeso(),
+                gatoDomain.getTipoDeAnimal());
         return gatoTraduzido;
     }
     public Gato toDomain(EGato entityGato){

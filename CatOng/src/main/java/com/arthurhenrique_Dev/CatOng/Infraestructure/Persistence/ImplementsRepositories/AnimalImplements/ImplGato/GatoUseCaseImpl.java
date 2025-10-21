@@ -47,21 +47,20 @@ public class GatoUseCaseImpl implements GatoRepo {
     public void alterarGato(Long id, DTOAtualizacaoAnimais dto) {
         EGato gatoAlterado = fRepository.findById(id).orElse(null);
         if (gatoAlterado != null) {
-            Gato moldeDeManipulacao = mapper.toDomain(gatoAlterado);
             if (dto != null) {
                 if (dto.fotos() != null) {
-                    moldeDeManipulacao.setFotos(dto.fotos());
+                    gatoAlterado.setFotos(dto.fotos());
                 }
                 if (dto.descricao() != null) {
-                    moldeDeManipulacao.setDescrição(dto.descricao());
+                    gatoAlterado.setDescrição(dto.descricao());
                 }
                 if (dto.peso() != 0 && dto.peso() > 0){
-                    moldeDeManipulacao.setPeso(dto.peso());
+                    gatoAlterado.setPeso(dto.peso());
                 }
-                if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > moldeDeManipulacao.getIdade()) {
-                    moldeDeManipulacao.setIdade(dto.idade());
+                if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > gatoAlterado.getIdade()) {
+                    gatoAlterado.setIdade(dto.idade());
                 }
-                fRepository.save(mapper.toEntity(moldeDeManipulacao));
+                fRepository.save(gatoAlterado);
             } else  {
                 throw new IllegalArgumentException("Insira os dados de atualização");
             }

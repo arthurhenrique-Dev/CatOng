@@ -12,4 +12,5 @@ public class Gato extends Animal {
         super(nome, idade, raça, atividade, descrição, sexo, peso, fotos);
         this.tipoDeAnimal = TipoDeAnimal.GATO;
     }
+
 }

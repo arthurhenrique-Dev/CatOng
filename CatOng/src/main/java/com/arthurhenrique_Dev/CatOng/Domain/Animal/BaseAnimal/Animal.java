@@ -50,7 +50,7 @@ public abstract class Animal {
         return idade;
     }
 
-    public String getRaça() {
+    public String getRaca() {
         return raca;
     }
 
@@ -92,5 +92,9 @@ public abstract class Animal {
 
     public void setFotos(List<String> fotos) {
         this.fotos = fotos;
+    }
+
+    public TipoDeAnimal getTipoDeAnimal() {
+        return tipoDeAnimal;
     }
 }

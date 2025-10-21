@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Teste ###
-/src/main/java/com/arthurhenrique_Dev/CatOng/Secreto
+/src/main/java/com/arthurhenrique_Dev/CatOng/DadosParaTeste/DadosPessoa
