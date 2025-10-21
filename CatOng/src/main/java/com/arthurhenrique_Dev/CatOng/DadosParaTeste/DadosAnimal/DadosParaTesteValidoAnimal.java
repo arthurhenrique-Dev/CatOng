@@ -4,6 +4,7 @@ import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnim
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Animal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Sexo;
+import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.EGato;
 
@@ -45,5 +46,23 @@ public class DadosParaTesteValidoAnimal {
                 fotos
         );
         return dto;
+    }
+    public Cachorro cachorroValido(){
+        List<String> fotos = new ArrayList<>();
+        fotos.add("(link de foto 1)");
+        fotos.add("(link de foto 2)");
+
+        Cachorro cachorro = new Cachorro(
+
+                "Princesa",
+                4,
+                "pitbull",
+                Atividade.ATIVO,
+                "Pitbull muito carinhosinha e adestrada",
+                Sexo.FEMEA,
+                20,
+                fotos
+        );
+        return cachorro;
     }
 }

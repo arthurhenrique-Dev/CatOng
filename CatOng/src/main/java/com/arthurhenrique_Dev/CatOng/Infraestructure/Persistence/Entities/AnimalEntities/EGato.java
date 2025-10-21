@@ -35,11 +35,11 @@ public class EGato {
     @Getter  @Setter
     private double peso;
     @Getter @Setter @ElementCollection
-    private List<String> fotos = new ArrayList<>();
+    private List<String> fotos;
     @Getter
     private TipoDeAnimal tipoDeAnimal;
 
-    public EGato(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso, TipoDeAnimal tipoDeAnimal) {
+    public EGato(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso, TipoDeAnimal tipoDeAnimal, List<String> fotos) {
         this.nome = nome;
         this.idade = idade;
         this.raca = raca;
@@ -48,5 +48,6 @@ public class EGato {
         this.sexo = sexo;
         this.peso = peso;
         this.tipoDeAnimal = tipoDeAnimal;
+        this.fotos = fotos;
     }
 }

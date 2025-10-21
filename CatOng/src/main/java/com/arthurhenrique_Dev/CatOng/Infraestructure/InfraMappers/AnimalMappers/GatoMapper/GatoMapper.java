@@ -16,7 +16,8 @@ public class GatoMapper {
                 gatoDomain.getDescrição(),
                 gatoDomain.getSexo(),
                 gatoDomain.getPeso(),
-                gatoDomain.getTipoDeAnimal());
+                gatoDomain.getTipoDeAnimal(),
+                gatoDomain.getFotos());
         return gatoTraduzido;
     }
     public Gato toDomain(EGato entityGato){
