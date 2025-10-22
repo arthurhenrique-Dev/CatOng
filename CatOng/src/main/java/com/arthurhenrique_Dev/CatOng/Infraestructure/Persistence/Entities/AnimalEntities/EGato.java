@@ -3,7 +3,9 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.Anima
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Sexo;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.TipoDeAnimal;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,25 +28,29 @@ public class EGato {
     private int idade;
     @Getter
     private String raca;
-    @Getter @Setter
+    @Getter @Setter @Enumerated(EnumType.STRING)
     private Atividade atividade;
     @Getter @Setter
-    private String descrição;
-    @Getter
+    private String descricao;
+    @Getter @Enumerated(EnumType.STRING)
     private Sexo sexo;
-    @Getter  @Setter
+    @Getter @Setter
     private double peso;
-    @Getter @Setter @ElementCollection
-    private List<String> fotos;
-    @Getter
+    @Getter @Setter @ElementCollection  @CollectionTable(
+            name = "gato_fotos",
+            joinColumns = @JoinColumn(name = "gato_id")
+    )
+    @Column(name = "foto")
+    private List<String> fotos = new ArrayList<>();
+    @Getter @Enumerated(EnumType.STRING)
     private TipoDeAnimal tipoDeAnimal;
 
-    public EGato(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso, TipoDeAnimal tipoDeAnimal, List<String> fotos) {
+    public EGato(String nome, int idade, String raca, Atividade atividade, String descricao, Sexo sexo, double peso, TipoDeAnimal tipoDeAnimal, @JsonProperty("fotos") List<String> fotos) {
         this.nome = nome;
         this.idade = idade;
         this.raca = raca;
         this.atividade = atividade;
-        this.descrição = descrição;
+        this.descricao = descricao;
         this.sexo = sexo;
         this.peso = peso;
         this.tipoDeAnimal = tipoDeAnimal;

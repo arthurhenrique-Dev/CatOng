@@ -1,0 +1,4 @@
+ALTER TABLE gato DROP COLUMN id;
+
+
+

@@ -10,6 +10,9 @@ import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.Usuari
 import com.arthurhenrique_Dev.CatOng.Security.SecurityService.TokenService;
 import com.arthurhenrique_Dev.CatOng.UsoPessoal.ProcessosIniciais.ADMIN;
 import com.arthurhenrique_Dev.CatOng.UsoPessoal.ProcessosIniciais.DTOAdminLogin;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("auth")
+@Tag(name = "porta de entrada", description = "Controller de login/cadastro, para validar e prosseguir")
 public class AutenticacaoController {
 
     private final UComumUseCase uComumUseCase;
@@ -40,6 +44,10 @@ public class AutenticacaoController {
     }
 
     @PostMapping("/login")
+    @Operation(summary = "faz login do usuário")
+    @ApiResponse(responseCode = "200", description = "login feito com sucesso")
+    @ApiResponse(responseCode = "400", description = "erro ao efetuar login")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
     public ResponseEntity login (@RequestBody @Valid DTOLogin dto){
         UsernamePasswordAuthenticationToken authToken;
 
@@ -60,7 +68,12 @@ public class AutenticacaoController {
         };
         return ResponseEntity.ok(token);
     }
+
     @PostMapping("/sign_up")
+    @Operation(summary = "responsável por cadastrar o usuário")
+    @ApiResponse(responseCode = "200", description = "cadastro feito com sucesso")
+    @ApiResponse(responseCode = "400", description = "erro ao cadastrar")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
     public ResponseEntity signUp (@RequestBody @Valid DTORegistroUComum dto){
         if (this.uComumUseCase.getUComum(dto.cpf()).isPresent()){
             return ResponseEntity.badRequest().build();
@@ -79,7 +92,12 @@ public class AutenticacaoController {
             this.uComumUseCase.salvarComum(dtoEncriptografado);
             return ResponseEntity.ok().build();
     }
+
     @PostMapping("/gerenciamento/sign_up")
+    @Operation(summary = "responsável por cadastrar o usuário do funcionário")
+    @ApiResponse(responseCode = "200", description = "cadastro feito com sucesso")
+    @ApiResponse(responseCode = "400", description = "erro ao cadastrar")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
     public ResponseEntity signUp (@RequestBody @Valid DTORegistroUGerenciamento dto){
         if (this.uGerenciamentoUseCase.getUGerenciamento(dto.cpf()).isPresent()){
             return ResponseEntity.badRequest().build();
@@ -96,7 +114,12 @@ public class AutenticacaoController {
         this.uGerenciamentoUseCase.salvarUGerenciamento(dtoEncriptografado);
         return ResponseEntity.ok().build();
     }
+
     @PostMapping("admin/login")
+    @Operation(summary = "responsável pelo login do admin")
+    @ApiResponse(responseCode = "200", description = "login feito com sucesso")
+    @ApiResponse(responseCode = "400", description = "erro ao efetuar login")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
     public ResponseEntity loginAdmin (@RequestBody @Valid DTOAdminLogin dto){
         var autenticacaoAdmin = new UsernamePasswordAuthenticationToken(dto.nome(), dto.senha());
         var authentication = this.authenticationManager.authenticate(autenticacaoAdmin);

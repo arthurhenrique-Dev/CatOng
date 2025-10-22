@@ -54,7 +54,7 @@ public class CachorroUseCaseImpl implements CachorroRepo {
                     moldeDeManipulacao.setFotos(dto.fotos());
                 }
                 if (dto.descricao() != null) {
-                    moldeDeManipulacao.setDescrição(dto.descricao());
+                    moldeDeManipulacao.setDescricao(dto.descricao());
                 }
                 if (dto.peso() != 0 && dto.peso() > 0){
                     moldeDeManipulacao.setPeso(dto.peso());

@@ -1,5 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Animal {
@@ -8,13 +10,13 @@ public abstract class Animal {
     protected int idade;
     protected String raca;
     protected Atividade atividade;
-    protected String descrição;
+    protected String descricao;
     protected Sexo sexo;
     protected double peso;
-    protected List<String> fotos;
+    protected List<String> fotos = new ArrayList<>();
     protected TipoDeAnimal tipoDeAnimal;
 
-    public Animal(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso, List<String> fotos) {
+    public Animal(String nome, int idade, String raca, Atividade atividade, String descricao, Sexo sexo, double peso, List<String> fotos) {
         if (!nome.matches("^[\\p{L} ]{2,100}+$")){
             throw new IllegalArgumentException("Apenas caracteres, acentos e espaços");
         }
@@ -23,11 +25,15 @@ public abstract class Animal {
             throw new IllegalArgumentException("idade inválida");
         }
         this.idade = idade;
-        if (!raca.matches("^[\\p{L}\\p{P}\\s]{1,50}$")){
-            throw new IllegalArgumentException("Digito inválido");
-        }
+        //if (!raca.matches("^[\\p{L}\\p{P}\\s]{1,50}$")){
+        //    throw new IllegalArgumentException("Digito inválido");
+        //}
         this.raca = raca;
-        this.descrição = descrição;
+        if (atividade != Atividade.ADOTADO && atividade != Atividade.ATIVO && atividade != Atividade.INATIVO){
+            throw new IllegalArgumentException("atividade inválida");
+        }
+        this.atividade = atividade;
+        this.descricao = descricao;
         if (sexo == null){
             throw new IllegalArgumentException("Informe o sexo");
         }
@@ -58,8 +64,8 @@ public abstract class Animal {
         return atividade;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
 
     public Sexo getSexo() {
@@ -78,8 +84,8 @@ public abstract class Animal {
         this.atividade = atividade;
     }
 
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public void setPeso(double peso) {

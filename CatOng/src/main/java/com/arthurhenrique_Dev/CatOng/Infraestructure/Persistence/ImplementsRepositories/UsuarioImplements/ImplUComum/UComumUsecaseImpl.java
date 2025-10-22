@@ -70,7 +70,7 @@ public class UComumUsecaseImpl implements UComumRepository {
         if (usuarioRecebido != null) {
             return Optional.ofNullable(mapper.toDtoReturn(usuarioRecebido));
         } else {
-            throw new IllegalArgumentException("nenhum usuário encontrado");
+            return Optional.empty();
         }
     }
 

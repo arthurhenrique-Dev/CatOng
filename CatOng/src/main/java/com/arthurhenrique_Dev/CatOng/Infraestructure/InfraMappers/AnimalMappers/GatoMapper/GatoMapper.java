@@ -13,7 +13,7 @@ public class GatoMapper {
                 gatoDomain.getIdade(),
                 gatoDomain.getRaca(),
                 gatoDomain.getAtividade(),
-                gatoDomain.getDescrição(),
+                gatoDomain.getDescricao(),
                 gatoDomain.getSexo(),
                 gatoDomain.getPeso(),
                 gatoDomain.getTipoDeAnimal(),
@@ -26,7 +26,7 @@ public class GatoMapper {
                 entityGato.getIdade(),
                 entityGato.getRaca(),
                 entityGato.getAtividade(),
-                entityGato.getDescrição(),
+                entityGato.getDescricao(),
                 entityGato.getSexo(),
                 entityGato.getPeso(),
                 entityGato.getFotos());

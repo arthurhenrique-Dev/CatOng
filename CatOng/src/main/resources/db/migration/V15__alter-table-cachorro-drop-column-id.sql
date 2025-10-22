@@ -1,0 +1,1 @@
+ALTER TABLE cachorro DROP COLUMN id;

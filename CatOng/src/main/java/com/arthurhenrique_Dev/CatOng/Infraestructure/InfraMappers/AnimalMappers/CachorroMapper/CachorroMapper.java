@@ -13,7 +13,7 @@ public class CachorroMapper {
                 cachorroDomain.getIdade(),
                 cachorroDomain.getRaca(),
                 cachorroDomain.getAtividade(),
-                cachorroDomain.getDescrição(),
+                cachorroDomain.getDescricao(),
                 cachorroDomain.getSexo(),
                 cachorroDomain.getPeso(),
                 cachorroDomain.getFotos());
@@ -25,7 +25,7 @@ public class CachorroMapper {
                 entityCachorro.getIdade(),
                 entityCachorro.getRaca(),
                 entityCachorro.getAtividade(),
-                entityCachorro.getDescrição(),
+                entityCachorro.getDescricao(),
                 entityCachorro.getSexo(),
                 entityCachorro.getPeso(),
                 entityCachorro.getFotos());

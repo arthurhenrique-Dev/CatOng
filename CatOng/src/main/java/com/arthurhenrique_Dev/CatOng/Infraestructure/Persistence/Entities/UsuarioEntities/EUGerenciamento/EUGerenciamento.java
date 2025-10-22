@@ -28,7 +28,7 @@ public class EUGerenciamento implements UserDetails {
     private String cpf;
     @Getter
     private String RG;
-    @Getter @Setter
+    @Getter @Setter @Enumerated(EnumType.STRING)
     private Atividade atividade;
     @Getter @Enumerated(EnumType.STRING)
     private Permissao permissao;

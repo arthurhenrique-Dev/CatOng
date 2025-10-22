@@ -52,7 +52,7 @@ public class GatoUseCaseImpl implements GatoRepo {
                     gatoAlterado.setFotos(dto.fotos());
                 }
                 if (dto.descricao() != null) {
-                    gatoAlterado.setDescrição(dto.descricao());
+                    gatoAlterado.setDescricao(dto.descricao());
                 }
                 if (dto.peso() != 0 && dto.peso() > 0){
                     gatoAlterado.setPeso(dto.peso());

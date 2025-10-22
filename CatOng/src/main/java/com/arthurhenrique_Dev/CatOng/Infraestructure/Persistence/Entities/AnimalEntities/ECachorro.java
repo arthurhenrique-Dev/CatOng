@@ -28,22 +28,26 @@ public class ECachorro {
     @Getter @Setter @Enumerated(EnumType.STRING)
     private Atividade atividade;
     @Getter @Setter
-    private String descrição;
+    private String descricao;
     @Getter @Enumerated(EnumType.STRING)
     private Sexo sexo;
     @Getter @Setter
     private double peso;
-    @Getter @Setter @ElementCollection
+    @Getter @Setter @ElementCollection @CollectionTable(
+            name = "cachorro_fotos",
+            joinColumns = @JoinColumn(name = "cachorro_id")
+    )
+    @Column(name = "foto")
     private List<String> fotos = new ArrayList<>();
     @Getter @Enumerated(EnumType.STRING)
     private TipoDeAnimal tipoDeAnimal;
 
-    public ECachorro(String nome, int idade, String raca, Atividade atividade, String descrição, Sexo sexo, double peso, List<String>fotos) {
+    public ECachorro(String nome, int idade, String raca, Atividade atividade, String descricao, Sexo sexo, double peso, List<String>fotos) {
         this.nome = nome;
         this.idade = idade;
         this.raca = raca;
         this.atividade = atividade;
-        this.descrição = descrição;
+        this.descricao = descricao;
         this.sexo = sexo;
         this.peso = peso;
         this.fotos = fotos;

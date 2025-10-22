@@ -1,0 +1,1 @@
+ALTER TABLE usuario_gerenciamento DROP COLUMN nr
