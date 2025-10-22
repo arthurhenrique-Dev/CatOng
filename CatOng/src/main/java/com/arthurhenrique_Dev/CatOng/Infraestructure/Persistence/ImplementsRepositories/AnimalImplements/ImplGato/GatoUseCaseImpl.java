@@ -7,6 +7,7 @@ import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.GatoRepo.GatoRepo
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.AnimalMappers.GatoMapper.GatoMapper;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.EGato;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.AnimalISpring.RepositoriEstrangeiroGato.ISpringGato;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -32,8 +33,12 @@ public class GatoUseCaseImpl implements GatoRepo {
 
     @Override
     public void deletarGato(Long id) {
-        EGato gatoDeletado = fRepository.findById(id).orElse(null);
-        gatoDeletado.setAtividade(Atividade.INATIVO);
+        Optional<EGato> gatoDeletado = fRepository.findById(id);
+        if (gatoDeletado.isPresent()) {
+            gatoDeletado.get().setAtividade(Atividade.INATIVO);
+        } else {
+            throw new IllegalArgumentException("gato não encontrado");
+        }
     }
 
 

@@ -98,57 +98,57 @@ public class ControllerAnimais {
         cachorroUseCase.salvarCachorro(cachorro);
     }
 
-    @PutMapping("/gerenciamento/atualizar=?{id}/gatos")
+    @PutMapping("/gerenciamento/atualizar{id}/gatos")
     @Operation(summary = "atualizar gatos", description = "requisição responsável por atualizar os gatos")
     @ApiResponse(responseCode = "200", description = "atualização do gato efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao atualizar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void atualizarGatos(@RequestParam Long id, @RequestBody DTOAtualizacaoAnimais dto){
+    public void atualizarGatos(@PathVariable Long id, @RequestBody DTOAtualizacaoAnimais dto){
         gatoUseCase.alterarGato(id, dto);
     }
 
-    @PutMapping("/gerenciamento/atualizar=?{id}/cachorros")
+    @PutMapping("/gerenciamento/atualizar{id}/cachorros")
     @Operation(summary = "atualizar cachorros", description = "requisição responsável por atualizar os cachorros")
     @ApiResponse(responseCode = "200", description = "atualização do gato efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao atualizar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void atualizarCachorros(@RequestParam Long id, @RequestBody DTOAtualizacaoAnimais dto){
+    public void atualizarCachorros(@PathVariable Long id, @RequestBody DTOAtualizacaoAnimais dto){
         cachorroUseCase.alterarCachorro(id, dto);
     }
 
-    @DeleteMapping("/gerenciamento/deletar=?{id}/gatos")
+    @DeleteMapping("/gerenciamento/deletar{id}/gatos")
     @Operation(summary = "deletar gatos", description = "requisição responsável por deletar os gatos")
     @ApiResponse(responseCode = "200", description = "gato deletado com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao deletar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void deletarGatos(@RequestParam Long id){
+    public void deletarGatos(@PathVariable Long id){
         gatoUseCase.deletarGato(id);
     }
 
-    @DeleteMapping("/gerenciamento/deletar=?{id}/cachorros")
+    @DeleteMapping("/gerenciamento/deletar{id}/cachorros")
     @Operation(summary = "deletar cachorros", description = "requisição responsável por deletar os cachorros")
     @ApiResponse(responseCode = "200", description = "cachorro deletado com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao deletar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void deletarCachorros(@RequestParam Long id){
+    public void deletarCachorros(@PathVariable Long id){
         cachorroUseCase.deletarCachorro(id);
     }
 
-    @DeleteMapping("/gerenciamento/adoção=?{id}/gatos")
+    @DeleteMapping("/gerenciamento/adoção{id}/gatos")
     @Operation(summary = "adotar gatos", description = "requisição responsável por adotar os gatos")
     @ApiResponse(responseCode = "200", description = "gato adotado com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao adotar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void adotarGato(@RequestParam Long id){
+    public void adotarGato(@PathVariable Long id){
         gatoUseCase.adotarGato(id);
     }
 
-    @DeleteMapping("/gerenciamento/adoção=?{id}/cachorros")
+    @DeleteMapping("/gerenciamento/adoção{id}/cachorros")
     @Operation(summary = "adotar cachorros", description = "requisição responsável por adotar os cachorros")
     @ApiResponse(responseCode = "200", description = "cachorro adotado com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao adotar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void adotarCachorro(@RequestParam Long id){
+    public void adotarCachorro(@PathVariable Long id){
         cachorroUseCase.adotarCachorro(id);
     }
 }
