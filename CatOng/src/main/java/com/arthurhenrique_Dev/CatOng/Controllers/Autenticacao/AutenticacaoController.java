@@ -5,6 +5,7 @@ import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegis
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Login.DTOLogin;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase.UComumUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamentoUseCase.UGerenciamentoUseCase;
+import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Permissao;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Security.SecurityService.TokenService;
@@ -44,28 +45,26 @@ public class AutenticacaoController {
     }
 
     @PostMapping("/login")
-    @Operation(summary = "faz login do usuário")
+    @Operation(summary = "responsável pelo login do admin")
     @ApiResponse(responseCode = "200", description = "login feito com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar login")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
     public ResponseEntity login (@RequestBody @Valid DTOLogin dto){
-        UsernamePasswordAuthenticationToken authToken;
+        var autenticacao = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.senha());
+        this.authenticationManager.authenticate(autenticacao);
+        var token = tokenService.GerarTokenGenerico(dto.cpf(), Permissao.COMUM);
+        return ResponseEntity.ok(token);
+    }
 
-        if ((dto.nome() != null && !dto.nome().isBlank()) && (dto.cpf() == null || dto.cpf().isBlank())) {
-            authToken = new UsernamePasswordAuthenticationToken(dto.nome(), dto.senha());
-        } else if ((dto.cpf() != null && !dto.cpf().isBlank()) && (dto.nome() == null || dto.nome().isBlank())) {
-            authToken = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.senha());
-        } else {
-            return ResponseEntity.badRequest().body("Informe CPF ou nome.");
-        }
-        var authentication = this.authenticationManager.authenticate(authToken);
-        Object principal = authentication.getPrincipal();
-        var token = switch (principal){
-            case EUComum euComum -> tokenService.GerarTokenGenerico(euComum.getCpf(), euComum.getPermissao());
-            case EUGerenciamento euGerenciamento -> tokenService.GerarTokenGenerico(euGerenciamento.getCpf(), euGerenciamento.getPermissao());
-            case ADMIN admin -> tokenService.GerarTokenGenerico(admin.getNome(), admin.getPermissao());
-            default -> null;
-        };
+    @PostMapping("/func/login")
+    @Operation(summary = "responsável pelo login do admin")
+    @ApiResponse(responseCode = "200", description = "login feito com sucesso")
+    @ApiResponse(responseCode = "400", description = "erro ao efetuar login")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
+    public ResponseEntity loginFunc (@RequestBody @Valid DTOLogin dto){
+        var autenticacao = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.senha());
+        this.authenticationManager.authenticate(autenticacao);
+        var token = tokenService.GerarTokenGenerico(dto.cpf(), Permissao.GERENCIAMENTO);
         return ResponseEntity.ok(token);
     }
 
