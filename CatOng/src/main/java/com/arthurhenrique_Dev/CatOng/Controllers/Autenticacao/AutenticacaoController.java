@@ -51,9 +51,9 @@ public class AutenticacaoController {
     public ResponseEntity login (@RequestBody @Valid DTOLogin dto){
         UsernamePasswordAuthenticationToken authToken;
 
-        if (dto.nome() != null && !dto.nome().isBlank() && dto.cpf() == null || dto.cpf().isBlank()) {
+        if ((dto.nome() != null && !dto.nome().isBlank()) && (dto.cpf() == null || dto.cpf().isBlank())) {
             authToken = new UsernamePasswordAuthenticationToken(dto.nome(), dto.senha());
-        } else if (dto.cpf() != null && !dto.cpf().isBlank() && dto.nome() == null && dto.nome().isBlank()) {
+        } else if ((dto.cpf() != null && !dto.cpf().isBlank()) && (dto.nome() == null || dto.nome().isBlank())) {
             authToken = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.senha());
         } else {
             return ResponseEntity.badRequest().body("Informe CPF ou nome.");

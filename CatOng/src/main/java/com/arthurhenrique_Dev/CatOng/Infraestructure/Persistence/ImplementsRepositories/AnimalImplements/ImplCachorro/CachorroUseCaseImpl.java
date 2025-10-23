@@ -46,14 +46,15 @@ public class CachorroUseCaseImpl implements CachorroRepo {
 
     @Override
     public void alterarCachorro(Long id, DTOAtualizacaoAnimais dto) {
-        ECachorro cachorroAlterado = fRepository.findById(id).orElse(null);
+        ECachorro cachorroAlterado = fRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("cachorro não encontrado"));
         if (cachorroAlterado != null) {
             Cachorro moldeDeManipulacao = mapper.toDomain(cachorroAlterado);
             if (dto != null) {
-                if (dto.fotos() != null) {
+                if (dto.fotos().isEmpty()) {
                     moldeDeManipulacao.setFotos(dto.fotos());
                 }
-                if (dto.descricao() != null) {
+                if (dto.descricao().isEmpty()) {
                     moldeDeManipulacao.setDescricao(dto.descricao());
                 }
                 if (dto.peso() != 0 && dto.peso() > 0){
@@ -80,6 +81,9 @@ public class CachorroUseCaseImpl implements CachorroRepo {
 
     @Override
     public List<Cachorro> getCachorrosByName(Integer page, Integer size, String nome) {
+        if (nome == null || nome.isEmpty()) {
+            throw new IllegalArgumentException("Insira um nome");
+        }
         return fRepository.findByNome(nome, PageRequest.of(page, size))
                 .stream()
                 .map(mapper::toDomain)
@@ -88,6 +92,9 @@ public class CachorroUseCaseImpl implements CachorroRepo {
 
     @Override
     public Optional<Cachorro> getCachorroById(Long id) {
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("Insira um id valido");
+        }
         return fRepository.findById(id)
                 .map(mapper::toDomain);
     }

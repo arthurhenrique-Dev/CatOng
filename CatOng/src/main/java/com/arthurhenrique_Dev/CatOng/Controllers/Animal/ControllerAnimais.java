@@ -35,7 +35,7 @@ public class ControllerAnimais {
         return gatoUseCase.getGato(pages, size);
     }
 
-    @GetMapping("/gatos/nome?={nome}")
+    @GetMapping("/gatos/nome/{nome}")
     @Operation(summary = "listar os gatos pelo nome", description = "requisição responsável por listar os gatos por um nome")
     @ApiResponse(responseCode = "200", description = "busca de gatos pelo nome efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
@@ -44,7 +44,7 @@ public class ControllerAnimais {
         return gatoUseCase.getGatoByName(pages, size, nome);
     }
 
-    @GetMapping("/gatos/id?={id}")
+    @GetMapping("/gatos/id/{id}")
     @Operation(summary = "listar o gato pelo id", description = "requisição responsável por lista o gato pelo seu id")
     @ApiResponse(responseCode = "200", description = "busca de gatos pelo id efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
@@ -62,7 +62,7 @@ public class ControllerAnimais {
         return cachorroUseCase.getCachorros(pages, size);
     }
 
-    @GetMapping("/cachorros/nome?={nome}")
+    @GetMapping("/cachorros/nome/{nome}")
     @Operation(summary = "listar os cachorros pelo nome", description = "requisição responsável por listar os cachorros por um nome")
     @ApiResponse(responseCode = "200", description = "busca de cachorros pelo nome efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
@@ -71,7 +71,7 @@ public class ControllerAnimais {
         return cachorroUseCase.getCachorrosByName(pages, size, nome);
     }
 
-    @GetMapping("/cachorros/id?={id}")
+    @GetMapping("/cachorros/id/{id}")
     @Operation(summary = "listar o cachorro pelo nome", description = "requisição responsável por listar os cachorros por um id")
     @ApiResponse(responseCode = "200", description = "busca de cachorros pelo id efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
@@ -98,7 +98,7 @@ public class ControllerAnimais {
         cachorroUseCase.salvarCachorro(cachorro);
     }
 
-    @PutMapping("/gerenciamento/atualizar{id}/gatos")
+    @PutMapping("/gerenciamento/atualizar_id/{id}/gatos")
     @Operation(summary = "atualizar gatos", description = "requisição responsável por atualizar os gatos")
     @ApiResponse(responseCode = "200", description = "atualização do gato efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao atualizar")
@@ -107,7 +107,7 @@ public class ControllerAnimais {
         gatoUseCase.alterarGato(id, dto);
     }
 
-    @PutMapping("/gerenciamento/atualizar{id}/cachorros")
+    @PutMapping("/gerenciamento/atualizar_id/{id}/cachorros")
     @Operation(summary = "atualizar cachorros", description = "requisição responsável por atualizar os cachorros")
     @ApiResponse(responseCode = "200", description = "atualização do gato efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao atualizar")
@@ -116,7 +116,7 @@ public class ControllerAnimais {
         cachorroUseCase.alterarCachorro(id, dto);
     }
 
-    @DeleteMapping("/gerenciamento/deletar{id}/gatos")
+    @DeleteMapping("/gerenciamento/deletar_id/{id}/gatos")
     @Operation(summary = "deletar gatos", description = "requisição responsável por deletar os gatos")
     @ApiResponse(responseCode = "200", description = "gato deletado com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao deletar")
@@ -125,7 +125,7 @@ public class ControllerAnimais {
         gatoUseCase.deletarGato(id);
     }
 
-    @DeleteMapping("/gerenciamento/deletar{id}/cachorros")
+    @DeleteMapping("/gerenciamento/deletar_id/{id}/cachorros")
     @Operation(summary = "deletar cachorros", description = "requisição responsável por deletar os cachorros")
     @ApiResponse(responseCode = "200", description = "cachorro deletado com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao deletar")
@@ -134,7 +134,7 @@ public class ControllerAnimais {
         cachorroUseCase.deletarCachorro(id);
     }
 
-    @DeleteMapping("/gerenciamento/adoção{id}/gatos")
+    @DeleteMapping("/gerenciamento/adoção_id/{id}/gatos")
     @Operation(summary = "adotar gatos", description = "requisição responsável por adotar os gatos")
     @ApiResponse(responseCode = "200", description = "gato adotado com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao adotar")
@@ -143,12 +143,12 @@ public class ControllerAnimais {
         gatoUseCase.adotarGato(id);
     }
 
-    @DeleteMapping("/gerenciamento/adoção{id}/cachorros")
+    @DeleteMapping("/gerenciamento/adoção_id/{id}/cachorros")
     @Operation(summary = "adotar cachorros", description = "requisição responsável por adotar os cachorros")
     @ApiResponse(responseCode = "200", description = "cachorro adotado com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao adotar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void adotarCachorro(@PathVariable Long id){
+    public void adotarCachorro(@PathVariable("id") Long id){
         cachorroUseCase.adotarCachorro(id);
     }
 }
