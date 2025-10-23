@@ -45,7 +45,7 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
                 fRepository.save(usuarioAlterado);
             }
             else  {
-                throw new IllegalArgumentException("Insira um telefone");
+                throw new IllegalArgumentException("Usuario não encontrado");
             }
         }
     }

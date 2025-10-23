@@ -40,7 +40,7 @@ public class ControllerAnimais {
     @ApiResponse(responseCode = "200", description = "busca de gatos pelo nome efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public List<Gato> getGatosByNome(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size, @RequestParam String nome){
+    public List<Gato> getGatosByNome(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size, @PathVariable String nome){
         return gatoUseCase.getGatoByName(pages, size, nome);
     }
 
@@ -148,7 +148,7 @@ public class ControllerAnimais {
     @ApiResponse(responseCode = "200", description = "cachorro adotado com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao adotar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void adotarCachorro(@PathVariable("id") Long id){
+    public void adotarCachorro(@PathVariable Long id){
         cachorroUseCase.adotarCachorro(id);
     }
 }

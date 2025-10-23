@@ -28,12 +28,12 @@ public class ControllerUsuarios {
         this.comumUseCase = comumUseCase;
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping("/atualizar/{cpf}")
     @Operation(summary = "atualizar usuários", description = "requisição responsável por atualizar os usuários")
     @ApiResponse(responseCode = "200", description = "atualização do usuário efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao atualizar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void atualizar(String cpf, DTOAtualizacaoUComum dto) {
+    public void atualizar(@PathVariable String cpf, @RequestBody DTOAtualizacaoUComum dto) {
         comumUseCase.atualizarComum(cpf, dto);
     }
 
@@ -78,7 +78,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "atualização do funcionário efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao atualizar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void atualizar(Long nr, @RequestParam DTOAtualizacaoUGerenciamento dto){
+    public void atualizar(@PathVariable Long nr, @RequestBody DTOAtualizacaoUGerenciamento dto){
         gerenciamentoUseCase.atualizarUGerenciamento(nr, dto);
     }
 
