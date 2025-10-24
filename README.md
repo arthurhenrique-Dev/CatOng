@@ -35,7 +35,7 @@ A escolha da **Arquitetura Limpa** para este projeto foi intencional, pois ela t
 
 ## 🚀 Como Rodar
 
-Para rodar a aplicação certifique-se de ter o **Docker** e o **Git** instalados no seu sistema.  
+Para rodar a aplicação certifique-se de ter o **Docker** instalado no seu sistema.  
 
 Abra um terminal na **pasta raiz do projeto** e execute os seguintes comandos:
 
