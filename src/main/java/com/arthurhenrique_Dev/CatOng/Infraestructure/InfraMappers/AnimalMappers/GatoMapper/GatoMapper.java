@@ -1,5 +1,8 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.AnimalMappers.GatoMapper;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOCadastroAnimal;
+import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
+import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.EGato;
 import org.springframework.stereotype.Component;
@@ -30,6 +33,19 @@ public class GatoMapper {
                 entityGato.getSexo(),
                 entityGato.getPeso(),
                 entityGato.getFotos());
+        return gatoTraduzido;
+    }
+    public Gato DtoToDomain(DTOCadastroAnimal dto) {
+        Gato gatoTraduzido = new Gato(
+                dto.nome(),
+                dto.idade(),
+                dto.raca(),
+                Atividade.ATIVO,
+                dto.descricao(),
+                dto.sexo(),
+                dto.peso(),
+                dto.fotos()
+        );
         return gatoTraduzido;
     }
 }

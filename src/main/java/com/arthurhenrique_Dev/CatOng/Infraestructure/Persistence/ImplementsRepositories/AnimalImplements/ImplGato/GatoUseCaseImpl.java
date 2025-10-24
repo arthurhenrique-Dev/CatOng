@@ -1,6 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.AnimalImplements.ImplGato;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOCadastroAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.TipoDeAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
@@ -29,23 +30,17 @@ public class GatoUseCaseImpl implements GatoRepo {
     }
 
     @Override
-    public void salvarGato(Gato gato) {
-        gato.setAtividade(Atividade.ATIVO);
-        if (gato.getTipoDeAnimal() != TipoDeAnimal.GATO) {
-            throw new IllegalArgumentException("Tipo de animal deve ser Gato");
-        }
-        fRepository.save(mapper.toEntity(gato));
+    public void salvarGato(DTOCadastroAnimal dto) {
+        var estruturadoPorDomain = mapper.DtoToDomain(dto);
+        fRepository.save(mapper.toEntity(estruturadoPorDomain));
     }
 
     @Override
     public void deletarGato(Long id) {
             EGato gatoDeletado = fRepository
                     .findById(id).orElseThrow(() -> new IllegalArgumentException("gato não encontrado"));
-        if (gatoDeletado != null) {
             gatoDeletado.setAtividade(Atividade.INATIVO);
-        } else {
-            throw new IllegalArgumentException("gato não encontrado");
-        }
+            fRepository.save(gatoDeletado);
     }
 
 
@@ -54,6 +49,7 @@ public class GatoUseCaseImpl implements GatoRepo {
         EGato gatoAdotado = fRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("gato não encontrado"));
         gatoAdotado.setAtividade(Atividade.ADOTADO);
+        fRepository.save(gatoAdotado);
     }
 
     @Override
@@ -82,9 +78,27 @@ public class GatoUseCaseImpl implements GatoRepo {
     }
 
     @Override
-    public List<Gato> getGato(Integer page, Integer size) {
+    public List<Gato> getGatos(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
-        return fRepository.findAll(pageable)
+        return fRepository.findAllByAtividade(Atividade.ATIVO, pageable)
+                .stream()
+                .map(mapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Gato> getGatosAdotados(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return fRepository.findAllByAtividade(Atividade.ADOTADO, pageable)
+                .stream()
+                .map(mapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Gato> getGatosInativos(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return fRepository.findAllByAtividade(Atividade.INATIVO, pageable)
                 .stream()
                 .map(mapper::toDomain)
                 .toList();

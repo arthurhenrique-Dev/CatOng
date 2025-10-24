@@ -46,6 +46,15 @@ public class ControllerUsuarios {
         return comumUseCase.getUComuns(pages, size);
     }
 
+    @GetMapping("/gerenciamento/comum/off")
+    @Operation(summary = "buscar usuários inativos", description = "requisição responsável por buscar os usuários inativos")
+    @ApiResponse(responseCode = "200", description = "busca pelos usuários efetuada")
+    @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
+    public List<DTORetornoUComum> getUsersOff(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+        return comumUseCase.getUComunsInativos(pages, size);
+    }
+
     @GetMapping("/gerenciamento/comum/nome/{nome}")
     @Operation(summary = "buscar usuários pelo nome", description = "requisição responsável por buscar os usuários pelo nome")
     @ApiResponse(responseCode = "200", description = "busca dos usuários pelo nome efetuada")
@@ -89,6 +98,15 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "500", description = "erro de servidor")
     public List<DTORetornoUGerenciamento> getUGerenciamentos(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
         return gerenciamentoUseCase.getUGerenciamentos(pages, size);
+    }
+
+    @GetMapping("/gerenciamento/funcionario/off")
+    @Operation(summary = "buscar funcionários", description = "requisição responsável por buscar os funcionários")
+    @ApiResponse(responseCode = "200", description = "busca pelos funcionários efetuada")
+    @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
+    public List<DTORetornoUGerenciamento> getUGerenciamentosOff(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+        return gerenciamentoUseCase.getUGerenciamentosInativos(pages, size);
     }
 
     @GetMapping("/gerenciamento/funcionario/nr/{nr}")

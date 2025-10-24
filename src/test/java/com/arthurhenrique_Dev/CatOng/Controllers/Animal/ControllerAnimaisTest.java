@@ -40,11 +40,11 @@ class ControllerAnimaisTest {
 
         var retornoEsperado = dtv.gatoValido();
 
-        when(gatoUseCase.getGato(0,1)).thenReturn(List.of(retornoEsperado));
+        when(gatoUseCase.getGatos(0,1)).thenReturn(List.of(retornoEsperado));
 
         var retorno = controllerAnimais.getGatos(0,1);
 
-        verify(gatoUseCase, times(1)).getGato(0,1);
+        verify(gatoUseCase, times(1)).getGatos(0,1);
         assertThat(retorno.get(0)).isEqualTo(retornoEsperado);
     }
 
@@ -54,11 +54,11 @@ class ControllerAnimaisTest {
         var retornoEsperado = dtv.gatoValido();
         var nome = dtv.gatoValido().getNome();
 
-        when(gatoUseCase.getGato(0,1)).thenReturn(List.of(retornoEsperado));
+        when(gatoUseCase.getGatos(0,1)).thenReturn(List.of(retornoEsperado));
 
         var retorno = controllerAnimais.getGatos(0,1);
 
-        verify(gatoUseCase, times(1)).getGato(0,1);
+        verify(gatoUseCase, times(1)).getGatos(0,1);
         assertThat(retorno.get(0)).isEqualTo(retornoEsperado);
     }
 
@@ -120,7 +120,7 @@ class ControllerAnimaisTest {
     @Test
     void registrarGato() {
 
-        var gatoRegistrado = dtv.gatoValido();
+        var gatoRegistrado = dtv.cadastroAnimalValido();
 
         controllerAnimais.registrarGato(gatoRegistrado);
         verify(gatoUseCase, times(1)).salvarGato(gatoRegistrado);
@@ -129,10 +129,10 @@ class ControllerAnimaisTest {
     @Test
     void registrarCachorros() {
 
-        var cachorroRegistrado = dtv.cachorroValido();
+        var propostaDeRegistro = dtv.cadastroAnimalValido();
 
-        controllerAnimais.registrarCachorros(cachorroRegistrado);
-        verify(cachorroUseCase, times(1)).salvarCachorro(cachorroRegistrado);
+        controllerAnimais.registrarCachorros(propostaDeRegistro);
+        verify(cachorroUseCase, times(1)).salvarCachorro(propostaDeRegistro);
     }
 
     @Test
@@ -189,5 +189,21 @@ class ControllerAnimaisTest {
 
         controllerAnimais.adotarCachorro(id);
         verify(cachorroUseCase, times(1)).adotarCachorro(id);
+    }
+
+    @Test
+    void getGatosOff() {
+    }
+
+    @Test
+    void getGatosAdotados() {
+    }
+
+    @Test
+    void getCachorrosOff() {
+    }
+
+    @Test
+    void getCachorrosAdotados() {
     }
 }

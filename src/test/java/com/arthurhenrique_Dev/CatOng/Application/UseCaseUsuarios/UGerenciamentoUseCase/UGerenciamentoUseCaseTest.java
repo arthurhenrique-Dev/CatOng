@@ -95,8 +95,22 @@ class UGerenciamentoUseCaseTest {
 
         List<DTORetornoUGerenciamento> resultado = ugerenciamentoUseCase.getUGerenciamentos(0, 1);
 
-        assertThat(resultado).isNotEmpty();
+        verify(repository, times(1)).getUGerenciamentos(0, 1);
+        assertThat(resultado.get(0).cpf()).isEqualTo(dto.cpf());
 
+        System.out.println(resultado);
+    }
+
+    @Test
+    void getUGerenciamentosInativos() {
+
+        var dto = dtv.retornoValidoUgerenciamento();
+
+        when(repository.getUGerenciamentosInativos(0, 1)).thenReturn(List.of(dto));
+
+        List<DTORetornoUGerenciamento> resultado = ugerenciamentoUseCase.getUGerenciamentosInativos(0, 1);
+
+        verify(repository, times(1)).getUGerenciamentosInativos(0, 1);
         assertThat(resultado.get(0).cpf()).isEqualTo(dto.cpf());
 
         System.out.println(resultado);

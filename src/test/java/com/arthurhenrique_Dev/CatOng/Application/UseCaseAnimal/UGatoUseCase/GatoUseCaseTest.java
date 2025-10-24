@@ -35,7 +35,7 @@ class GatoUseCaseTest {
     @Test
     void salvarGato() {
 
-        var gatoRecebido = dtv.gatoValido();
+        var gatoRecebido = dtv.cadastroAnimalValido();
 
         gatoUseCase.salvarGato(gatoRecebido);
         verify(repository, times(1)).salvarGato(gatoRecebido);
@@ -70,15 +70,15 @@ class GatoUseCaseTest {
     }
 
     @Test
-    void getGato() {
+    void getGatos() {
 
         var gatoRecebido = dtv.gatoValido();
 
-        when(repository.getGato(0,1)).thenReturn(List.of(gatoRecebido));
+        when(repository.getGatos(0,1)).thenReturn(List.of(gatoRecebido));
 
-        var retorno = gatoUseCase.getGato(0,1);
+        var retorno = gatoUseCase.getGatos(0,1);
 
-        verify(repository, times(1)).getGato(0,1);
+        verify(repository, times(1)).getGatos(0,1);
         assertThat(List.of(gatoRecebido)).isEqualTo(retorno);
     }
 
@@ -109,5 +109,31 @@ class GatoUseCaseTest {
 
         verify(repository, times(1)).getGatoById(id);
         assertThat(gatoRecebido).isEqualTo(retorno.get());
+    }
+
+    @Test
+    void getGatosAdotados() {
+
+        var gatoRecebido = dtv.gatoValido();
+
+        when(repository.getGatosAdotados(0,1)).thenReturn(List.of(gatoRecebido));
+
+        var retorno = gatoUseCase.getGatosAdotados(0,1);
+
+        verify(repository, times(1)).getGatosAdotados(0,1);
+        assertThat(List.of(gatoRecebido)).isEqualTo(retorno);
+    }
+
+    @Test
+    void getGatosInativos() {
+
+        var gatoRecebido = dtv.gatoValido();
+
+        when(repository.getGatosInativos(0,1)).thenReturn(List.of(gatoRecebido));
+
+        var retorno = gatoUseCase.getGatosInativos(0,1);
+
+        verify(repository, times(1)).getGatosInativos(0,1);
+        assertThat(List.of(gatoRecebido)).isEqualTo(retorno);
     }
 }

@@ -35,10 +35,10 @@ class CachorroUseCaseTest {
     @Test
     void salvarCachorro() {
 
-        var cachorroValido = dtv.cachorroValido();
+        var propostaDeCadastro = dtv.cadastroAnimalValido();
 
-        cachorroUseCase.salvarCachorro(cachorroValido);
-        verify(repository, times(1)).salvarCachorro(cachorroValido);
+        cachorroUseCase.salvarCachorro(propostaDeCadastro);
+        verify(repository, times(1)).salvarCachorro(propostaDeCadastro);
     }
 
     @Test
@@ -107,5 +107,29 @@ class CachorroUseCaseTest {
 
         assertThat(retorno.get()).isEqualTo(cachorroRecebido);
         verify(repository, times(1)).getCachorroById(id);
+    }
+
+    @Test
+    void getCachorrosInativos() {
+
+        var cachorroRecebido = dtv.cachorroValido();
+
+        when(repository.getCachorrosInativos(0,1)).thenReturn(List.of(cachorroRecebido));
+
+        var retorno = cachorroUseCase.getCachorrosInativos(0,1);
+        assertThat(retorno.get(0)).isEqualTo(cachorroRecebido);
+        verify(repository, times(1)).getCachorrosInativos(0,1);
+    }
+
+    @Test
+    void getCachorrosAdotados() {
+
+        var cachorroRecebido = dtv.cachorroValido();
+
+        when(repository.getCachorrosAdotados(0,1)).thenReturn(List.of(cachorroRecebido));
+
+        var retorno = cachorroUseCase.getCachorrosAdotados(0,1);
+        assertThat(retorno.get(0)).isEqualTo(cachorroRecebido);
+        verify(repository, times(1)).getCachorrosAdotados(0,1);
     }
 }

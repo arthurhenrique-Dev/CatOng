@@ -1,6 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.AnimalImplements.ImplCachorro;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOCadastroAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.TipoDeAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
@@ -29,23 +30,23 @@ public class CachorroUseCaseImpl implements CachorroRepo {
 
 
     @Override
-    public void salvarCachorro(Cachorro cachorro) {
-        cachorro.setAtividade(Atividade.ATIVO);
-        if (cachorro.getTipoDeAnimal() != TipoDeAnimal.CACHORRO) {
-            throw new IllegalArgumentException("Tipo de animal deve ser Cachorro");
-        }
-        fRepository.save(mapper.toEntity(cachorro));
+    public void salvarCachorro(DTOCadastroAnimal dto) {
+
+        var estruturadoPorDomain = mapper.DtoToDomain(dto);
+            fRepository.save(mapper.toEntity(estruturadoPorDomain));
     }
 
     @Override
     public void deletarCachorro(Long id) {
         ECachorro cachorroDeletado = fRepository.findById(id).orElse(null);
         cachorroDeletado.setAtividade(Atividade.INATIVO);
+        fRepository.save(cachorroDeletado);
     }
     @Override
     public void adotarCachorro(Long id) {
         ECachorro eCachorro = fRepository.findById(id).orElse(null);
         eCachorro.setAtividade(Atividade.ADOTADO);
+        fRepository.save(eCachorro);
     }
 
     @Override
@@ -77,7 +78,25 @@ public class CachorroUseCaseImpl implements CachorroRepo {
     @Override
     public List<Cachorro> getCachorros(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
-        return fRepository.findAll(pageable)
+        return fRepository.findAllByAtividade(Atividade.ATIVO, pageable)
+                .stream()
+                .map(mapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Cachorro> getCachorrosInativos(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return fRepository.findAllByAtividade(Atividade.INATIVO, pageable)
+                .stream()
+                .map(mapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Cachorro> getCachorrosAdotados(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return fRepository.findAllByAtividade(Atividade.ADOTADO, pageable)
                 .stream()
                 .map(mapper::toDomain)
                 .toList();

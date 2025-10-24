@@ -95,4 +95,17 @@ class UComumUseCaseTest {
         verify(repository, times(1)).getUComumsByName(0,1,retorno.nome());
         assertThat(lista.get(0)).isEqualTo(retorno);
     }
+
+    @Test
+    void getUComunsInativos() {
+
+        var retorno = dtv.retornoValidoUComum();
+
+        when(repository.getUComunsInativos(0,1)).thenReturn(List.of(retorno));
+
+        List<DTORetornoUComum> lista = uComumUseCase.getUComunsInativos(0,1);
+
+        verify(repository, times(1)).getUComunsInativos(0,1);
+        assertThat(lista.get(0)).isEqualTo(retorno);
+    }
 }

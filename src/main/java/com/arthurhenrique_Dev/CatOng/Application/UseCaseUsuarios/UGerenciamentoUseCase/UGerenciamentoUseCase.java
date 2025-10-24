@@ -2,6 +2,7 @@ package com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamento
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUComum;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoRepository.UGerenciamentoRepository;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UGerenciamento.UGerenciamento;
@@ -34,4 +35,5 @@ public class UGerenciamentoUseCase {
     public List<DTORetornoUGerenciamento> getUGerenciamentos(int page, int size){
         return uGRepo.getUGerenciamentos(page, size);
     }
+    public List<DTORetornoUGerenciamento> getUGerenciamentosInativos(int page, int size){return uGRepo.getUGerenciamentosInativos(page, size);}
 }

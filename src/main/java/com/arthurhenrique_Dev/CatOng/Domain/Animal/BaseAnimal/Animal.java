@@ -13,7 +13,7 @@ public abstract class Animal {
     protected String descricao;
     protected Sexo sexo;
     protected double peso;
-    protected List<String> fotos = new ArrayList<>();
+    protected List<String> fotos;
     protected TipoDeAnimal tipoDeAnimal;
 
     public Animal(String nome, int idade, String raca, Atividade atividade, String descricao, Sexo sexo, double peso, List<String> fotos) {

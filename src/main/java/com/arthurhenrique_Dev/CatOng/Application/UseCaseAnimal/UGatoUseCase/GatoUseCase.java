@@ -1,6 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UGatoUseCase;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOCadastroAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.GatoRepo.GatoRepo;
 
@@ -15,8 +16,8 @@ public class GatoUseCase {
         this.gatoRepo = gatoRepo;
     }
 
-    public void salvarGato(Gato gato) {
-        gatoRepo.salvarGato(gato);
+    public void salvarGato(DTOCadastroAnimal dto) {
+        gatoRepo.salvarGato(dto);
     }
     public void deletarGato(Long id) {
         gatoRepo.deletarGato(id);
@@ -27,9 +28,11 @@ public class GatoUseCase {
     public void alterarGato(Long id, DTOAtualizacaoAnimais dto){
         gatoRepo.alterarGato(id, dto);
     }
-    public List<Gato> getGato(int page, int size) {
-        return gatoRepo.getGato(page, size);
+    public List<Gato> getGatos(int page, int size) {
+        return gatoRepo.getGatos(page, size);
     }
+    public List<Gato> getGatosAdotados(Integer page, Integer size) {return gatoRepo.getGatosAdotados(page, size);}
+    public List<Gato> getGatosInativos(Integer page, Integer size) {return gatoRepo.getGatosInativos(page, size);}
     public List<Gato> getGatoByName(int page, int size, String nome) {
         return gatoRepo.getGatoByName(page, size, nome);
     }

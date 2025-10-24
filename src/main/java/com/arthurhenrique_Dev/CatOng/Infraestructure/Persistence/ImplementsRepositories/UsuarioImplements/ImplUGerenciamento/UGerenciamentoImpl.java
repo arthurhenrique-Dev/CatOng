@@ -8,6 +8,8 @@ import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Repositorys.UGerenciamentoR
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UGerenciamentoMapper.UGerenciamentoMapper;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.RepositorioEstrangeiroUGerenciamento.ISpringUGerenciamento;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -59,7 +61,17 @@ public class UGerenciamentoImpl implements UGerenciamentoRepository {
 
     @Override
     public List<DTORetornoUGerenciamento> getUGerenciamentos(Integer page, Integer size) {
-        return fRepository.findAll()
+        Pageable pageable = PageRequest.of(page, size);
+        return fRepository.findAllByAtividade(Atividade.ATIVO, pageable)
+                .stream()
+                .map(mapper::toDtoReturn)
+                .toList();
+    }
+
+    @Override
+    public List<DTORetornoUGerenciamento> getUGerenciamentosInativos(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return fRepository.findAllByAtividade(Atividade.INATIVO, pageable)
                 .stream()
                 .map(mapper::toDtoReturn)
                 .toList();

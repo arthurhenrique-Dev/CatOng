@@ -10,6 +10,7 @@ import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UC
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.PersistenceEndereco;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.RepositorioEstrangeiroUComum.ISpringUComum;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -77,7 +78,16 @@ public class UComumUsecaseImpl implements UComumRepository {
     @Override
     public List<DTORetornoUComum> getUComuns(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
-        return fRepository.findAll(pageable)
+        return fRepository.findAllByAtividade(Atividade.ATIVO, pageable)
+                .stream()
+                .map(mapper::toDtoReturn)
+                .toList();
+    }
+
+    @Override
+    public List<DTORetornoUComum> getUComunsInativos(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return fRepository.findAllByAtividade(Atividade.INATIVO, pageable)
                 .stream()
                 .map(mapper::toDtoReturn)
                 .toList();

@@ -14,5 +14,6 @@ public interface UComumRepository {
     void atualizarUComum(String cpf, DTOAtualizacaoUComum dto);
     Optional<DTORetornoUComum> getUComum(String cpf);
     List<DTORetornoUComum> getUComuns(Integer page, Integer size);
+    List<DTORetornoUComum> getUComunsInativos(int page, int size);
     List<DTORetornoUComum> getUComumsByName(Integer page, Integer size, String nome);
 }

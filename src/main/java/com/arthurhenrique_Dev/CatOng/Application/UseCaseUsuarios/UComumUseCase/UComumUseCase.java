@@ -31,6 +31,7 @@ public class UComumUseCase {
     public List<DTORetornoUComum> getUComuns(int page, int size) {
         return uComumRepository.getUComuns(page, size);
     }
+    public List<DTORetornoUComum> getUComunsInativos(int page, int size) { return uComumRepository.getUComunsInativos(page, size); }
     public List<DTORetornoUComum> getUComunsByName(int page, int size, String nome) {
         return uComumRepository.getUComumsByName(page, size, nome);
     }

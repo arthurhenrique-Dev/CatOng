@@ -1,6 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.Controllers.Animal;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOCadastroAnimal;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UCachorroUseCase.CachorroUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UGatoUseCase.GatoUseCase;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
@@ -32,7 +33,25 @@ public class ControllerAnimais {
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
     public List<Gato> getGatos(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
-        return gatoUseCase.getGato(pages, size);
+        return gatoUseCase.getGatos(pages, size);
+    }
+
+    @GetMapping("/gatos/off")
+    @Operation(summary = "listar os gatos", description = "requisição responsável por listar os gatos")
+    @ApiResponse(responseCode = "200", description = "busca pelos gatos efetuada")
+    @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
+    public List<Gato> getGatosOff(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+        return gatoUseCase.getGatosInativos(pages, size);
+    }
+
+    @GetMapping("/gatos/adotados")
+    @Operation(summary = "listar os gatos", description = "requisição responsável por listar os gatos")
+    @ApiResponse(responseCode = "200", description = "busca pelos gatos efetuada")
+    @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
+    public List<Gato> getGatosAdotados(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+        return gatoUseCase.getGatosAdotados(pages, size);
     }
 
     @GetMapping("/gatos/nome/{nome}")
@@ -62,6 +81,24 @@ public class ControllerAnimais {
         return cachorroUseCase.getCachorros(pages, size);
     }
 
+    @GetMapping("/cachorros/off")
+    @Operation(summary = "listar os cachorros", description = "requisição responsável por listar os cachorros")
+    @ApiResponse(responseCode = "200", description = "busca pelos cachorros efetuada")
+    @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
+    public List<Cachorro> getCachorrosOff(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+        return cachorroUseCase.getCachorrosInativos(pages, size);
+    }
+
+    @GetMapping("/cachorros/adotados")
+    @Operation(summary = "listar os cachorros", description = "requisição responsável por listar os cachorros")
+    @ApiResponse(responseCode = "200", description = "busca pelos cachorros efetuada")
+    @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
+    public List<Cachorro> getCachorrosAdotados(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+        return cachorroUseCase.getCachorrosAdotados(pages, size);
+    }
+
     @GetMapping("/cachorros/nome/{nome}")
     @Operation(summary = "listar os cachorros pelo nome", description = "requisição responsável por listar os cachorros por um nome")
     @ApiResponse(responseCode = "200", description = "busca de cachorros pelo nome efetuada")
@@ -85,8 +122,8 @@ public class ControllerAnimais {
     @ApiResponse(responseCode = "200", description = "cadastro do gato efetuado")
     @ApiResponse(responseCode = "400", description = "erro ao cadastrar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void registrarGato(@RequestBody Gato gato){
-        gatoUseCase.salvarGato(gato);
+    public void registrarGato(@RequestBody DTOCadastroAnimal dto){
+        gatoUseCase.salvarGato(dto);
     }
 
     @PostMapping("/gerenciamento/salvar/cachorros")
@@ -94,8 +131,8 @@ public class ControllerAnimais {
     @ApiResponse(responseCode = "200", description = "cadastro do cachorro efetuado")
     @ApiResponse(responseCode = "400", description = "erro ao cadastrar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void registrarCachorros(@RequestBody Cachorro cachorro){
-        cachorroUseCase.salvarCachorro(cachorro);
+    public void registrarCachorros(@RequestBody DTOCadastroAnimal dto){
+        cachorroUseCase.salvarCachorro(dto);
     }
 
     @PutMapping("/gerenciamento/atualizar_id/{id}/gatos")

@@ -1,6 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.DadosParaTeste.DadosAnimal;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOCadastroAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Animal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Sexo;
@@ -64,5 +65,20 @@ public class DadosParaTesteValidoAnimal {
                 fotos
         );
         return cachorro;
+    }
+    public DTOCadastroAnimal cadastroAnimalValido(){
+        List<String> fotos = new ArrayList<>();
+        fotos.add("(link de foto 1)");
+
+        DTOCadastroAnimal dto = new DTOCadastroAnimal(
+                "Assassino imparavel",
+                1,
+                "Frajola",
+                "Animado",
+                Sexo.MACHO,
+                1.1,
+                fotos
+        );
+        return dto;
     }
 }

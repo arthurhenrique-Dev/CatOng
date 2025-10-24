@@ -1,5 +1,7 @@
 package com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.AnimalMappers.CachorroMapper;
 
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOCadastroAnimal;
+import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.ECachorro;
 import org.springframework.stereotype.Component;
@@ -29,6 +31,19 @@ public class CachorroMapper {
                 entityCachorro.getSexo(),
                 entityCachorro.getPeso(),
                 entityCachorro.getFotos());
+        return cachorroTraduzido;
+    }
+    public Cachorro DtoToDomain(DTOCadastroAnimal dto) {
+        Cachorro cachorroTraduzido = new Cachorro(
+                dto.nome(),
+                dto.idade(),
+                dto.raca(),
+                Atividade.ATIVO,
+                dto.descricao(),
+                dto.sexo(),
+                dto.peso(),
+                dto.fotos()
+        );
         return cachorroTraduzido;
     }
 }
