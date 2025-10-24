@@ -100,7 +100,7 @@ Tudo relacionado a esse admin está dentro da pasta `src/main/java/com/arthurhen
 | GET | `/user/gerenciamento/comum/off` | Lista usuários comuns apagados | `pages` (opcional, default=0), `size` (opcional, default=10) |
 | GET | `/user/gerenciamento/comum/nome/{nome}` | Busca usuário por nome | `nome` (path), `pages` (opcional, default=0), `size` (opcional, default=10) |
 | GET | `/user/gerenciamento/comum/cpf/{cpf}` | Busca usuário por CPF | `cpf` (path) |
-| PUT | `/user/atualizar/{cpf}` | Atualiza usuário comum | `cpf`, JSON de atualização |
+| PUT | `/user/atualizar/{cpf}` | Atualiza usuário comum | `cpf` (path), JSON de atualização |
 | DELETE | `/user/gerenciamento/comum/remover_cpf/{cpf}` | Remove usuário | `cpf` (path) |
 
 #### 👤 Usuário de Gerenciamento
