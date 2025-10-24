@@ -35,19 +35,26 @@ A escolha da **Arquitetura Limpa** para este projeto foi intencional, pois ela t
 
 ## 🚀 Como Rodar
 
-Para rodar a aplicação certifique-se de ter o **Docker** instalado no seu sistema.  
+Para rodar a aplicação certifique-se de ter o **Docker** e o **Git** instalados no seu sistema.  
 
 Abra um terminal na **pasta raiz do projeto** e execute os seguintes comandos:
 
 ### Comandos:
 
 ```bash
-# Build da imagem
+# Build da imagem 
 docker-compose build
 
 # Rodar os containers
 docker-compose up
 ```
+
+Para fazer as requisições, você precisa estar autenticado, pra isso existe um **admin** que sempre é registrado na **primeira vez que o projeto roda**.
+
+Acesse `/auth/admin/login` logue com nome "inicial" e senha "Aa@1345" e use o token fornecido pra fazer suas requisições.
+
+Tudo relacionado a esse admin está dentro da pasta `src/main/java/com/arthurhenrique_Dev/CatOng/UsoPessoal`
+
 ---
 
 ## Endpoints
@@ -57,6 +64,8 @@ docker-compose up
 | Verbo | Endpoint | Descrição | Parâmetros |
 |-------|----------|-----------|------------|
 | GET | `/pets/cachorros` | Lista todos os cachorros | `pages` (opcional, default=0), `size` (opcional, default=10) |
+| GET | `/pets/cachorros/off` | Lista todos os cachorros apagados | `pages` (opcional, default=0), `size` (opcional, default=10) |
+| GET | `/pets/cachorros/adotados`| Lista todos os cachorros adotados | `pages` (opcional, default=0), `size` (opcional, default=10)
 | GET | `/pets/cachorros/nome/{nome}` | Lista cachorros pelo nome | `nome` (path), `pages`, `size` |
 | GET | `/pets/cachorros/id/{id}` | Busca um cachorro pelo ID | `id` (path) |
 | POST | `/pets/gerenciamento/salvar/cachorros` | Cadastra um novo cachorro | JSON do cachorro |
@@ -70,13 +79,15 @@ docker-compose up
 
 | Verbo | Endpoint | Descrição | Parâmetros |
 |-------|----------|-----------|------------|
-| GET | `/pets/gatos` | Lista todos os gatos | `pages`, `size` |
-| GET | `/pets/gatos/nome/{nome}` | Lista gatos pelo nome | `nome`, `pages`, `size` |
-| GET | `/pets/gatos/id/{id}` | Busca um gato pelo ID | `id` |
+| GET | `/pets/gatos` | Lista todos os gatos | `pages` (opcional, default=0), `size` (opcional, default=10) |
+| GET | `/pets/gatos/off` | Lista todos os gatos apagados | `pages` (opcional, default=0), `size` (opcional, default=10) |
+| GET | `/pets/gatos/adotados` | Lista todos os gatos adotados | `pages` (opcional, default=0), `size` (opcional, default=10) |
+| GET | `/pets/gatos/nome/{nome}` | Lista gatos pelo nome | `nome` (path), `pages` (opcional, default=0), `size` (opcional, default=10) |
+| GET | `/pets/gatos/id/{id}` | Busca um gato pelo ID | `id` (path)|
 | POST | `/pets/gerenciamento/salvar/gatos` | Cadastra um novo gato | JSON do gato |
-| PUT | `/pets/gerenciamento/atualizar_id/{id}/gatos` | Atualiza um gato pelo ID | `id`, JSON de atualização |
-| DELETE | `/pets/gerenciamento/deletar_id/{id}/gatos` | Deleta um gato pelo ID | `id` |
-| DELETE | `/pets/gerenciamento/adoção_id/{id}/gatos` | Marca um gato como adotado | `id` |
+| PUT | `/pets/gerenciamento/atualizar_id/{id}/gatos` | Atualiza um gato pelo ID | `id` (path), JSON de atualização |
+| DELETE | `/pets/gerenciamento/deletar_id/{id}/gatos` | Deleta um gato pelo ID | `id` (path) |
+| DELETE | `/pets/gerenciamento/adoção_id/{id}/gatos` | Marca um gato como adotado | `id` (path) |
 
 ---
 
@@ -85,19 +96,22 @@ docker-compose up
 #### Usuário Comum
 | Verbo | Endpoint | Descrição | Parâmetros |
 |-------|----------|-----------|------------|
-| GET | `/user/gerenciamento/comum` | Lista usuários comuns | `pages`, `size` |
-| GET | `/user/gerenciamento/comum/nome/{nome}` | Busca usuário por nome | `nome`, `pages`, `size` |
-| GET | `/user/gerenciamento/comum/cpf/{cpf}` | Busca usuário por CPF | `cpf` |
+| GET | `/user/gerenciamento/comum` | Lista usuários comuns | `pages` (opcional, default=0), `size` (opcional, default=10) |
+| GET | `/user/gerenciamento/comum/off` | Lista usuários comuns apagados | `pages` (opcional, default=0), `size` (opcional, default=10) |
+| GET | `/user/gerenciamento/comum/nome/{nome}` | Busca usuário por nome | `nome` (path), `pages` (opcional, default=0), `size` (opcional, default=10) |
+| GET | `/user/gerenciamento/comum/cpf/{cpf}` | Busca usuário por CPF | `cpf` (path) |
 | PUT | `/user/atualizar/{cpf}` | Atualiza usuário comum | `cpf`, JSON de atualização |
-| DELETE | `/user/gerenciamento/comum/remover_cpf/{cpf}` | Remove usuário | `cpf` |
+| DELETE | `/user/gerenciamento/comum/remover_cpf/{cpf}` | Remove usuário | `cpf` (path) |
 
 #### 👤 Usuário de Gerenciamento
 | Verbo | Endpoint | Descrição | Parâmetros |
 |-------|----------|-----------|------------|
-| GET | `/user/gerenciamento/funcionario` | Lista funcionários | `pages`, `size` |
-| GET | `/user/gerenciamento/funcionario/nr/{nr}` | Busca funcionário pelo NR | `nr` |
-| PUT | `/user/gerenciamento/funcionario/atualizar_nr/{nr}` | Atualiza funcionário | `nr`, JSON de atualização |
-| DELETE | `/user/gerenciamento/funcionario/remover_nr/{nr}` | Remove funcionário | `nr` |
+| GET | `/user/gerenciamento/funcionario` | Lista funcionários | `pages` (opcional, default=0), `size` (opcional, default=10 |
+| GET | `/user/gerenciamento/funcionario/off` | Lista funcionários apagados | `pages` (opcional, default=0), `size` (opcional, default=10 |
+| GET | `/user/gerenciamento/funcionario/nr/{nr}` | Busca funcionário pelo NR | `nr` (path) |
+| GET | `/user/gerenciamento/funcionario/cpf/{cpf}` | Busca funcionário pelo cpf | `cpf` (path) |
+| PUT | `/user/gerenciamento/funcionario/atualizar_nr/{nr}` | Atualiza funcionário | `nr` (path) , JSON de atualização |
+| DELETE | `/user/gerenciamento/funcionario/remover_nr/{nr}` | Remove funcionário | `nr` (path) |
 
 ---
 
