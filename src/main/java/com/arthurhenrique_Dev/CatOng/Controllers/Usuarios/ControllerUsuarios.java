@@ -118,6 +118,15 @@ public class ControllerUsuarios {
         return gerenciamentoUseCase.getUGerenciamentoByNR(nr);
     }
 
+    @GetMapping("/gerenciamento/funcionario/cpf/{cpf}")
+    @Operation(summary = "buscar o funcionário", description = "requisição responsável por buscar o funcionário pelo cpf")
+    @ApiResponse(responseCode = "200", description = "busca do funcionário pelo cpf efetuada")
+    @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
+    @ApiResponse(responseCode = "500", description = "erro de servidor")
+    public Optional<DTORetornoUGerenciamento> getUGerenciamentosByCpf(@PathVariable String cpf){
+        return gerenciamentoUseCase.getUGerenciamento(cpf);
+    }
+
     @DeleteMapping("/gerenciamento/funcionario/remover_nr/{nr}")
     @Operation(summary = "remover funcionários", description = "requisição responsável por remover os funcionários")
     @ApiResponse(responseCode = "200", description = "remoção do funcionário efetuada")
