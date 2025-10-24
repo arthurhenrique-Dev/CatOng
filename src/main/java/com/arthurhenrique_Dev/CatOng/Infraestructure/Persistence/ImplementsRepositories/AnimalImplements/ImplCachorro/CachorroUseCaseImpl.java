@@ -2,6 +2,7 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepo
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
+import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.TipoDeAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.CachorroRepo.CachorroRepo;
@@ -30,6 +31,9 @@ public class CachorroUseCaseImpl implements CachorroRepo {
     @Override
     public void salvarCachorro(Cachorro cachorro) {
         cachorro.setAtividade(Atividade.ATIVO);
+        if (cachorro.getTipoDeAnimal() != TipoDeAnimal.CACHORRO) {
+            throw new IllegalArgumentException("Tipo de animal deve ser Cachorro");
+        }
         fRepository.save(mapper.toEntity(cachorro));
     }
 

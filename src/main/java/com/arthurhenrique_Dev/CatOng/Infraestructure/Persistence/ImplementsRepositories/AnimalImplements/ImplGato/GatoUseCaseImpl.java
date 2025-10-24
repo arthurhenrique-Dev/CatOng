@@ -2,6 +2,7 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepo
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
+import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.TipoDeAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.GatoRepo.GatoRepo;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.AnimalMappers.GatoMapper.GatoMapper;
@@ -29,6 +30,10 @@ public class GatoUseCaseImpl implements GatoRepo {
 
     @Override
     public void salvarGato(Gato gato) {
+        gato.setAtividade(Atividade.ATIVO);
+        if (gato.getTipoDeAnimal() != TipoDeAnimal.GATO) {
+            throw new IllegalArgumentException("Tipo de animal deve ser Gato");
+        }
         fRepository.save(mapper.toEntity(gato));
     }
 
