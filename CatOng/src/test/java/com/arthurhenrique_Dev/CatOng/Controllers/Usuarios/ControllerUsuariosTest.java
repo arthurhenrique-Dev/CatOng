@@ -110,7 +110,7 @@ class ControllerUsuariosTest {
     @Test
     void getUGerenciamentos() {
 
-        var retornoEsperado = dtv.RetornoValidoUgerenciamento();
+        var retornoEsperado = dtv.retornoValidoUgerenciamento();
 
         when(gerenciamentoUseCase.getUGerenciamentos(0,1)).thenReturn(List.of(retornoEsperado));
 
@@ -124,7 +124,7 @@ class ControllerUsuariosTest {
     void getUGerenciamentosByNr() {
 
         var nr =  1L;
-        var retornoEsperado = dtv.RetornoValidoUgerenciamento();
+        var retornoEsperado = dtv.retornoValidoUgerenciamento();
 
         when(gerenciamentoUseCase.getUGerenciamentoByNR(nr)).thenReturn(Optional.of(retornoEsperado));
 

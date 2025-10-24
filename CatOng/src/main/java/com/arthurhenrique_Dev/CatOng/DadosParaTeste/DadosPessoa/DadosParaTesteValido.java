@@ -4,8 +4,8 @@ import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAt
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
-import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.Retorno.DTORetornoUComum;
-import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.Retorno.DTORetornoUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUComum;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Permissao;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.Endereco;

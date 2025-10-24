@@ -64,7 +64,7 @@ class UGerenciamentoUseCaseTest {
     @Test
     void getUGerenciamento() {
 
-        var dto = dtv.RetornoValidoUgerenciamento();
+        var dto = dtv.retornoValidoUgerenciamento();
 
         when(repository.getUGerenciamento(dto.cpf())).thenReturn(Optional.of(dto));
         Optional<DTORetornoUGerenciamento> resultado = ugerenciamentoUseCase.getUGerenciamento(dto.cpf());
@@ -76,7 +76,7 @@ class UGerenciamentoUseCaseTest {
     @Test
     void getUGerenciamentoByNR() {
 
-        var dto = dtv.RetornoValidoUgerenciamento();
+        var dto = dtv.retornoValidoUgerenciamento();
 
         when(repository.getUGerenciamentoByNR(1L)).thenReturn(Optional.of(dto));
 
@@ -89,7 +89,7 @@ class UGerenciamentoUseCaseTest {
     @Test
     void getUGerenciamentos() {
 
-        var dto = dtv.RetornoValidoUgerenciamento();
+        var dto = dtv.retornoValidoUgerenciamento();
 
         when(repository.getUGerenciamentos(0, 1)).thenReturn(List.of(dto));
 
