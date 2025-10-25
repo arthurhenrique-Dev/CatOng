@@ -16,12 +16,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class UGerenciamentoImpl implements UGerenciamentoRepository {
+public class UGerenciamentoUseCaseImpl implements UGerenciamentoRepository {
 
     private final ISpringUGerenciamento fRepository;
     private final UGerenciamentoMapper mapper;
 
-    public UGerenciamentoImpl(ISpringUGerenciamento fRepository, UGerenciamentoMapper mapper) {
+    public UGerenciamentoUseCaseImpl(ISpringUGerenciamento fRepository, UGerenciamentoMapper mapper) {
         this.fRepository = fRepository;
         this.mapper = mapper;
     }

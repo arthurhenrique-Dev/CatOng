@@ -66,7 +66,7 @@ public class DadosParaTesteValidoAnimal {
         );
         return cachorro;
     }
-    public DTOCadastroAnimal cadastroAnimalValido(){
+    public DTOCadastroAnimal cadastroAnimalValidoGato(){
         List<String> fotos = new ArrayList<>();
         fotos.add("(link de foto 1)");
 
@@ -77,6 +77,21 @@ public class DadosParaTesteValidoAnimal {
                 "Animado",
                 Sexo.MACHO,
                 1.1,
+                fotos
+        );
+        return dto;
+    }
+    public DTOCadastroAnimal cadastroAnimalValidoCachorro(){
+        List<String> fotos = new ArrayList<>();
+        fotos.add("(link de foto 1)");
+
+        DTOCadastroAnimal dto = new DTOCadastroAnimal(
+                "Princesa da fofolandia",
+                4,
+                "rottweilwer",
+                "Bem mansinha ama carinho na barriga",
+                Sexo.FEMEA,
+                22.5,
                 fotos
         );
         return dto;

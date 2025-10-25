@@ -19,7 +19,7 @@ import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkReposi
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.AnimalImplements.ImplCachorro.CachorroUseCaseImpl;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.AnimalImplements.ImplGato.GatoUseCaseImpl;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements.ImplUComum.UComumUsecaseImpl;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements.ImplUGerenciamento.UGerenciamentoImpl;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.UsuarioImplements.ImplUGerenciamento.UGerenciamentoUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 
 @org.springframework.context.annotation.Configuration
@@ -39,7 +39,7 @@ public class Configuration {
     }
     @Bean
     UGerenciamentoRepository uGerenciamentoRepository(ISpringUGerenciamento iSpringUGerenciamento, UGerenciamentoMapper uGerenciamentoMapper){
-        return new UGerenciamentoImpl(iSpringUGerenciamento, uGerenciamentoMapper);
+        return new UGerenciamentoUseCaseImpl(iSpringUGerenciamento, uGerenciamentoMapper);
     }
     @Bean
     GatoUseCase gatoUseCase(GatoRepo gatoRepository){

@@ -35,7 +35,7 @@ class CachorroUseCaseTest {
     @Test
     void salvarCachorro() {
 
-        var propostaDeCadastro = dtv.cadastroAnimalValido();
+        var propostaDeCadastro = dtv.cadastroAnimalValidoGato();
 
         cachorroUseCase.salvarCachorro(propostaDeCadastro);
         verify(repository, times(1)).salvarCachorro(propostaDeCadastro);

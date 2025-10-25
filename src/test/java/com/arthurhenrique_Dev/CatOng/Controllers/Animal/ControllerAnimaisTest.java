@@ -120,7 +120,7 @@ class ControllerAnimaisTest {
     @Test
     void registrarGato() {
 
-        var gatoRegistrado = dtv.cadastroAnimalValido();
+        var gatoRegistrado = dtv.cadastroAnimalValidoGato();
 
         controllerAnimais.registrarGato(gatoRegistrado);
         verify(gatoUseCase, times(1)).salvarGato(gatoRegistrado);
@@ -129,7 +129,7 @@ class ControllerAnimaisTest {
     @Test
     void registrarCachorros() {
 
-        var propostaDeRegistro = dtv.cadastroAnimalValido();
+        var propostaDeRegistro = dtv.cadastroAnimalValidoGato();
 
         controllerAnimais.registrarCachorros(propostaDeRegistro);
         verify(cachorroUseCase, times(1)).salvarCachorro(propostaDeRegistro);

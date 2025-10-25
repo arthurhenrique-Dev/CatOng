@@ -4,15 +4,21 @@ import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAt
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Atualizacao.DTOAtualizacaoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUComum;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegistroUGerenciamento;
+import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Login.DTOLogin;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUComum;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Retorno.DTORetornoUGerenciamento;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Permissao;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.UComum.Endereco;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UComumMappers.UComumMapper;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
+import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
 
 import java.time.LocalDate;
 
 public class DadosParaTesteValido {
+
+    UComumMapper mapper = new UComumMapper();
 
     //TODOS OS CPFS, CEPS, E RGS GERADOS NESSA CLASSE FORAM GERADOS PELO SITE 4DEVS, NÃO SE TRATAM DE DADOS PARTICULARES.
 
@@ -114,5 +120,41 @@ public class DadosParaTesteValido {
                 "11999998888"
         );
         return dto;
+    }
+    public DTOLogin loginValidoULogin(){
+        DTOLogin dto = new DTOLogin(
+                "37896314002",
+                "Nome exemplo",
+                "Aa@12345"
+        );
+        return dto;
+    }
+    public EUComum euComumValido(){
+        EUComum euComum = new EUComum(
+                "Nome exemplo",
+                "93766186027",
+                "477992699",
+                Atividade.ATIVO,
+                Permissao.COMUM,
+                "exemplo@gmail.com",
+                "Aa@12345",
+                "11999998888",
+                mapper.toPersistenceEndereco(primeiroEndereco()),
+                LocalDate.of(2000,01,01)
+        );
+                return euComum;
+    }
+    public EUGerenciamento euGerenciamentoValido(){
+        EUGerenciamento euGerenciamento = new EUGerenciamento(
+                "Nome exemplo",
+                "93766186027",
+                "477992699",
+                Atividade.ATIVO,
+                Permissao.COMUM,
+                "exemplo@gmail.com",
+                "Aa@12345",
+                "11999998888"
+        );
+        return euGerenciamento;
     }
 }

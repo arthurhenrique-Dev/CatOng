@@ -32,20 +32,18 @@ public class AutenticacaoController {
 
     private final UComumUseCase uComumUseCase;
     private final UGerenciamentoUseCase uGerenciamentoUseCase;
+    private final AuthenticationManager authenticationManager;
+    private final TokenService tokenService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private TokenService tokenService;
-
-    public AutenticacaoController(UComumUseCase uComumUseCase, UGerenciamentoUseCase uGerenciamentoUseCase) {
+    public AutenticacaoController(UComumUseCase uComumUseCase, UGerenciamentoUseCase uGerenciamentoUseCase, AuthenticationManager authenticationManager, TokenService tokenService) {
         this.uComumUseCase = uComumUseCase;
         this.uGerenciamentoUseCase = uGerenciamentoUseCase;
+        this.authenticationManager = authenticationManager;
+        this.tokenService = tokenService;
     }
 
     @PostMapping("/login")
-    @Operation(summary = "responsável pelo login do admin")
+    @Operation(summary = "responsável pelo login do usuário comum")
     @ApiResponse(responseCode = "200", description = "login feito com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar login")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
@@ -57,7 +55,7 @@ public class AutenticacaoController {
     }
 
     @PostMapping("/func/login")
-    @Operation(summary = "responsável pelo login do admin")
+    @Operation(summary = "responsável pelo login do usuário de gerenciamento")
     @ApiResponse(responseCode = "200", description = "login feito com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar login")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
@@ -93,11 +91,11 @@ public class AutenticacaoController {
     }
 
     @PostMapping("/gerenciamento/sign_up")
-    @Operation(summary = "responsável por cadastrar o usuário do funcionário")
+    @Operation(summary = "responsável por cadastrar o usuário de gerenciamento")
     @ApiResponse(responseCode = "200", description = "cadastro feito com sucesso")
     @ApiResponse(responseCode = "400", description = "erro ao cadastrar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public ResponseEntity signUp (@RequestBody @Valid DTORegistroUGerenciamento dto){
+    public ResponseEntity signUpFunc (@RequestBody @Valid DTORegistroUGerenciamento dto){
         if (this.uGerenciamentoUseCase.getUGerenciamento(dto.cpf()).isPresent()){
             return ResponseEntity.badRequest().build();
         }
