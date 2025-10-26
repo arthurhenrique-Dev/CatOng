@@ -11,9 +11,10 @@ import java.time.Instant;
 import java.util.Date;
 
 @Service
-public class TokenService { ;
+public class TokenService {
+    ;
 
-    public String GerarTokenGenerico(String login, Permissao permissao){
+    public String GerarTokenGenerico(String login, Permissao permissao) {
         try {
             Algorithm algorithm = Algorithm.HMAC256("chave");
             return JWT.create()
@@ -26,7 +27,8 @@ public class TokenService { ;
             throw new RuntimeException("Erro ao gerar JWT", exception);
         }
     }
-    public String ValidarToken(String token){
+
+    public String ValidarToken(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256("chave");
             return JWT.require(algorithm)

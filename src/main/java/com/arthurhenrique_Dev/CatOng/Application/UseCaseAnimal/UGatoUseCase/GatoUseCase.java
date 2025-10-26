@@ -19,23 +19,35 @@ public class GatoUseCase {
     public void salvarGato(DTOCadastroAnimal dto) {
         gatoRepo.salvarGato(dto);
     }
+
     public void deletarGato(Long id) {
         gatoRepo.deletarGato(id);
     }
+
     public void adotarGato(Long id) {
         gatoRepo.adotarGato(id);
     }
-    public void alterarGato(Long id, DTOAtualizacaoAnimais dto){
+
+    public void alterarGato(Long id, DTOAtualizacaoAnimais dto) {
         gatoRepo.alterarGato(id, dto);
     }
+
     public List<Gato> getGatos(int page, int size) {
         return gatoRepo.getGatos(page, size);
     }
-    public List<Gato> getGatosAdotados(Integer page, Integer size) {return gatoRepo.getGatosAdotados(page, size);}
-    public List<Gato> getGatosInativos(Integer page, Integer size) {return gatoRepo.getGatosInativos(page, size);}
+
+    public List<Gato> getGatosAdotados(Integer page, Integer size) {
+        return gatoRepo.getGatosAdotados(page, size);
+    }
+
+    public List<Gato> getGatosInativos(Integer page, Integer size) {
+        return gatoRepo.getGatosInativos(page, size);
+    }
+
     public List<Gato> getGatoByName(int page, int size, String nome) {
         return gatoRepo.getGatoByName(page, size, nome);
     }
+
     public Optional<Gato> getGatoById(Long id) {
         return gatoRepo.getGatoById(id);
     }

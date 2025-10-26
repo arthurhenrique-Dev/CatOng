@@ -42,7 +42,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "busca pelos usuários efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public List<DTORetornoUComum> getUsers(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+    public List<DTORetornoUComum> getUsers(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size) {
         return comumUseCase.getUComuns(pages, size);
     }
 
@@ -51,7 +51,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "busca pelos usuários efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public List<DTORetornoUComum> getUsersOff(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+    public List<DTORetornoUComum> getUsersOff(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size) {
         return comumUseCase.getUComunsInativos(pages, size);
     }
 
@@ -60,7 +60,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "busca dos usuários pelo nome efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public List<DTORetornoUComum> getUsersByName(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size, @RequestParam String nome){
+    public List<DTORetornoUComum> getUsersByName(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size, @RequestParam String nome) {
         return comumUseCase.getUComunsByName(pages, size, nome);
     }
 
@@ -69,7 +69,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "busca do usuário por cpf efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public Optional<DTORetornoUComum> getUserByCpf(@PathVariable String cpf){
+    public Optional<DTORetornoUComum> getUserByCpf(@PathVariable String cpf) {
         return comumUseCase.getUComum(cpf);
     }
 
@@ -78,7 +78,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "remoção do usuário efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void remover(@PathVariable String cpf){
+    public void remover(@PathVariable String cpf) {
         comumUseCase.removerComum(cpf);
     }
 
@@ -87,7 +87,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "atualização do funcionário efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao atualizar")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void atualizar(@PathVariable Long nr, @RequestBody DTOAtualizacaoUGerenciamento dto){
+    public void atualizar(@PathVariable Long nr, @RequestBody DTOAtualizacaoUGerenciamento dto) {
         gerenciamentoUseCase.atualizarUGerenciamento(nr, dto);
     }
 
@@ -96,7 +96,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "busca pelos funcionários efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public List<DTORetornoUGerenciamento> getUGerenciamentos(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+    public List<DTORetornoUGerenciamento> getUGerenciamentos(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size) {
         return gerenciamentoUseCase.getUGerenciamentos(pages, size);
     }
 
@@ -105,7 +105,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "busca pelos funcionários efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public List<DTORetornoUGerenciamento> getUGerenciamentosOff(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size){
+    public List<DTORetornoUGerenciamento> getUGerenciamentosOff(@RequestParam(defaultValue = "0") Integer pages, @RequestParam(defaultValue = "10") Integer size) {
         return gerenciamentoUseCase.getUGerenciamentosInativos(pages, size);
     }
 
@@ -114,7 +114,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "busca do funcionário pelo nr efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public Optional<DTORetornoUGerenciamento> getUGerenciamentosByNr(@PathVariable Long nr){
+    public Optional<DTORetornoUGerenciamento> getUGerenciamentosByNr(@PathVariable Long nr) {
         return gerenciamentoUseCase.getUGerenciamentoByNR(nr);
     }
 
@@ -123,7 +123,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "busca do funcionário pelo cpf efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public Optional<DTORetornoUGerenciamento> getUGerenciamentosByCpf(@PathVariable String cpf){
+    public Optional<DTORetornoUGerenciamento> getUGerenciamentosByCpf(@PathVariable String cpf) {
         return gerenciamentoUseCase.getUGerenciamento(cpf);
     }
 
@@ -132,7 +132,7 @@ public class ControllerUsuarios {
     @ApiResponse(responseCode = "200", description = "remoção do funcionário efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
-    public void removerFuncionario(@PathVariable Long nr){
+    public void removerFuncionario(@PathVariable Long nr) {
         gerenciamentoUseCase.removerUGerenciamento(nr);
     }
 }

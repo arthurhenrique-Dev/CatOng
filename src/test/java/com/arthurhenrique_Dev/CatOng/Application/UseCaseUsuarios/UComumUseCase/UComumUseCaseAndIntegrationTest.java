@@ -31,7 +31,7 @@ class UComumUseCaseAndIntegrationTest {
     UComumUseCase uComumUseCase;
 
     //DadosParaTesteValido em gitignore por conter dados pessoais, mas se trata de um DTORegistroUComum com meus dados, você pode fazer um com os seus
-    DadosParaTesteValido dtv =  new DadosParaTesteValido();
+    DadosParaTesteValido dtv = new DadosParaTesteValido();
 
     @Test
     @DisplayName("Esperado sucesso ao encontrar usuário")
@@ -104,13 +104,14 @@ class UComumUseCaseAndIntegrationTest {
 
         this.createUser(dtv.registroValidoUComum());
 
-        List<DTORetornoUComum> retorno = this.uComumUseCase.getUComunsByName(0,10, dtv.registroValidoUComum().nome());
+        List<DTORetornoUComum> retorno = this.uComumUseCase.getUComunsByName(0, 10, dtv.registroValidoUComum().nome());
 
         assertThat(retorno)
                 .isNotEmpty()
                 .hasSizeGreaterThanOrEqualTo(1);
     }
-    private EUComum createUser(DTORegistroUComum dto){
+
+    private EUComum createUser(DTORegistroUComum dto) {
         UComumMapper mapper = new UComumMapper();
         EUComum euComum = (
                 mapper.toEntity(

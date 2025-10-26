@@ -1,20 +1,18 @@
 package com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UGatoUseCase;
 
 import com.arthurhenrique_Dev.CatOng.DadosParaTeste.DadosAnimal.DadosParaTesteValidoAnimal;
-import com.arthurhenrique_Dev.CatOng.DadosParaTeste.DadosPessoa.DadosParaTesteValido;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.GatoRepo.GatoRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.assertThat;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GatoUseCaseTest {
 
@@ -74,11 +72,11 @@ class GatoUseCaseTest {
 
         var gatoRecebido = dtv.gatoValido();
 
-        when(repository.getGatos(0,1)).thenReturn(List.of(gatoRecebido));
+        when(repository.getGatos(0, 1)).thenReturn(List.of(gatoRecebido));
 
-        var retorno = gatoUseCase.getGatos(0,1);
+        var retorno = gatoUseCase.getGatos(0, 1);
 
-        verify(repository, times(1)).getGatos(0,1);
+        verify(repository, times(1)).getGatos(0, 1);
         assertThat(List.of(gatoRecebido)).isEqualTo(retorno);
     }
 
@@ -88,11 +86,11 @@ class GatoUseCaseTest {
         var nome = dtv.gatoValido().getNome();
         var gatosRetornados = dtv.gatoValido();
 
-        when(repository.getGatoByName(0,1, nome)).thenReturn(List.of(gatosRetornados));
+        when(repository.getGatoByName(0, 1, nome)).thenReturn(List.of(gatosRetornados));
 
-        var retorno = gatoUseCase.getGatoByName(0,1, nome);
+        var retorno = gatoUseCase.getGatoByName(0, 1, nome);
 
-        verify(repository, times(1)).getGatoByName(0,1, nome);
+        verify(repository, times(1)).getGatoByName(0, 1, nome);
         assertThat(List.of(gatosRetornados)).isEqualTo(retorno);
 
     }
@@ -116,11 +114,11 @@ class GatoUseCaseTest {
 
         var gatoRecebido = dtv.gatoValido();
 
-        when(repository.getGatosAdotados(0,1)).thenReturn(List.of(gatoRecebido));
+        when(repository.getGatosAdotados(0, 1)).thenReturn(List.of(gatoRecebido));
 
-        var retorno = gatoUseCase.getGatosAdotados(0,1);
+        var retorno = gatoUseCase.getGatosAdotados(0, 1);
 
-        verify(repository, times(1)).getGatosAdotados(0,1);
+        verify(repository, times(1)).getGatosAdotados(0, 1);
         assertThat(List.of(gatoRecebido)).isEqualTo(retorno);
     }
 
@@ -129,11 +127,11 @@ class GatoUseCaseTest {
 
         var gatoRecebido = dtv.gatoValido();
 
-        when(repository.getGatosInativos(0,1)).thenReturn(List.of(gatoRecebido));
+        when(repository.getGatosInativos(0, 1)).thenReturn(List.of(gatoRecebido));
 
-        var retorno = gatoUseCase.getGatosInativos(0,1);
+        var retorno = gatoUseCase.getGatosInativos(0, 1);
 
-        verify(repository, times(1)).getGatosInativos(0,1);
+        verify(repository, times(1)).getGatosInativos(0, 1);
         assertThat(List.of(gatoRecebido)).isEqualTo(retorno);
     }
 }

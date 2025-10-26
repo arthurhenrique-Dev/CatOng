@@ -8,7 +8,7 @@ import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.TipoDeAnimal;
 import java.util.List;
 
 public class Cachorro extends Animal {
-    public Cachorro(String nome, int idade, String raça, Atividade atividade, String descrição, Sexo sexo, double peso, List<String> fotos) {
+    public Cachorro(String nome, Integer idade, String raça, Atividade atividade, String descrição, Sexo sexo, Double peso, List<String> fotos) {
         super(nome, idade, raça, atividade, descrição, sexo, peso, fotos);
         this.tipoDeAnimal = TipoDeAnimal.CACHORRO;
     }

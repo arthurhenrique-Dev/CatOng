@@ -26,35 +26,42 @@ import org.springframework.context.annotation.Bean;
 public class Configuration {
 
     @Bean
-    UComumUseCase uComumUseCase(UComumRepository uComumRepository){
+    UComumUseCase uComumUseCase(UComumRepository uComumRepository) {
         return new UComumUseCase(uComumRepository);
     }
+
     @Bean
     UComumRepository uComumRepository(ISpringUComum ispringUComum, UComumMapper uComumMapper) {
         return new UComumUsecaseImpl(ispringUComum, uComumMapper);
     }
+
     @Bean
-    UGerenciamentoUseCase uGerenciamentoUseCase(UGerenciamentoRepository uGerenciamentoRepository){
+    UGerenciamentoUseCase uGerenciamentoUseCase(UGerenciamentoRepository uGerenciamentoRepository) {
         return new UGerenciamentoUseCase(uGerenciamentoRepository);
     }
+
     @Bean
-    UGerenciamentoRepository uGerenciamentoRepository(ISpringUGerenciamento iSpringUGerenciamento, UGerenciamentoMapper uGerenciamentoMapper){
+    UGerenciamentoRepository uGerenciamentoRepository(ISpringUGerenciamento iSpringUGerenciamento, UGerenciamentoMapper uGerenciamentoMapper) {
         return new UGerenciamentoUseCaseImpl(iSpringUGerenciamento, uGerenciamentoMapper);
     }
+
     @Bean
-    GatoUseCase gatoUseCase(GatoRepo gatoRepository){
+    GatoUseCase gatoUseCase(GatoRepo gatoRepository) {
         return new GatoUseCase(gatoRepository);
     }
+
     @Bean
-    GatoRepo gatoRepository(ISpringGato ispringGato, GatoMapper gatoMapper){
+    GatoRepo gatoRepository(ISpringGato ispringGato, GatoMapper gatoMapper) {
         return new GatoUseCaseImpl(ispringGato, gatoMapper);
     }
+
     @Bean
-    CachorroUseCase cachorroUseCase(CachorroRepo cachorroRepository){
+    CachorroUseCase cachorroUseCase(CachorroRepo cachorroRepository) {
         return new CachorroUseCase(cachorroRepository);
     }
+
     @Bean
-    CachorroRepo cachorroRepository(ISpringCachorro iSpringCachorro, CachorroMapper cachorroMapper){
+    CachorroRepo cachorroRepository(ISpringCachorro iSpringCachorro, CachorroMapper cachorroMapper) {
         return new CachorroUseCaseImpl(iSpringCachorro, cachorroMapper);
     }
 }

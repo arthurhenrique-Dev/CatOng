@@ -9,8 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -35,16 +33,17 @@ class ControllerAnimaisTest {
         MockitoAnnotations.initMocks(this);
         dtv = new DadosParaTesteValidoAnimal();
     }
+
     @Test
     void getGatos() {
 
         var retornoEsperado = dtv.gatoValido();
 
-        when(gatoUseCase.getGatos(0,1)).thenReturn(List.of(retornoEsperado));
+        when(gatoUseCase.getGatos(0, 1)).thenReturn(List.of(retornoEsperado));
 
-        var retorno = controllerAnimais.getGatos(0,1);
+        var retorno = controllerAnimais.getGatos(0, 1);
 
-        verify(gatoUseCase, times(1)).getGatos(0,1);
+        verify(gatoUseCase, times(1)).getGatos(0, 1);
         assertThat(retorno.get(0)).isEqualTo(retornoEsperado);
     }
 
@@ -54,11 +53,11 @@ class ControllerAnimaisTest {
         var retornoEsperado = dtv.gatoValido();
         var nome = dtv.gatoValido().getNome();
 
-        when(gatoUseCase.getGatos(0,1)).thenReturn(List.of(retornoEsperado));
+        when(gatoUseCase.getGatos(0, 1)).thenReturn(List.of(retornoEsperado));
 
-        var retorno = controllerAnimais.getGatos(0,1);
+        var retorno = controllerAnimais.getGatos(0, 1);
 
-        verify(gatoUseCase, times(1)).getGatos(0,1);
+        verify(gatoUseCase, times(1)).getGatos(0, 1);
         assertThat(retorno.get(0)).isEqualTo(retornoEsperado);
     }
 
@@ -81,11 +80,11 @@ class ControllerAnimaisTest {
 
         var retornoEsperado = dtv.cachorroValido();
 
-        when(cachorroUseCase.getCachorros(0,1)).thenReturn(List.of(retornoEsperado));
+        when(cachorroUseCase.getCachorros(0, 1)).thenReturn(List.of(retornoEsperado));
 
-        var retorno = controllerAnimais.getCachorros(0,1);
+        var retorno = controllerAnimais.getCachorros(0, 1);
 
-        verify(cachorroUseCase, times(1)).getCachorros(0,1);
+        verify(cachorroUseCase, times(1)).getCachorros(0, 1);
         assertThat(retorno.get(0)).isEqualTo(retornoEsperado);
     }
 
@@ -95,11 +94,11 @@ class ControllerAnimaisTest {
         var nome = dtv.cachorroValido().getNome();
         var retornoEsperado = dtv.cachorroValido();
 
-        when(cachorroUseCase.getCachorrosByName(0,1,nome)).thenReturn(List.of(retornoEsperado));
+        when(cachorroUseCase.getCachorrosByName(0, 1, nome)).thenReturn(List.of(retornoEsperado));
 
-        var retorno = controllerAnimais.getCachorrosByNome(0,1,nome);
+        var retorno = controllerAnimais.getCachorrosByNome(0, 1, nome);
 
-        verify(cachorroUseCase, times(1)).getCachorrosByName(0,1,nome);
+        verify(cachorroUseCase, times(1)).getCachorrosByName(0, 1, nome);
         assertThat(retorno.get(0)).isEqualTo(retornoEsperado);
     }
 
@@ -142,7 +141,7 @@ class ControllerAnimaisTest {
         var atualizacao = dtv.atualizacaoAnimaislValida();
 
         controllerAnimais.atualizarGatos(id, atualizacao);
-        verify(gatoUseCase, times(1)).alterarGato(id,atualizacao);
+        verify(gatoUseCase, times(1)).alterarGato(id, atualizacao);
     }
 
     @Test
@@ -152,7 +151,7 @@ class ControllerAnimaisTest {
         var atualizacao = dtv.atualizacaoAnimaislValida();
 
         controllerAnimais.atualizarCachorros(id, atualizacao);
-        verify(cachorroUseCase, times(1)).alterarCachorro(id,atualizacao);
+        verify(cachorroUseCase, times(1)).alterarCachorro(id, atualizacao);
     }
 
     @Test

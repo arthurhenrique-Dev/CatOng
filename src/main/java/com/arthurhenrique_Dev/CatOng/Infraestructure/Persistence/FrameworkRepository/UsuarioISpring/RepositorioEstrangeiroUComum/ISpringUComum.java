@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface ISpringUComum extends JpaRepository<EUComum, String> {
     List<EUComum> getEuComumsByNome(String nome, Pageable pageable);
+
     List<EUComum> findAllByAtividade(Atividade atividade, Pageable pageable);
 }

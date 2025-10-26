@@ -7,52 +7,45 @@ import java.util.List;
 public abstract class Animal {
 
     protected String nome;
-    protected int idade;
+    protected Integer idade;
     protected String raca;
     protected Atividade atividade;
     protected String descricao;
     protected Sexo sexo;
-    protected double peso;
+    protected Double peso;
     protected List<String> fotos;
     protected TipoDeAnimal tipoDeAnimal;
 
-    public Animal(String nome, int idade, String raca, Atividade atividade, String descricao, Sexo sexo, double peso, List<String> fotos) {
-        if (!nome.matches("^[\\p{L} ]{2,100}+$")){
-            throw new IllegalArgumentException("Apenas caracteres, acentos e espaços");
+    public Animal(String nome, Integer idade, String raca, Atividade atividade, String descricao, Sexo sexo, Double peso, List<String> fotos) {
+        if (nome.matches("^[\\p{L} ]{2,100}+$")) {
+            this.nome = nome;
         }
-        this.nome = nome;
-        if (idade < 0 || idade > 30){
-            throw new IllegalArgumentException("idade inválida");
+        if (!(idade < 0 || idade > 30)) {
+            this.idade = idade;
         }
-        this.idade = idade;
-        //if (!raca.matches("^[\\p{L}\\p{P}\\s]{1,50}$")){
-        //    throw new IllegalArgumentException("Digito inválido");
-        //}
-        this.raca = raca;
-        if (atividade != Atividade.ADOTADO && atividade != Atividade.ATIVO && atividade != Atividade.INATIVO){
-            throw new IllegalArgumentException("atividade inválida");
+        if (raca.matches("^.{1,50}$")) {
+            this.raca = raca;
         }
-        this.atividade = atividade;
+        if (atividade == Atividade.ADOTADO || atividade == Atividade.ATIVO || atividade == Atividade.INATIVO) {
+            this.atividade = atividade;
+        }
         this.descricao = descricao;
-        if (sexo == null){
-            throw new IllegalArgumentException("Informe o sexo");
+        if (sexo != null) {
+            this.sexo = sexo;
         }
-        this.sexo = sexo;
-        if (peso < 0 || Double.isNaN(peso)){
-            throw new IllegalArgumentException("Peso inválido");
+        if (!(peso < 0 || Double.isNaN(peso))) {
+            this.peso = peso;
         }
-        this.peso = peso;
-        if (fotos == null){
-            throw new IllegalArgumentException("Informe a foto");
+        if (!(fotos.isEmpty())) {
+            this.fotos = fotos;
         }
-        this.fotos = fotos;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public int getIdade() {
+    public Integer getIdade() {
         return idade;
     }
 
@@ -72,11 +65,11 @@ public abstract class Animal {
         return sexo;
     }
 
-    public double getPeso() {
+    public Double getPeso() {
         return peso;
     }
 
-    public void setIdade(int idade) {
+    public void setIdade(Integer idade) {
         this.idade = idade;
     }
 
@@ -88,7 +81,7 @@ public abstract class Animal {
         this.descricao = descricao;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(Double peso) {
         this.peso = peso;
     }
 

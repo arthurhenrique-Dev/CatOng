@@ -11,10 +11,16 @@ import java.util.Optional;
 public interface UGerenciamentoRepository {
 
     void salvarUGerenciamento(DTORegistroUGerenciamento ugerenciamento);
+
     void removerUGerenciamento(Long NR);
+
     void atualizarUGerenciamento(Long NR, DTOAtualizacaoUGerenciamento dto);
+
     Optional<DTORetornoUGerenciamento> getUGerenciamentoByNR(Long NR);
+
     List<DTORetornoUGerenciamento> getUGerenciamentos(Integer page, Integer size);
+
     List<DTORetornoUGerenciamento> getUGerenciamentosInativos(Integer page, Integer size);
+
     Optional<DTORetornoUGerenciamento> getUGerenciamento(String cpf);
 }

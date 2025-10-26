@@ -16,31 +16,26 @@ public abstract class BaseDeUsuários {
     ValidacaoCPF validar = new ValidacaoCPF();
 
     public BaseDeUsuários(String nome, String cpf, String RG, Atividade atividade, String email, String senha, String telefone) {
-        if (!nome.matches("^[\\p{L} ]{2,250}+$")){
-            throw new IllegalArgumentException("Apenas caracteres, acentos e espaços");
+        if (nome.matches("^[\\p{L} ]{2,250}+$")) {
+            this.nome = nome;
         }
-        this.nome = nome;
-        if (!validar.ValidarCpf(cpf)){
-            throw new IllegalArgumentException("Insira um cpf válido");
+        if (validar.ValidarCpf(cpf)) {
+            this.cpf = cpf;
         }
-        this.cpf = cpf;
-        if (!RG.matches("^[0-9]{7,9}$")){
-            throw new IllegalArgumentException("Insira um RG válido");
+        if (RG.matches("^[0-9]{7,9}$")) {
+            this.RG = RG;
         }
-        this.RG = RG;
-        this.atividade = atividade;
-        if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")){
-            throw new IllegalArgumentException("email inválido");
+        if (atividade == Atividade.ATIVO || atividade == Atividade.INATIVO)
+            this.atividade = atividade;
+        if (email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
+            this.email = email;
         }
-        this.email = email;
-        if (!senha.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}$")){
-            throw new IllegalArgumentException("Senha inválida, formato de senha: 8 digitos, pelo menos 1 minúsculo, 1 maiúsculo, um número e 1 caracter especial");
+        if (senha.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}$")) {
+            this.senha = senha;
         }
-        this.senha = senha;
-        if (!telefone.matches("^[1-9]{2}[9][0-9]{8}$")){
-            throw new IllegalArgumentException("Telefone inválido");
+        if (telefone.matches("^[1-9]{2}[9][0-9]{8}$")) {
+            this.telefone = telefone;
         }
-        this.telefone = telefone;
     }
 
     public String getTelefone() {

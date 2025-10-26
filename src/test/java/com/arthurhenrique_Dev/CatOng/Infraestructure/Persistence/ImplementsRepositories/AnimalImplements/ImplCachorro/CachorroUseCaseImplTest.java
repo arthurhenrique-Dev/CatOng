@@ -9,12 +9,9 @@ import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkReposi
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.PageRequest;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +34,7 @@ class CachorroUseCaseImplTest {
         cachorroUseCase = new CachorroUseCaseImpl(fRepository, mapper);
         dtv = new DadosParaTesteValidoAnimal();
     }
+
     @Test
     void salvarCachorro() {
         var cachorroValido = dtv.cadastroAnimalValidoCachorro();
@@ -158,7 +156,7 @@ class CachorroUseCaseImplTest {
         when(fRepository.findByNome(nome, PageRequest.of(0, 10)))
                 .thenReturn(lista);
 
-        List<Cachorro> retorno = cachorroUseCase.getCachorrosByName(0,10,nome);
+        List<Cachorro> retorno = cachorroUseCase.getCachorrosByName(0, 10, nome);
 
         verify(fRepository, times(1)).findByNome(nome, PageRequest.of(0, 10));
         assertThat(retorno).isNotEmpty();

@@ -15,8 +15,6 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ControllerUsuariosTest {
 
     @Mock
@@ -52,11 +50,11 @@ class ControllerUsuariosTest {
 
         var retornoEsperado = dtv.retornoValidoUComum();
 
-        when(comumUseCase.getUComuns(0,1)).thenReturn(List.of(retornoEsperado));
+        when(comumUseCase.getUComuns(0, 1)).thenReturn(List.of(retornoEsperado));
 
-        var retorno = controllerUsuarios.getUsers(0,1);
+        var retorno = controllerUsuarios.getUsers(0, 1);
 
-        verify(comumUseCase, times(1)).getUComuns(0,1);
+        verify(comumUseCase, times(1)).getUComuns(0, 1);
         assertThat(retorno.get(0)).isEqualTo(retornoEsperado);
     }
 
@@ -66,11 +64,11 @@ class ControllerUsuariosTest {
         var retornoEsperado = dtv.retornoValidoUComum();
         var nome = dtv.registroValidoUComum().nome();
 
-        when(comumUseCase.getUComunsByName(0,1,nome)).thenReturn(List.of(retornoEsperado));
+        when(comumUseCase.getUComunsByName(0, 1, nome)).thenReturn(List.of(retornoEsperado));
 
-        var retorno = controllerUsuarios.getUsersByName(0,1,nome);
+        var retorno = controllerUsuarios.getUsersByName(0, 1, nome);
 
-        verify(comumUseCase, times(1)).getUComunsByName(0,1,nome);
+        verify(comumUseCase, times(1)).getUComunsByName(0, 1, nome);
         assertThat(retorno.get(0)).isEqualTo(retornoEsperado);
     }
 
@@ -112,18 +110,18 @@ class ControllerUsuariosTest {
 
         var retornoEsperado = dtv.retornoValidoUgerenciamento();
 
-        when(gerenciamentoUseCase.getUGerenciamentos(0,1)).thenReturn(List.of(retornoEsperado));
+        when(gerenciamentoUseCase.getUGerenciamentos(0, 1)).thenReturn(List.of(retornoEsperado));
 
-        var retorno = controllerUsuarios.getUGerenciamentos(0,1);
+        var retorno = controllerUsuarios.getUGerenciamentos(0, 1);
 
-        verify(gerenciamentoUseCase, times(1)).getUGerenciamentos(0,1);
+        verify(gerenciamentoUseCase, times(1)).getUGerenciamentos(0, 1);
         assertThat(retorno.get(0)).isEqualTo(retornoEsperado);
     }
 
     @Test
     void getUGerenciamentosByNr() {
 
-        var nr =  1L;
+        var nr = 1L;
         var retornoEsperado = dtv.retornoValidoUgerenciamento();
 
         when(gerenciamentoUseCase.getUGerenciamentoByNR(nr)).thenReturn(Optional.of(retornoEsperado));

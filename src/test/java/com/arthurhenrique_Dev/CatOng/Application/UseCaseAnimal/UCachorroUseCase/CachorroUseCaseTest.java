@@ -1,20 +1,18 @@
 package com.arthurhenrique_Dev.CatOng.Application.UseCaseAnimal.UCachorroUseCase;
 
 import com.arthurhenrique_Dev.CatOng.DadosParaTeste.DadosAnimal.DadosParaTesteValidoAnimal;
-import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.CachorroRepo.CachorroRepo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.assertThat;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CachorroUseCaseTest {
 
@@ -74,11 +72,11 @@ class CachorroUseCaseTest {
 
         var cachorroRecebido = dtv.cachorroValido();
 
-        when(repository.getCachorros(0,1)).thenReturn(List.of(cachorroRecebido));
+        when(repository.getCachorros(0, 1)).thenReturn(List.of(cachorroRecebido));
 
-        var retorno = cachorroUseCase.getCachorros(0,1);
+        var retorno = cachorroUseCase.getCachorros(0, 1);
         assertThat(retorno.get(0)).isEqualTo(cachorroRecebido);
-        verify(repository, times(1)).getCachorros(0,1);
+        verify(repository, times(1)).getCachorros(0, 1);
     }
 
     @Test
@@ -87,12 +85,12 @@ class CachorroUseCaseTest {
         var cachorroRecebido = dtv.cachorroValido();
         var nome = cachorroRecebido.getNome();
 
-        when(repository.getCachorrosByName(0,1,nome)).thenReturn(List.of(cachorroRecebido));
+        when(repository.getCachorrosByName(0, 1, nome)).thenReturn(List.of(cachorroRecebido));
 
-        var retorno = cachorroUseCase.getCachorrosByName(0,1,nome);
+        var retorno = cachorroUseCase.getCachorrosByName(0, 1, nome);
 
         assertThat(retorno.get(0)).isEqualTo(cachorroRecebido);
-        verify(repository, times(1)).getCachorrosByName(0,1,nome);
+        verify(repository, times(1)).getCachorrosByName(0, 1, nome);
     }
 
     @Test
@@ -114,11 +112,11 @@ class CachorroUseCaseTest {
 
         var cachorroRecebido = dtv.cachorroValido();
 
-        when(repository.getCachorrosInativos(0,1)).thenReturn(List.of(cachorroRecebido));
+        when(repository.getCachorrosInativos(0, 1)).thenReturn(List.of(cachorroRecebido));
 
-        var retorno = cachorroUseCase.getCachorrosInativos(0,1);
+        var retorno = cachorroUseCase.getCachorrosInativos(0, 1);
         assertThat(retorno.get(0)).isEqualTo(cachorroRecebido);
-        verify(repository, times(1)).getCachorrosInativos(0,1);
+        verify(repository, times(1)).getCachorrosInativos(0, 1);
     }
 
     @Test
@@ -126,10 +124,10 @@ class CachorroUseCaseTest {
 
         var cachorroRecebido = dtv.cachorroValido();
 
-        when(repository.getCachorrosAdotados(0,1)).thenReturn(List.of(cachorroRecebido));
+        when(repository.getCachorrosAdotados(0, 1)).thenReturn(List.of(cachorroRecebido));
 
-        var retorno = cachorroUseCase.getCachorrosAdotados(0,1);
+        var retorno = cachorroUseCase.getCachorrosAdotados(0, 1);
         assertThat(retorno.get(0)).isEqualTo(cachorroRecebido);
-        verify(repository, times(1)).getCachorrosAdotados(0,1);
+        verify(repository, times(1)).getCachorrosAdotados(0, 1);
     }
 }

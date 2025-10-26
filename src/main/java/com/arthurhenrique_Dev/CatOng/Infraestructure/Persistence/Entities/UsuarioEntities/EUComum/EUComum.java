@@ -21,25 +21,32 @@ public class EUComum implements UserDetails {
 
     @Getter
     private String nome;
-    @Getter @Id
+    @Getter
+    @Id
     private String cpf;
     @Getter
     private String RG;
-    @Getter @Setter @Enumerated(EnumType.STRING)
+    @Getter
+    @Setter
+    @Enumerated(EnumType.STRING)
     private Atividade atividade;
-    @Getter @Enumerated(EnumType.STRING)
+    @Getter
+    @Enumerated(EnumType.STRING)
     private Permissao permissao;
     @Getter
     private String email;
     private String senha;
-    @Getter @Setter
+    @Getter
+    @Setter
     private String telefone;
-    @Embedded @Getter @Setter
+    @Embedded
+    @Getter
+    @Setter
     private PersistenceEndereco endereco;
     @Getter
     private LocalDate dataNascimento;
 
-    public EUComum(String nome, String cpf, String RG, Atividade atividade, Permissao permissao, String email,String senha, String telefone, PersistenceEndereco endereco, LocalDate dataNascimento) {
+    public EUComum(String nome, String cpf, String RG, Atividade atividade, Permissao permissao, String email, String senha, String telefone, PersistenceEndereco endereco, LocalDate dataNascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.RG = RG;

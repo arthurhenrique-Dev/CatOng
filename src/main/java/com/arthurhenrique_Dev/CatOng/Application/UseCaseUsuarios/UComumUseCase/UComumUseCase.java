@@ -16,23 +16,32 @@ public class UComumUseCase {
     public UComumUseCase(UComumRepository uComumRepository) {
         this.uComumRepository = uComumRepository;
     }
+
     public void salvarComum(DTORegistroUComum registroUComum) {
         uComumRepository.salvarUComum(registroUComum);
     }
-    public void atualizarComum(String cpf, DTOAtualizacaoUComum dto){
+
+    public void atualizarComum(String cpf, DTOAtualizacaoUComum dto) {
         uComumRepository.atualizarUComum(cpf, dto);
     }
+
     public void removerComum(String cpf) {
         uComumRepository.removerUComum(cpf);
     }
-    public Optional<DTORetornoUComum> getUComum(String cpf){
+
+    public Optional<DTORetornoUComum> getUComum(String cpf) {
         return uComumRepository.getUComum(cpf);
     }
-    public List<DTORetornoUComum> getUComuns(int page, int size) {
+
+    public List<DTORetornoUComum> getUComuns(Integer page, Integer size) {
         return uComumRepository.getUComuns(page, size);
     }
-    public List<DTORetornoUComum> getUComunsInativos(int page, int size) { return uComumRepository.getUComunsInativos(page, size); }
-    public List<DTORetornoUComum> getUComunsByName(int page, int size, String nome) {
+
+    public List<DTORetornoUComum> getUComunsInativos(Integer page, Integer size) {
+        return uComumRepository.getUComunsInativos(page, size);
+    }
+
+    public List<DTORetornoUComum> getUComunsByName(Integer page, Integer size, String nome) {
         return uComumRepository.getUComumsByName(page, size, nome);
     }
 }

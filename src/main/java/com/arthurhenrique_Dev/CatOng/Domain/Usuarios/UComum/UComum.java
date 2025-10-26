@@ -14,14 +14,10 @@ public class UComum extends BaseDeUsuários {
     public UComum(String nome, String cpf, String RG, Atividade atividade, String email, String senha, String telefone, Endereco endereco, LocalDate dataNascimento) {
         super(nome, cpf, RG, atividade, email, senha, telefone);
         this.endereco = endereco;
-        if (dataNascimento.isAfter(LocalDate.now().minusYears(18))){
-            throw new IllegalArgumentException("Jovem demais");
-        }
-        if (dataNascimento.isBefore(dataNascimento.minusYears(100))){
-            throw new IllegalArgumentException("Insira uma idade válida");
+        if (dataNascimento.isBefore(LocalDate.now().minusYears(18)) && dataNascimento.isAfter(dataNascimento.minusYears(100))) {
+            this.dataNascimento = dataNascimento;
         }
         this.atividade = atividade;
-        this.dataNascimento = dataNascimento;
         this.permissao = Permissao.COMUM;
     }
 
@@ -33,7 +29,4 @@ public class UComum extends BaseDeUsuários {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 }

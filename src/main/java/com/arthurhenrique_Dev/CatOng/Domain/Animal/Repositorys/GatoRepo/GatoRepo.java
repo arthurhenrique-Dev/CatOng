@@ -10,12 +10,20 @@ import java.util.Optional;
 public interface GatoRepo {
 
     void salvarGato(DTOCadastroAnimal dto);
+
     void deletarGato(Long id);
+
     void adotarGato(Long id);
+
     void alterarGato(Long id, DTOAtualizacaoAnimais dto);
+
     List<Gato> getGatos(Integer page, Integer size);
+
     List<Gato> getGatosAdotados(Integer page, Integer size);
+
     List<Gato> getGatosInativos(Integer page, Integer size);
+
     List<Gato> getGatoByName(Integer page, Integer size, String nome);
+
     Optional<Gato> getGatoById(Long id);
 }

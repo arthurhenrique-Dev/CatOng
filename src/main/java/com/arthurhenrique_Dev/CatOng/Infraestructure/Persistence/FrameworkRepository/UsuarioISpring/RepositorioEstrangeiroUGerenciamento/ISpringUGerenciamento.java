@@ -12,6 +12,8 @@ import java.util.List;
 
 public interface ISpringUGerenciamento extends JpaRepository<EUGerenciamento, Long> {
     EUGerenciamento findByNR(Long nr);
+
     EUGerenciamento findByCpf(String cpf);
+
     List<EUGerenciamento> findAllByAtividade(Atividade atividade, Pageable pageable);
 }

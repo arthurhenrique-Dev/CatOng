@@ -7,11 +7,11 @@ import java.util.List;
 public record DTOCadastroAnimal(
 
         String nome,
-        int idade,
+        Integer idade,
         String raca,
         String descricao,
         Sexo sexo,
         double peso,
-        List<String>fotos
+        List<String> fotos
 ) {
 }

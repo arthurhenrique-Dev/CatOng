@@ -2,10 +2,11 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepo
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOCadastroAnimal;
+import com.arthurhenrique_Dev.CatOng.Controllers.TratamentoDeExcecoes.Excecoes.Animais.AnimaisAtualizacaoInvalidaException;
+import com.arthurhenrique_Dev.CatOng.Controllers.TratamentoDeExcecoes.Excecoes.Animais.Cachorros.CachorroInexistenteException;
+import com.arthurhenrique_Dev.CatOng.Controllers.TratamentoDeExcecoes.Excecoes.DadoIncorretoException;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
-import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.TipoDeAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
-import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.CachorroRepo.CachorroRepo;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.AnimalMappers.CachorroMapper.CachorroMapper;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.ECachorro;
@@ -31,20 +32,25 @@ public class CachorroUseCaseImpl implements CachorroRepo {
 
     @Override
     public void salvarCachorro(DTOCadastroAnimal dto) {
-
+        if (dto == null) throw new DadoIncorretoException("insira os dados");
         var estruturadoPorDomain = mapper.DtoToDomain(dto);
-            fRepository.save(mapper.toEntity(estruturadoPorDomain));
+        fRepository.save(mapper.toEntity(estruturadoPorDomain));
     }
 
     @Override
     public void deletarCachorro(Long id) {
-        ECachorro cachorroDeletado = fRepository.findById(id).orElse(null);
-        cachorroDeletado.setAtividade(Atividade.INATIVO);
-        fRepository.save(cachorroDeletado);
+        if (id == null) throw new DadoIncorretoException("insira o id");
+        ECachorro retorno = fRepository
+                .findById(id).orElseThrow(() -> new CachorroInexistenteException());
+        retorno.setAtividade(Atividade.INATIVO);
+        fRepository.save(retorno);
     }
+
     @Override
     public void adotarCachorro(Long id) {
-        ECachorro eCachorro = fRepository.findById(id).orElse(null);
+        if (id == null) throw new DadoIncorretoException("insira o id");
+        ECachorro eCachorro = fRepository
+                .findById(id).orElseThrow(() -> new CachorroInexistenteException());
         eCachorro.setAtividade(Atividade.ADOTADO);
         fRepository.save(eCachorro);
     }
@@ -52,73 +58,96 @@ public class CachorroUseCaseImpl implements CachorroRepo {
     @Override
     public void alterarCachorro(Long id, DTOAtualizacaoAnimais dto) {
         ECachorro cachorroAlterado = fRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("cachorro não encontrado"));
-        if (cachorroAlterado != null) {
-            Cachorro moldeDeManipulacao = mapper.toDomain(cachorroAlterado);
-            if (dto != null) {
-                if (dto.fotos().isEmpty()) {
-                    moldeDeManipulacao.setFotos(dto.fotos());
-                }
-                if (dto.descricao().isEmpty()) {
-                    moldeDeManipulacao.setDescricao(dto.descricao());
-                }
-                if (dto.peso() != 0 && dto.peso() > 0){
-                    moldeDeManipulacao.setPeso(dto.peso());
-                }
-                if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > moldeDeManipulacao.getIdade()) {
-                    moldeDeManipulacao.setIdade(dto.idade());
-                }
-                fRepository.save(mapper.toEntity(moldeDeManipulacao));
-            } else  {
-                throw new IllegalArgumentException("Insira os dados de atualização");
+                .orElseThrow(() -> new CachorroInexistenteException());
+        Cachorro moldeDeManipulacao = mapper.toDomain(cachorroAlterado);
+        if (dto != null) {
+            if (dto.fotos().isEmpty()) {
+                moldeDeManipulacao.setFotos(dto.fotos());
             }
+            if (dto.descricao().isEmpty()) {
+                moldeDeManipulacao.setDescricao(dto.descricao());
+            }
+            if (dto.peso() != 0 && dto.peso() > 0) {
+                moldeDeManipulacao.setPeso(dto.peso());
+            }
+            if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > moldeDeManipulacao.getIdade()) {
+                moldeDeManipulacao.setIdade(dto.idade());
+            }
+            fRepository.save(mapper.toEntity(moldeDeManipulacao));
+        } else {
+            throw new AnimaisAtualizacaoInvalidaException();
         }
     }
 
     @Override
     public List<Cachorro> getCachorros(Integer page, Integer size) {
+        if (page < 0 || page == null && size < 0 || size == null) {
+            throw new DadoIncorretoException("Insira a paginação e o tamanho");
+        }
         Pageable pageable = PageRequest.of(page, size);
-        return fRepository.findAllByAtividade(Atividade.ATIVO, pageable)
+        var retorno = fRepository.findAllByAtividade(Atividade.ATIVO, pageable)
                 .stream()
                 .map(mapper::toDomain)
                 .toList();
+        if (retorno.isEmpty()) throw new CachorroInexistenteException("Nenhum cachorro disponivel para adoção");
+        return retorno;
     }
 
     @Override
     public List<Cachorro> getCachorrosInativos(Integer page, Integer size) {
+        if (page < 0 || page == null && size < 0 || size == null) {
+            throw new DadoIncorretoException("Insira a paginação e o tamanho");
+        }
         Pageable pageable = PageRequest.of(page, size);
-        return fRepository.findAllByAtividade(Atividade.INATIVO, pageable)
+        var retorno = fRepository.findAllByAtividade(Atividade.INATIVO, pageable)
                 .stream()
                 .map(mapper::toDomain)
                 .toList();
+        if (retorno.isEmpty()) throw new CachorroInexistenteException("Nenhum cachorro deletado");
+        return retorno;
     }
 
     @Override
     public List<Cachorro> getCachorrosAdotados(Integer page, Integer size) {
+        if (page < 0 || page == null && size < 0 || size == null) {
+            throw new DadoIncorretoException("Insira a paginação e o tamanho");
+        }
         Pageable pageable = PageRequest.of(page, size);
-        return fRepository.findAllByAtividade(Atividade.ADOTADO, pageable)
+        var retorno = fRepository.findAllByAtividade(Atividade.ADOTADO, pageable)
                 .stream()
                 .map(mapper::toDomain)
                 .toList();
+        if (retorno.isEmpty()) throw new CachorroInexistenteException("Nenhum cachorro foi adotado");
+        return retorno;
     }
 
     @Override
     public List<Cachorro> getCachorrosByName(Integer page, Integer size, String nome) {
-        if (nome == null || nome.isEmpty()) {
-            throw new IllegalArgumentException("Insira um nome");
+        if (page < 0 || page == null && size < 0 || size == null) {
+            throw new DadoIncorretoException("Insira a paginação e o tamanho");
         }
-        return fRepository.findByNome(nome, PageRequest.of(page, size))
+
+        if (nome.isEmpty()) throw new DadoIncorretoException("Insira um nome");
+
+        var retorno = fRepository.findByNome(nome, PageRequest.of(page, size))
                 .stream()
                 .map(mapper::toDomain)
                 .toList();
+
+        if (retorno.isEmpty()) throw new CachorroInexistenteException();
+
+        return retorno;
     }
 
     @Override
     public Optional<Cachorro> getCachorroById(Long id) {
-        if (id == null || id <= 0) {
-            throw new IllegalArgumentException("Insira um id valido");
+        if (id <= 0 || id == null) {
+            throw new DadoIncorretoException("Insira um id válido");
         }
         return fRepository.findById(id)
-                .map(mapper::toDomain);
+                .map(mapper::toDomain)
+                .or(() -> {
+                    throw new CachorroInexistenteException();
+                });
     }
 }

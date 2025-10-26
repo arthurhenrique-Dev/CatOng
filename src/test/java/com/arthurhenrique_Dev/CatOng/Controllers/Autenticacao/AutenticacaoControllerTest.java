@@ -16,11 +16,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.List;
-import java.util.Optional;
-
 import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.assertThat;
 

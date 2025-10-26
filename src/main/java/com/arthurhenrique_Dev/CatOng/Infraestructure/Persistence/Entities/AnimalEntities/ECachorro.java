@@ -21,28 +21,38 @@ public class ECachorro {
     private Long id;
     @Getter
     private String nome;
-    @Getter @Setter
-    private int idade;
+    @Getter
+    @Setter
+    private Integer idade;
     @Getter
     private String raca;
-    @Getter @Setter @Enumerated(EnumType.STRING)
+    @Getter
+    @Setter
+    @Enumerated(EnumType.STRING)
     private Atividade atividade;
-    @Getter @Setter
+    @Getter
+    @Setter
     private String descricao;
-    @Getter @Enumerated(EnumType.STRING)
+    @Getter
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
-    @Getter @Setter
-    private double peso;
-    @Getter @Setter @ElementCollection @CollectionTable(
+    @Getter
+    @Setter
+    private Double peso;
+    @Getter
+    @Setter
+    @ElementCollection
+    @CollectionTable(
             name = "cachorro_fotos",
             joinColumns = @JoinColumn(name = "cachorro_id")
     )
     @Column(name = "foto")
     private List<String> fotos = new ArrayList<>();
-    @Getter @Enumerated(EnumType.STRING)
+    @Getter
+    @Enumerated(EnumType.STRING)
     private TipoDeAnimal tipoDeAnimal;
 
-    public ECachorro(String nome, int idade, String raca, Atividade atividade, String descricao, Sexo sexo, double peso, List<String>fotos) {
+    public ECachorro(String nome, Integer idade, String raca, Atividade atividade, String descricao, Sexo sexo, Double peso, List<String> fotos) {
         this.nome = nome;
         this.idade = idade;
         this.raca = raca;

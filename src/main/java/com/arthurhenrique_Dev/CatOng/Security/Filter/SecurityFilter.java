@@ -32,12 +32,13 @@ public class SecurityFilter extends OncePerRequestFilter {
             var subject = tokenService.ValidarToken(token);
             if (subject != null) {
                 UserDetails user = autenticacaoService.loadUserByUsername(subject);
-                var auth =  new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                var auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         }
         filterChain.doFilter(request, response);
     }
+
     private String recoverToken(HttpServletRequest request) {
         var header = request.getHeader("Authorization");
         if (header == null) return null;

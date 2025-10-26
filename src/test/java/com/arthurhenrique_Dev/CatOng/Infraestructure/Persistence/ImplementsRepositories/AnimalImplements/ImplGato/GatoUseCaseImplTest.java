@@ -2,31 +2,22 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepo
 
 import com.arthurhenrique_Dev.CatOng.DadosParaTeste.DadosAnimal.DadosParaTesteValidoAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
-import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.AnimalMappers.GatoMapper.GatoMapper;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.ECachorro;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.EGato;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.AnimalISpring.RepositoriEstrangeiroGato.ISpringGato;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepositories.AnimalImplements.ImplCachorro.CachorroUseCaseImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
-import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.EGato;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class GatoUseCaseImplTest {
 
@@ -167,7 +158,7 @@ class GatoUseCaseImplTest {
         when(fRepository.getGatoByNome(nome, PageRequest.of(0, 10)))
                 .thenReturn(lista);
 
-        List<Gato> retorno = gatoUseCaseImpl.getGatoByName(0,10,nome);
+        List<Gato> retorno = gatoUseCaseImpl.getGatoByName(0, 10, nome);
 
         verify(fRepository, times(1)).getGatoByNome(nome, PageRequest.of(0, 10));
         assertThat(retorno).isNotEmpty();

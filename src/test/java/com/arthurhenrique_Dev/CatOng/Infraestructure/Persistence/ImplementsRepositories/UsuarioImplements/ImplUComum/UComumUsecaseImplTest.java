@@ -9,7 +9,6 @@ import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkReposi
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.data.domain.PageRequest;
 
@@ -19,7 +18,6 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UComumUsecaseImplTest {
@@ -97,9 +95,10 @@ class UComumUsecaseImplTest {
 
         when(fRepository.findById(id)).thenReturn(retorno);
 
-        uComumUsecaseImpl.getUComum(id);
+        Optional<DTORetornoUComum> resultado = uComumUsecaseImpl.getUComum(id);
 
         verify(fRepository, times(1)).findById(id);
+        assertEquals(resultado.get().nome(), retorno.get().getNome());
     }
 
     @Test
@@ -107,12 +106,12 @@ class UComumUsecaseImplTest {
 
         List<EUComum> retorno = List.of(dtv.euComumValido());
 
-        when(fRepository.findAllByAtividade(Atividade.ATIVO, PageRequest.of(0,10)))
+        when(fRepository.findAllByAtividade(Atividade.ATIVO, PageRequest.of(0, 10)))
                 .thenReturn(retorno);
 
-        uComumUsecaseImpl.getUComuns(0,10);
+        uComumUsecaseImpl.getUComuns(0, 10);
 
-        verify(fRepository, times(1)).findAllByAtividade(Atividade.ATIVO, PageRequest.of(0,10));
+        verify(fRepository, times(1)).findAllByAtividade(Atividade.ATIVO, PageRequest.of(0, 10));
     }
 
     @Test
@@ -120,12 +119,12 @@ class UComumUsecaseImplTest {
 
         List<EUComum> retorno = List.of(dtv.euComumValido());
 
-        when(fRepository.findAllByAtividade(Atividade.INATIVO, PageRequest.of(0,10)))
+        when(fRepository.findAllByAtividade(Atividade.INATIVO, PageRequest.of(0, 10)))
                 .thenReturn(retorno);
 
-        uComumUsecaseImpl.getUComunsInativos(0,10);
+        uComumUsecaseImpl.getUComunsInativos(0, 10);
 
-        verify(fRepository, times(1)).findAllByAtividade(Atividade.INATIVO, PageRequest.of(0,10));
+        verify(fRepository, times(1)).findAllByAtividade(Atividade.INATIVO, PageRequest.of(0, 10));
     }
 
     @Test
@@ -136,7 +135,7 @@ class UComumUsecaseImplTest {
 
         when(fRepository.getEuComumsByNome(nome, PageRequest.of(0, 10))).thenReturn(retorno);
 
-        uComumUsecaseImpl.getUComumsByName(0, 10,nome);
+        uComumUsecaseImpl.getUComumsByName(0, 10, nome);
 
         verify(fRepository, times(1)).getEuComumsByNome(nome, PageRequest.of(0, 10));
     }

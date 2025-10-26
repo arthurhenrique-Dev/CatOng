@@ -2,19 +2,17 @@ package com.arthurhenrique_Dev.CatOng.DadosParaTeste.DadosAnimal;
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOCadastroAnimal;
-import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Animal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Sexo;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Cachorros.Cachorro;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.EGato;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DadosParaTesteValidoAnimal {
 
-    public Gato gatoValido(){
+    public Gato gatoValido() {
 
         List<String> fotos = new ArrayList<>();
         fotos.add("(link de foto 1)");
@@ -34,7 +32,8 @@ public class DadosParaTesteValidoAnimal {
         );
         return gato;
     }
-    public DTOAtualizacaoAnimais atualizacaoAnimaislValida(){
+
+    public DTOAtualizacaoAnimais atualizacaoAnimaislValida() {
 
         List<String> fotos = new ArrayList<>();
         fotos.add("(link de foto nova 1)");
@@ -48,7 +47,8 @@ public class DadosParaTesteValidoAnimal {
         );
         return dto;
     }
-    public Cachorro cachorroValido(){
+
+    public Cachorro cachorroValido() {
         List<String> fotos = new ArrayList<>();
         fotos.add("(link de foto 1)");
         fotos.add("(link de foto 2)");
@@ -61,12 +61,13 @@ public class DadosParaTesteValidoAnimal {
                 Atividade.ATIVO,
                 "Pitbull muito carinhosinha e adestrada",
                 Sexo.FEMEA,
-                20,
+                20.0,
                 fotos
         );
         return cachorro;
     }
-    public DTOCadastroAnimal cadastroAnimalValidoGato(){
+
+    public DTOCadastroAnimal cadastroAnimalValidoGato() {
         List<String> fotos = new ArrayList<>();
         fotos.add("(link de foto 1)");
 
@@ -81,7 +82,8 @@ public class DadosParaTesteValidoAnimal {
         );
         return dto;
     }
-    public DTOCadastroAnimal cadastroAnimalValidoCachorro(){
+
+    public DTOCadastroAnimal cadastroAnimalValidoCachorro() {
         List<String> fotos = new ArrayList<>();
         fotos.add("(link de foto 1)");
 

@@ -33,7 +33,8 @@ public class DadosParaTesteValido {
                 12
         );
     }
-    public Endereco segundoEndereco(){
+
+    public Endereco segundoEndereco() {
 
         return new Endereco(
 
@@ -46,7 +47,7 @@ public class DadosParaTesteValido {
         );
     }
 
-    public DTORegistroUComum registroValidoUComum(){
+    public DTORegistroUComum registroValidoUComum() {
 
         DTORegistroUComum dto = new DTORegistroUComum(
 
@@ -56,12 +57,13 @@ public class DadosParaTesteValido {
                 "Aa@12345",
                 "emailexemplo@gmail.com",
                 "11999999999",
-                LocalDate.of(2000,01,01),
+                LocalDate.of(2000, 01, 01),
                 primeiroEndereco()
         );
         return dto;
     }
-    public DTOAtualizacaoUComum atualizacaoValidoUComum(){
+
+    public DTOAtualizacaoUComum atualizacaoValidoUComum() {
 
         DTOAtualizacaoUComum dto = new DTOAtualizacaoUComum(
 
@@ -70,7 +72,8 @@ public class DadosParaTesteValido {
         );
         return dto;
     }
-    public DTORetornoUComum retornoValidoUComum(){
+
+    public DTORetornoUComum retornoValidoUComum() {
 
         DTORetornoUComum dto = new DTORetornoUComum(
 
@@ -82,10 +85,11 @@ public class DadosParaTesteValido {
                 "11999998888",
                 15,
                 primeiroEndereco()
-                );
+        );
         return dto;
     }
-    public DTORegistroUGerenciamento registroValidoUgerenciamento(){
+
+    public DTORegistroUGerenciamento registroValidoUgerenciamento() {
 
         DTORegistroUGerenciamento dto = new DTORegistroUGerenciamento(
 
@@ -98,7 +102,8 @@ public class DadosParaTesteValido {
         );
         return dto;
     }
-    public DTOAtualizacaoUGerenciamento atualizacaoValidoUgerenciamento(){
+
+    public DTOAtualizacaoUGerenciamento atualizacaoValidoUgerenciamento() {
 
         DTOAtualizacaoUGerenciamento dto = new DTOAtualizacaoUGerenciamento(
 
@@ -106,7 +111,8 @@ public class DadosParaTesteValido {
         );
         return dto;
     }
-    public DTORetornoUGerenciamento retornoValidoUgerenciamento(){
+
+    public DTORetornoUGerenciamento retornoValidoUgerenciamento() {
 
         DTORetornoUGerenciamento dto = new DTORetornoUGerenciamento(
 
@@ -121,7 +127,8 @@ public class DadosParaTesteValido {
         );
         return dto;
     }
-    public DTOLogin loginValidoULogin(){
+
+    public DTOLogin loginValidoULogin() {
         DTOLogin dto = new DTOLogin(
                 "37896314002",
                 "Nome exemplo",
@@ -129,7 +136,8 @@ public class DadosParaTesteValido {
         );
         return dto;
     }
-    public EUComum euComumValido(){
+
+    public EUComum euComumValido() {
         EUComum euComum = new EUComum(
                 "Nome exemplo",
                 "93766186027",
@@ -140,11 +148,12 @@ public class DadosParaTesteValido {
                 "Aa@12345",
                 "11999998888",
                 mapper.toPersistenceEndereco(primeiroEndereco()),
-                LocalDate.of(2000,01,01)
+                LocalDate.of(2000, 01, 01)
         );
-                return euComum;
+        return euComum;
     }
-    public EUGerenciamento euGerenciamentoValido(){
+
+    public EUGerenciamento euGerenciamentoValido() {
         EUGerenciamento euGerenciamento = new EUGerenciamento(
                 "Nome exemplo",
                 "93766186027",

@@ -2,18 +2,18 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepo
 
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOAtualizacaoAnimais;
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Animais.DTOCadastroAnimal;
+import com.arthurhenrique_Dev.CatOng.Controllers.TratamentoDeExcecoes.Excecoes.Animais.Gatos.GatoInexistenteException;
+import com.arthurhenrique_Dev.CatOng.Controllers.TratamentoDeExcecoes.Excecoes.DadoIncorretoException;
+import com.arthurhenrique_Dev.CatOng.Controllers.TratamentoDeExcecoes.Excecoes.Usuarios.AtualizacaoInvalidaException;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.Atividade;
-import com.arthurhenrique_Dev.CatOng.Domain.Animal.BaseAnimal.TipoDeAnimal;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Gatos.Gato;
 import com.arthurhenrique_Dev.CatOng.Domain.Animal.Repositorys.GatoRepo.GatoRepo;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.AnimalMappers.GatoMapper.GatoMapper;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.AnimalEntities.EGato;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.AnimalISpring.RepositoriEstrangeiroGato.ISpringGato;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,102 +31,133 @@ public class GatoUseCaseImpl implements GatoRepo {
 
     @Override
     public void salvarGato(DTOCadastroAnimal dto) {
+        if (dto == null) throw new DadoIncorretoException("insira os dados para cadastro");
         var estruturadoPorDomain = mapper.DtoToDomain(dto);
         fRepository.save(mapper.toEntity(estruturadoPorDomain));
     }
 
     @Override
     public void deletarGato(Long id) {
-            EGato gatoDeletado = fRepository
-                    .findById(id).orElseThrow(() -> new IllegalArgumentException("gato não encontrado"));
-            gatoDeletado.setAtividade(Atividade.INATIVO);
-            fRepository.save(gatoDeletado);
+        if (id <= 0 || id == null) {
+            throw new DadoIncorretoException("Insira um id válido");
+        }
+        EGato gatoDeletado = fRepository
+                .findById(id).orElseThrow(() -> new GatoInexistenteException());
+        gatoDeletado.setAtividade(Atividade.INATIVO);
+        fRepository.save(gatoDeletado);
     }
 
 
     @Override
     public void adotarGato(Long id) {
+        if (id <= 0 || id == null) {
+            throw new DadoIncorretoException("Insira um id válido");
+        }
         EGato gatoAdotado = fRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("gato não encontrado"));
+                .orElseThrow(() -> new GatoInexistenteException());
         gatoAdotado.setAtividade(Atividade.ADOTADO);
         fRepository.save(gatoAdotado);
     }
 
     @Override
     public void alterarGato(Long id, DTOAtualizacaoAnimais dto) {
+        if (id <= 0 || id == null) {
+            throw new DadoIncorretoException("Insira um id válido");
+        }
         EGato gatoAlterado = fRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("gato não encontrado"));
+                .orElse(null);
         if (gatoAlterado != null) {
+            Gato moldeDeManipulacao = mapper.toDomain(gatoAlterado);
             if (dto != null) {
                 if (!(dto.fotos().isEmpty())) {
-                    gatoAlterado.setFotos(dto.fotos());
+                    moldeDeManipulacao.setFotos(dto.fotos());
                 }
                 if (!(dto.descricao().isEmpty())) {
-                    gatoAlterado.setDescricao(dto.descricao());
+                    moldeDeManipulacao.setDescricao(dto.descricao());
                 }
-                if (dto.peso() != 0 && dto.peso() > 0){
-                    gatoAlterado.setPeso(dto.peso());
+                if (dto.peso() != 0 && dto.peso() > 0) {
+                    moldeDeManipulacao.setPeso(dto.peso());
                 }
-                if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > gatoAlterado.getIdade()) {
-                    gatoAlterado.setIdade(dto.idade());
+                if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > moldeDeManipulacao.getIdade()) {
+                    moldeDeManipulacao.setIdade(dto.idade());
                 }
-                fRepository.save(gatoAlterado);
-            } else  {
-                throw new IllegalArgumentException("Insira os dados de atualização");
+                fRepository.save(mapper.toEntity(moldeDeManipulacao));
+            } else {
+                throw new AtualizacaoInvalidaException();
             }
+        } else {
+            throw new GatoInexistenteException();
         }
     }
 
     @Override
     public List<Gato> getGatos(Integer page, Integer size) {
+        if (page < 0 || page == null && size < 0 || size == null) {
+            throw new DadoIncorretoException("Insira a paginação e o tamanho");
+        }
         Pageable pageable = PageRequest.of(page, size);
-        return fRepository.findAllByAtividade(Atividade.ATIVO, pageable)
+        var retorno = fRepository.findAllByAtividade(Atividade.ATIVO, pageable)
                 .stream()
                 .map(mapper::toDomain)
                 .toList();
+        if (retorno.isEmpty()) throw new GatoInexistenteException("Nenhum gato disponivel para adoção no momento");
+        return retorno;
     }
 
     @Override
     public List<Gato> getGatosAdotados(Integer page, Integer size) {
+        if (page < 0 || page == null && size < 0 || size == null) {
+            throw new DadoIncorretoException("Insira a paginação e o tamanho");
+        }
         Pageable pageable = PageRequest.of(page, size);
-        return fRepository.findAllByAtividade(Atividade.ADOTADO, pageable)
+        var retorno = fRepository.findAllByAtividade(Atividade.ADOTADO, pageable)
                 .stream()
                 .map(mapper::toDomain)
                 .toList();
+        if (retorno.isEmpty()) throw new GatoInexistenteException("Nenhum gato encontrado");
+        return retorno;
     }
 
     @Override
     public List<Gato> getGatosInativos(Integer page, Integer size) {
+        if (page < 0 || page == null && size < 0 || size == null) {
+            throw new DadoIncorretoException("Insira a paginação e o tamanho");
+        }
         Pageable pageable = PageRequest.of(page, size);
-        return fRepository.findAllByAtividade(Atividade.INATIVO, pageable)
+        var retorno = fRepository.findAllByAtividade(Atividade.INATIVO, pageable)
                 .stream()
                 .map(mapper::toDomain)
                 .toList();
+        if (retorno.isEmpty()) throw new GatoInexistenteException("Nenhum gato encontrado");
+        return retorno;
     }
 
     @Override
     public List<Gato> getGatoByName(Integer page, Integer size, String nome) {
-        if (nome == null || nome.isEmpty()) {
-            new IllegalArgumentException("Insira o nome do gato para pesquisa");
+        if (page < 0 || page == null && size < 0 || size == null) {
+            throw new DadoIncorretoException("Insira a paginação e o tamanho");
         }
-        return fRepository.getGatoByNome(nome, PageRequest.of(page, size))
+        if (nome.isEmpty()) throw new DadoIncorretoException("Insira o nome");
+        var retorno = fRepository.getGatoByNome(nome, PageRequest.of(page, size))
                 .stream()
                 .map(mapper::toDomain)
                 .toList();
+        if (retorno.isEmpty()) throw new GatoInexistenteException("Nenhum gato encontrado");
+        return retorno;
     }
 
     @Override
     public Optional<Gato> getGatoById(Long id) {
-        if (id == null) {
-            new IllegalArgumentException("Insira o id do gato para pesquisa");
-        }
+        if (id == null) throw new GatoInexistenteException("insira o id");
         Optional<Gato> retorno = fRepository.findById(id)
                 .map(mapper::toDomain);
         if (retorno.isPresent()) {
             return retorno;
-        }
-        else {
-            throw new IllegalArgumentException("gato não encontrado");
+        } else {
+            throw new GatoInexistenteException();
         }
     }
+
+    ;
+
 }

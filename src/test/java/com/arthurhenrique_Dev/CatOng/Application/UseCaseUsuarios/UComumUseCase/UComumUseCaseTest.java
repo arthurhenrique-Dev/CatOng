@@ -76,11 +76,11 @@ class UComumUseCaseTest {
     void getUComuns() {
         var retorno = dtv.retornoValidoUComum();
 
-        when(repository.getUComuns(0,1)).thenReturn(List.of(retorno));
+        when(repository.getUComuns(0, 1)).thenReturn(List.of(retorno));
 
-        List<DTORetornoUComum> lista = uComumUseCase.getUComuns(0,1);
+        List<DTORetornoUComum> lista = uComumUseCase.getUComuns(0, 1);
 
-        verify(repository, times(1)).getUComuns(0,1);
+        verify(repository, times(1)).getUComuns(0, 1);
         assertThat(lista.get(0)).isEqualTo(retorno);
     }
 
@@ -88,11 +88,11 @@ class UComumUseCaseTest {
     void getUComunsByName() {
         var retorno = dtv.retornoValidoUComum();
 
-        when(repository.getUComumsByName(0,1,retorno.nome())).thenReturn(List.of(retorno));
+        when(repository.getUComumsByName(0, 1, retorno.nome())).thenReturn(List.of(retorno));
 
-        List<DTORetornoUComum> lista = uComumUseCase.getUComunsByName(0,1,retorno.nome());
+        List<DTORetornoUComum> lista = uComumUseCase.getUComunsByName(0, 1, retorno.nome());
 
-        verify(repository, times(1)).getUComumsByName(0,1,retorno.nome());
+        verify(repository, times(1)).getUComumsByName(0, 1, retorno.nome());
         assertThat(lista.get(0)).isEqualTo(retorno);
     }
 
@@ -101,11 +101,11 @@ class UComumUseCaseTest {
 
         var retorno = dtv.retornoValidoUComum();
 
-        when(repository.getUComunsInativos(0,1)).thenReturn(List.of(retorno));
+        when(repository.getUComunsInativos(0, 1)).thenReturn(List.of(retorno));
 
-        List<DTORetornoUComum> lista = uComumUseCase.getUComunsInativos(0,1);
+        List<DTORetornoUComum> lista = uComumUseCase.getUComunsInativos(0, 1);
 
-        verify(repository, times(1)).getUComunsInativos(0,1);
+        verify(repository, times(1)).getUComunsInativos(0, 1);
         assertThat(lista.get(0)).isEqualTo(retorno);
     }
 }

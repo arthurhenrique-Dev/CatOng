@@ -4,9 +4,8 @@ import com.arthurhenrique_Dev.CatOng.DadosParaTeste.DadosPessoa.DadosParaTesteVa
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
-import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ValidacaoCPFTest {
 
@@ -30,6 +29,7 @@ class ValidacaoCPFTest {
 
         assertThat(validando).isTrue();
     }
+
     @Test
     void naoValidarCPF() {
 

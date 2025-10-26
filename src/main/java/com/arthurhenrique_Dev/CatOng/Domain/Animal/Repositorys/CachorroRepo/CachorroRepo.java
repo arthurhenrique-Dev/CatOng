@@ -11,13 +11,21 @@ import java.util.Optional;
 public interface CachorroRepo {
 
     void salvarCachorro(DTOCadastroAnimal dto);
+
     void deletarCachorro(Long id);
+
     void adotarCachorro(Long id);
+
     void alterarCachorro(Long id, DTOAtualizacaoAnimais dto);
+
     List<Cachorro> getCachorros(Integer page, Integer size);
+
     List<Cachorro> getCachorrosInativos(Integer page, Integer size);
+
     List<Cachorro> getCachorrosAdotados(Integer page, Integer size);
+
     List<Cachorro> getCachorrosByName(Integer page, Integer size, String nome);
+
     Optional<Cachorro> getCachorroById(Long id);
 
 }

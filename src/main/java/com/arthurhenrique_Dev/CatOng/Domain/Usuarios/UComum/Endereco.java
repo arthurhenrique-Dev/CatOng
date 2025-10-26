@@ -10,7 +10,7 @@ public class Endereco {
     private int numero;
 
     public Endereco(String cep, String logradouro, String complemento, String bairro, String cidade, int numero) {
-        if (!cep.matches("^[0-9]{8}$")){
+        if (!cep.matches("^[0-9]{8}$")) {
             throw new IllegalArgumentException("CEP invalido");
         }
         this.cep = cep;

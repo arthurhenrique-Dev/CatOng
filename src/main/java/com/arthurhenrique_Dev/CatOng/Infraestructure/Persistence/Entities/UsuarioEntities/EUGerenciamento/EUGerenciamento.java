@@ -28,14 +28,18 @@ public class EUGerenciamento implements UserDetails {
     private String cpf;
     @Getter
     private String RG;
-    @Getter @Setter @Enumerated(EnumType.STRING)
+    @Getter
+    @Setter
+    @Enumerated(EnumType.STRING)
     private Atividade atividade;
-    @Getter @Enumerated(EnumType.STRING)
+    @Getter
+    @Enumerated(EnumType.STRING)
     private Permissao permissao;
     @Getter
     private String email;
     private String senha;
-    @Getter @Setter
+    @Getter
+    @Setter
     private String telefone;
 
     public EUGerenciamento(String nome, String cpf, String RG, Atividade atividade, Permissao permissao, String senha, String email, String telefone) {

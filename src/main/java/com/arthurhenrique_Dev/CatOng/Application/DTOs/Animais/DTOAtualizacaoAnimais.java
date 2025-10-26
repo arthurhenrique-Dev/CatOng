@@ -4,7 +4,7 @@ import java.util.List;
 
 public record DTOAtualizacaoAnimais(
 
-        int idade,
+        Integer idade,
         String descricao,
         double peso,
         List<String> fotos

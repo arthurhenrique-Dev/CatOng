@@ -10,5 +10,6 @@ import java.util.List;
 
 public interface ISpringCachorro extends JpaRepository<ECachorro, Long> {
     List<ECachorro> findByNome(String nome, Pageable pageable);
+
     List<ECachorro> findAllByAtividade(Atividade atividade, Pageable pageable);
 }

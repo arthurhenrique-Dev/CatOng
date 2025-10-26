@@ -3,9 +3,7 @@ package com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.ImplementsRepo
 import com.arthurhenrique_Dev.CatOng.DadosParaTeste.DadosPessoa.DadosParaTesteValido;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.InfraMappers.UserMappers.UGerenciamentoMapper.UGerenciamentoMapper;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUComum.EUComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.Entities.UsuarioEntities.EUGerenciamento.EUGerenciamento;
-import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.RepositorioEstrangeiroUComum.ISpringUComum;
 import com.arthurhenrique_Dev.CatOng.Infraestructure.Persistence.FrameworkRepository.UsuarioISpring.RepositorioEstrangeiroUGerenciamento.ISpringUGerenciamento;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,7 +51,7 @@ class UGerenciamentoUseCaseImplTest {
     @Test
     void removerUGerenciamento() {
 
-        var nr = dtv.euGerenciamentoValido().getNR();
+        var nr = 1L;
         EUGerenciamento retornoEsperado = dtv.euGerenciamentoValido();
 
         when(fRepository.findByNR(nr)).thenReturn(retornoEsperado);
@@ -70,7 +68,7 @@ class UGerenciamentoUseCaseImplTest {
     @Test
     void atualizarUGerenciamento() {
 
-        var nr = dtv.euGerenciamentoValido().getNR();
+        var nr =1L;
         EUGerenciamento entidadeRetornada = dtv.euGerenciamentoValido();
         var atualizacao = dtv.atualizacaoValidoUgerenciamento();
 
@@ -87,10 +85,10 @@ class UGerenciamentoUseCaseImplTest {
     @Test
     void getUGerenciamentoByNR() {
 
-        var nr = dtv.euGerenciamentoValido().getNR();
+        var nr = 1L;
         Optional<EUGerenciamento> retorno = Optional.of(dtv.euGerenciamentoValido());
 
-        when(fRepository.findById(nr)).thenReturn(retorno);
+        when(fRepository.findByNR(nr)).thenReturn(retorno.get());
 
         uGerenciamentoUseCaseImpl.getUGerenciamentoByNR(nr);
 
@@ -115,12 +113,12 @@ class UGerenciamentoUseCaseImplTest {
 
         List<EUGerenciamento> retorno = List.of(dtv.euGerenciamentoValido());
 
-        when(fRepository.findAllByAtividade(Atividade.INATIVO, PageRequest.of(0,10)))
+        when(fRepository.findAllByAtividade(Atividade.INATIVO, PageRequest.of(0, 10)))
                 .thenReturn(retorno);
 
-        uGerenciamentoUseCaseImpl.getUGerenciamentosInativos(0,10);
+        uGerenciamentoUseCaseImpl.getUGerenciamentosInativos(0, 10);
 
-        verify(fRepository, times(1)).findAllByAtividade(Atividade.INATIVO, PageRequest.of(0,10));
+        verify(fRepository, times(1)).findAllByAtividade(Atividade.INATIVO, PageRequest.of(0, 10));
     }
 
     @Test
@@ -128,11 +126,11 @@ class UGerenciamentoUseCaseImplTest {
 
         List<EUGerenciamento> retorno = List.of(dtv.euGerenciamentoValido());
 
-        when(fRepository.findAllByAtividade(Atividade.ATIVO, PageRequest.of(0,10)))
+        when(fRepository.findAllByAtividade(Atividade.ATIVO, PageRequest.of(0, 10)))
                 .thenReturn(retorno);
 
-        uGerenciamentoUseCaseImpl.getUGerenciamentos(0,10);
+        uGerenciamentoUseCaseImpl.getUGerenciamentos(0, 10);
 
-        verify(fRepository, times(1)).findAllByAtividade(Atividade.ATIVO, PageRequest.of(0,10));
+        verify(fRepository, times(1)).findAllByAtividade(Atividade.ATIVO, PageRequest.of(0, 10));
     }
 }

@@ -19,21 +19,31 @@ public class UGerenciamentoUseCase {
         this.uGRepo = uGRepo;
     }
 
-    public void salvarUGerenciamento(DTORegistroUGerenciamento registroUGerenciamento){
+    public void salvarUGerenciamento(DTORegistroUGerenciamento registroUGerenciamento) {
         uGRepo.salvarUGerenciamento(registroUGerenciamento);
     }
-    public void removerUGerenciamento(Long NR){
+
+    public void removerUGerenciamento(Long NR) {
         uGRepo.removerUGerenciamento(NR);
     }
-    public void atualizarUGerenciamento(Long NR, DTOAtualizacaoUGerenciamento dto){
+
+    public void atualizarUGerenciamento(Long NR, DTOAtualizacaoUGerenciamento dto) {
         uGRepo.atualizarUGerenciamento(NR, dto);
     }
-    public Optional<DTORetornoUGerenciamento> getUGerenciamento(String cpf){return uGRepo.getUGerenciamento(cpf);}
-    public Optional<DTORetornoUGerenciamento> getUGerenciamentoByNR(Long nr){
+
+    public Optional<DTORetornoUGerenciamento> getUGerenciamento(String cpf) {
+        return uGRepo.getUGerenciamento(cpf);
+    }
+
+    public Optional<DTORetornoUGerenciamento> getUGerenciamentoByNR(Long nr) {
         return uGRepo.getUGerenciamentoByNR(nr);
     }
-    public List<DTORetornoUGerenciamento> getUGerenciamentos(int page, int size){
+
+    public List<DTORetornoUGerenciamento> getUGerenciamentos(Integer page, Integer size) {
         return uGRepo.getUGerenciamentos(page, size);
     }
-    public List<DTORetornoUGerenciamento> getUGerenciamentosInativos(int page, int size){return uGRepo.getUGerenciamentosInativos(page, size);}
+
+    public List<DTORetornoUGerenciamento> getUGerenciamentosInativos(Integer page, Integer size) {
+        return uGRepo.getUGerenciamentosInativos(page, size);
+    }
 }

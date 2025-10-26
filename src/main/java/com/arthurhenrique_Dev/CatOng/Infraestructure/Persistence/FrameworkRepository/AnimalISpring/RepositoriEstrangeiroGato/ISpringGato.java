@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface ISpringGato extends JpaRepository<EGato, Long> {
     List<EGato> getGatoByNome(String nome, Pageable pageable);
+
     List<EGato> findAllByAtividade(Atividade atividade, Pageable pageable);
 
 }
