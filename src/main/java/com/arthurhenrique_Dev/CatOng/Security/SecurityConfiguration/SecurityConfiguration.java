@@ -3,6 +3,7 @@ package com.arthurhenrique_Dev.CatOng.Security.SecurityConfiguration;
 import com.arthurhenrique_Dev.CatOng.Security.Filter.SecurityFilter;
 import com.arthurhenrique_Dev.CatOng.Security.SecurityService.AutenticacaoService;
 import com.arthurhenrique_Dev.CatOng.Security.SecurityService.TokenService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -34,6 +36,12 @@ public class SecurityConfiguration {
 
         SecurityFilter securityFilter = new SecurityFilter(tokenService, autenticacaoService);
 
+        AuthenticationEntryPoint authenticationEntryPoint = (request, response, authException) -> {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"mensagem\": \"Falha na autenticação\"}");
+        };
+
         return http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -51,6 +59,9 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/user/gerenciamento/funcionario/**").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/user/gerenciamento/funcionario/**").hasAuthority("ADMIN")
                         .anyRequest().permitAll()
+                )
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint(authenticationEntryPoint)
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
