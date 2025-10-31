@@ -56,5 +56,10 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorMessage err = new ErrorMessage(exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
+    @org.springframework.web.bind.annotation.ExceptionHandler(UsuarioBanidoException.class)
+    private ResponseEntity<ErrorMessage> UsuarioBanidoException(UsuarioBanidoException exception) {
+        ErrorMessage err = new ErrorMessage(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
+    }
 }
 

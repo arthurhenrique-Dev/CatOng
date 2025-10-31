@@ -56,12 +56,8 @@ public class UGerenciamentoUseCaseImpl implements UGerenciamentoRepository {
             if (dto.telefone() != null) {
                 usuarioAlterado.setTelefone(dto.telefone());
                 fRepository.save(usuarioAlterado);
-            } else {
-                throw new AtualizacaoInvalidaException();
-            }
-        } else {
-            throw new UsuarioInexistenteException();
-        }
+            } else throw new AtualizacaoInvalidaException();
+        } else throw new UsuarioInexistenteException();
     }
 
     @Override
@@ -103,9 +99,7 @@ public class UGerenciamentoUseCaseImpl implements UGerenciamentoRepository {
 
     @Override
     public Optional<DTORetornoUGerenciamento> getUGerenciamento(String cpf) {
-        if (cpf.isEmpty()) {
-            throw new DadoIncorretoException("Insira o CPF");
-        }
+        if (cpf.isEmpty()) throw new DadoIncorretoException("Insira o CPF");
         EUGerenciamento recebido = fRepository.findByCpf(cpf);
         if (recebido == null) throw new UsuarioInexistenteException();
         return Optional.ofNullable(recebido)

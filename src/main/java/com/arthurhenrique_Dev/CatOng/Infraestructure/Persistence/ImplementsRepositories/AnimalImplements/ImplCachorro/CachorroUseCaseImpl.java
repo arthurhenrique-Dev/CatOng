@@ -59,24 +59,13 @@ public class CachorroUseCaseImpl implements CachorroRepo {
     public void alterarCachorro(Long id, DTOAtualizacaoAnimais dto) {
         ECachorro cachorroAlterado = fRepository.findById(id)
                 .orElseThrow(() -> new CachorroInexistenteException());
-        Cachorro moldeDeManipulacao = mapper.toDomain(cachorroAlterado);
         if (dto != null) {
-            if (dto.fotos().isEmpty()) {
-                moldeDeManipulacao.setFotos(dto.fotos());
-            }
-            if (dto.descricao().isEmpty()) {
-                moldeDeManipulacao.setDescricao(dto.descricao());
-            }
-            if (dto.peso() != 0 && dto.peso() > 0) {
-                moldeDeManipulacao.setPeso(dto.peso());
-            }
-            if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > moldeDeManipulacao.getIdade()) {
-                moldeDeManipulacao.setIdade(dto.idade());
-            }
-            fRepository.save(mapper.toEntity(moldeDeManipulacao));
-        } else {
-            throw new AnimaisAtualizacaoInvalidaException();
-        }
+            if (!(dto.fotos().isEmpty())) cachorroAlterado.setFotos(dto.fotos());
+            if (!(dto.descricao().isEmpty())) cachorroAlterado.setDescricao(dto.descricao());
+            if (dto.peso() != 0 && dto.peso() > 0) cachorroAlterado.setPeso(dto.peso());
+            if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > cachorroAlterado.getIdade()) cachorroAlterado.setIdade(dto.idade());
+            fRepository.save(cachorroAlterado);
+        } else throw new AnimaisAtualizacaoInvalidaException();
     }
 
     @Override

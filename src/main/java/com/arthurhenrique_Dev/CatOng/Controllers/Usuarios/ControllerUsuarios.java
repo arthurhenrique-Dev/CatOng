@@ -101,7 +101,7 @@ public class ControllerUsuarios {
     }
 
     @GetMapping("/gerenciamento/funcionario/off")
-    @Operation(summary = "buscar funcionários", description = "requisição responsável por buscar os funcionários")
+    @Operation(summary = "buscar funcionários removidos", description = "requisição responsável por buscar os funcionários")
     @ApiResponse(responseCode = "200", description = "busca pelos funcionários efetuada")
     @ApiResponse(responseCode = "400", description = "erro ao efetuar busca")
     @ApiResponse(responseCode = "500", description = "erro de servidor")

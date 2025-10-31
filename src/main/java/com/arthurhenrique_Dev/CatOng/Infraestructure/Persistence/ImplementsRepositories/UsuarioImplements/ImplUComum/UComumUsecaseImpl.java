@@ -72,21 +72,14 @@ public class UComumUsecaseImpl implements UComumRepository {
                 PersistenceEndereco enderecoAtualizado = mapper.toPersistenceEndereco(dto.endereco());
                 usuarioRecebido.setEndereco(enderecoAtualizado);
             }
-            if (dto.telefone() != null) {
-                usuarioRecebido.setTelefone(dto.telefone());
-            }
+            if (dto.telefone() != null) usuarioRecebido.setTelefone(dto.telefone());
             fRepository.save(usuarioRecebido);
-        } else {
-            throw new AtualizacaoInvalidaException("Insira o dado que você quer modificar (endereço ou telefone)");
-        }
-
+        } else throw new AtualizacaoInvalidaException("Insira o dado que você quer modificar (endereço ou telefone)");
     }
 
     @Override
     public Optional<DTORetornoUComum> getUComum(String cpf) {
-        if (cpf.isEmpty()) {
-            throw new UsuarioInexistenteException("insira o cpf");
-        }
+        if (cpf.isEmpty()) throw new UsuarioInexistenteException("insira o cpf");
         EUComum usuarioRecebido = fRepository
                 .findById(cpf).orElseThrow(() -> new UsuarioInexistenteException());
         return Optional.ofNullable(mapper.toDtoReturn(usuarioRecebido));

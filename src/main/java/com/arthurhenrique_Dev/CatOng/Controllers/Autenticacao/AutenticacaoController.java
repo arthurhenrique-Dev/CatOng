@@ -5,6 +5,8 @@ import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Cadastro.DTORegis
 import com.arthurhenrique_Dev.CatOng.Application.DTOs.Usuarios.Login.DTOLogin;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UComumUseCase.UComumUseCase;
 import com.arthurhenrique_Dev.CatOng.Application.UseCaseUsuarios.UGerenciamentoUseCase.UGerenciamentoUseCase;
+import com.arthurhenrique_Dev.CatOng.Controllers.TratamentoDeExcecoes.UsuarioBanidoException;
+import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Atividade;
 import com.arthurhenrique_Dev.CatOng.Domain.Usuarios.Base.Permissao;
 import com.arthurhenrique_Dev.CatOng.Security.SecurityService.TokenService;
 import com.arthurhenrique_Dev.CatOng.UsoPessoal.ProcessosIniciais.DTOAdminLogin;
@@ -43,10 +45,13 @@ public class AutenticacaoController {
     @ApiResponse(responseCode = "403", description = "erro ao efetuar login")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
     public ResponseEntity login(@RequestBody @Valid DTOLogin dto) {
-        var autenticacao = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.senha());
-        this.authenticationManager.authenticate(autenticacao);
-        var token = tokenService.GerarTokenGenerico(dto.cpf(), Permissao.COMUM);
-        return ResponseEntity.ok(token);
+        var retorno = uComumUseCase.getUComum(dto.cpf());
+        if (retorno.get().atividade() != Atividade.INATIVO) {
+            var autenticacao = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.senha());
+            this.authenticationManager.authenticate(autenticacao);
+            var token = tokenService.GerarTokenGenerico(dto.cpf(), Permissao.COMUM);
+            return ResponseEntity.ok(token);
+        } else throw new UsuarioBanidoException();
     }
 
     @PostMapping("/func/login")
@@ -55,10 +60,13 @@ public class AutenticacaoController {
     @ApiResponse(responseCode = "403", description = "erro ao efetuar login")
     @ApiResponse(responseCode = "500", description = "erro de servidor")
     public ResponseEntity loginFunc(@RequestBody @Valid DTOLogin dto) {
-        var autenticacao = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.senha());
-        this.authenticationManager.authenticate(autenticacao);
-        var token = tokenService.GerarTokenGenerico(dto.cpf(), Permissao.GERENCIAMENTO);
-        return ResponseEntity.ok(token);
+        var retorno = (uGerenciamentoUseCase.getUGerenciamento(dto.cpf()));
+        if (retorno.get().atividade() != Atividade.INATIVO) {
+            var autenticacao = new UsernamePasswordAuthenticationToken(dto.cpf(), dto.senha());
+            this.authenticationManager.authenticate(autenticacao);
+            var token = tokenService.GerarTokenGenerico(dto.cpf(), Permissao.GERENCIAMENTO);
+            return ResponseEntity.ok(token);
+        } else throw new UsuarioBanidoException();
     }
 
     @PostMapping("/sign_up")

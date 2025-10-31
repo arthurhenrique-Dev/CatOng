@@ -67,27 +67,14 @@ public class GatoUseCaseImpl implements GatoRepo {
         EGato gatoAlterado = fRepository.findById(id)
                 .orElse(null);
         if (gatoAlterado != null) {
-            Gato moldeDeManipulacao = mapper.toDomain(gatoAlterado);
             if (dto != null) {
-                if (!(dto.fotos().isEmpty())) {
-                    moldeDeManipulacao.setFotos(dto.fotos());
-                }
-                if (!(dto.descricao().isEmpty())) {
-                    moldeDeManipulacao.setDescricao(dto.descricao());
-                }
-                if (dto.peso() != 0 && dto.peso() > 0) {
-                    moldeDeManipulacao.setPeso(dto.peso());
-                }
-                if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > moldeDeManipulacao.getIdade()) {
-                    moldeDeManipulacao.setIdade(dto.idade());
-                }
-                fRepository.save(mapper.toEntity(moldeDeManipulacao));
-            } else {
-                throw new AtualizacaoInvalidaException();
-            }
-        } else {
-            throw new GatoInexistenteException();
-        }
+                if (!(dto.fotos().isEmpty())) gatoAlterado.setFotos(dto.fotos());
+                if (!(dto.descricao().isEmpty())) gatoAlterado.setDescricao(dto.descricao());
+                if (dto.peso() != 0 && dto.peso() > 0) gatoAlterado.setPeso(dto.peso());
+                if (dto.idade() != 0 && dto.idade() > 0 && dto.idade() > gatoAlterado.getIdade()) gatoAlterado.setIdade(dto.idade());
+                fRepository.save(gatoAlterado);
+            } else throw new AtualizacaoInvalidaException();
+        } else throw new GatoInexistenteException();
     }
 
     @Override
